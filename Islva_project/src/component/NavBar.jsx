@@ -86,7 +86,7 @@ export default function Navbar() {
             </li>
 
             <li>
-              <Link to="/shop" onClick={() => setIsNavOpen(false)}>Shop</Link>
+              <Link to="/shop" onClick={() => setIsNavOpen(false)} target="_blank" rel="noopener noreferrer">Shop</Link>
             </li>
 
             {/* Glossary */}
