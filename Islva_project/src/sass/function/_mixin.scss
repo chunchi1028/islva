@@ -1,0 +1,22 @@
+@use "../variables/" as *;
+
+@mixin border-b($width: 3px, $color: $Charcoal) {
+    border-bottom: solid $width $color;
+}
+
+@mixin bordered ($width: 1px, $color: $lesser-4) {
+    border: solid $width $color;
+}
+
+@mixin ant($name, $speed: 0.75s) {
+    animation: $name $speed both;
+}
+// 玻璃擬態
+@mixin glassmorbhism {
+    background-image: linear-gradient(to bottom right, $alpha-w-40, $alpha-w-70);
+    // border: 2px solid var(--alpha-w-40);
+    @include bordered($width:2px,$color:$alpha-w-40 );
+    backdrop-filter: blur(20px);
+    box-shadow: 2px 2px 5px $alpha-b-20,
+        inset -1px -1px 1px $alpha-w-40;
+}

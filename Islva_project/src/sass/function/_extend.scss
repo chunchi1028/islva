@@ -1,0 +1,86 @@
+@use "../variables/" as *;
+@use "./mixin" as *; //extend也在function資料夾中，不可直接調用在整個function，只需調用mixin檔案
+
+// extend 繼承語法都會置頂
+%flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+%flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+%multiple-lines {
+    // 多行省略
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+%single-line {
+    // 單行省略
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+%img-cover {
+    object-fit: cover;
+    height: 100%;
+     width:100%; 
+    //  <img>reset已經有設定
+}
+
+%btn-animat {
+    border-radius: $radius-ex;
+    @extend %flex-center;
+    height: 60px;
+    width: 210px;
+    cursor: pointer;
+    margin: $space-md auto;
+    @include bordered;
+    color: $lesser-4;
+    letter-spacing: $space-sm;
+    padding-left: $space-sm;
+
+    &:hover {
+        @include ant($name: myrotate);
+
+        span {
+            @include ant($name: mystorm);
+        }
+    }
+}
+
+%input-style {
+    @include bordered; // border: 1px solid var(--lesser-3);
+    padding: $space-xs;
+    border-radius: $space-xxs;
+    font-weight: $f-w-m;
+    color: $lesser-4;
+
+    &:focus {
+        outline: 2px solid $lesser-3;
+    }
+
+    &::placeholder {
+        color: $lesser-3;
+        font-size: $f-s-xs;
+        font-weight: $f-w-r;
+    }
+}
+
+%list-title {
+    font-size: $f-s-lg;
+    font-weight: $f-w-m;
+    margin-bottom: $space-xs;
+}
