@@ -1,15 +1,13 @@
-import { HashRouter } from 'react-router-dom'
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-// import './index.css'
-import App from './ISLVA_App'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { HashRouter } from "react-router-dom";
+import ISLVA_App from "./ISLVA_App";
 import "./css/all.min.css"
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HashRouter>
-    <App />
+      <ISLVA_App />
     </HashRouter>
-    
-  </StrictMode>,
-)
+  </StrictMode>
+);

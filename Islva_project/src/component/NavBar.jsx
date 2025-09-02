@@ -79,9 +79,9 @@ export default function Navbar() {
                 className="submenu"
                 hidden={openMenu !== "collection"}
               >
-                <li><Link to="/Form" onClick={() => setIsNavOpen(false)}>Form/純銀</Link></li>
-                <li><Link to="/Lumen" onClick={() => setIsNavOpen(false)}>Lumen/琺瑯</Link></li>
-                <li><Link to="/Core" onClick={() => setIsNavOpen(false)}>Core/鑲嵌</Link></li>
+                <li><Link to="/form" onClick={() => setIsNavOpen(false)}>Form/純銀</Link></li>
+                <li><Link to="/lumen" onClick={() => setIsNavOpen(false)}>Lumen/琺瑯</Link></li>
+                <li><Link to="/core" onClick={() => setIsNavOpen(false)}>Core/鑲嵌</Link></li>
               </ul>
             </li>
 
@@ -105,10 +105,10 @@ export default function Navbar() {
                 className="submenu"
                 hidden={openMenu !== "glossary"}
               >
-                <li><Link to="/Material" onClick={() => setIsNavOpen(false)}>Material/材質</Link></li>
-                <li><Link to="/Craft" onClick={() => setIsNavOpen(false)}>Craft/工藝</Link></li>
-                <li><Link to="/Finish" onClick={() => setIsNavOpen(false)}>Finish/表面效果</Link></li>
-                <li><Link to="/Care" onClick={() => setIsNavOpen(false)}>Care/保養方式</Link></li>
+                <li><Link to="/material" onClick={() => setIsNavOpen(false)}>Material/材質</Link></li>
+                <li><Link to="/craft" onClick={() => setIsNavOpen(false)}>Craft/工藝</Link></li>
+                <li><Link to="/finish" onClick={() => setIsNavOpen(false)}>Finish/表面效果</Link></li>
+                <li><Link to="/care" onClick={() => setIsNavOpen(false)}>Care/保養方式</Link></li>
               </ul>
             </li>
 

@@ -1,0 +1,145 @@
+.site-header, .shop-header {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .nav-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #222;
+  }
+
+  /* 漢堡鍵 */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #222;
+    }
+  }
+
+  /* 導覽清單 */
+  .nav-links {
+    ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+
+      li {
+        position: relative;
+
+        a, button.menu-btn {
+          background: none;
+          border: none;
+          font: inherit;
+          cursor: pointer;
+          text-decoration: none;
+          color: #222;
+          padding: 0.5rem;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: #00796b; // hover 顏色（青綠）
+          }
+        }
+      }
+    }
+
+    /* 子選單（dropdown） */
+    .submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      min-width: 160px;
+      padding: 0.5rem 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+
+      li {
+        a {
+          display: block;
+          width: 100%;
+          padding: 0.5rem 1rem;
+          color: #333;
+
+          &:hover {
+            background: #f2f2f2;
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+
+  /* 手機版 */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      transform: translateY(-200%);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+
+      &.open {
+        transform: translateY(0);
+      }
+
+      ul {
+        flex-direction: column;
+        padding: 1rem;
+
+        li {
+          width: 100%;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+/* ShopNavBar 可以換顏色（例：深綠主色） */
+.shop-header {
+  background-color: #0b3d2e; // Shop 深綠
+  .logo, .nav-links a, .nav-links button.menu-btn {
+    color: #fff;
+    &:hover {
+      color: #ffeb3b; // Shop hover 黃色
+    }
+  }
+  .hamburger span {
+    background-color: #fff;
+  }
+}
