@@ -1,10 +1,10 @@
 // variables & functions
-@use './variables/' as *;
-@use './functions/' as *;
+@use "./variables/" as *;
+@use "./functions/" as *;
 
 // css reset
-@use './reset';
+@use "./reset";
 
 // components & pages
-@use './components/' as *;
-@use './pages/' as *;
+@use "./components/" as *;
+@use "./pages/" as *;

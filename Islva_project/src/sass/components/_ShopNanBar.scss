@@ -1,0 +1,60 @@
+@use "../variables/" as *;
+@use "../functions/" as *;
+
+.shop-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: $White; // 若無 variables 請改成 #fff
+
+  .shop-nav {
+    max-width: 1200px; // 無 variables 可改成 1200px
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 42.5px; // 無 variables 可改成 72px
+
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    justify-content: center;
+
+    .logo {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 0.12em;
+      color: #111; // 無 variables 改成 #111
+      text-decoration: none;
+
+      &:hover {
+        color: $Charcoal;
+      }
+    }
+
+    a {
+      font-size: 1rem;
+
+      color: #333; // 無 variables 改成 #333
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+        color: $Charcoal;
+      }
+    }
+
+    /* 簡單 RWD（小螢幕縮小間距） */
+    @media (max-width: 768px) {
+      .shop-header .shop-nav {
+        gap: 12px;
+        padding: 0 16px;
+
+        a {
+          font-size: 14px;
+          padding: 8px 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@use "../variables/" as *;
+@use "../functions/" as *;
+
+$footer-bg-color: #444; // 深灰色背景
+$footer-text-color: #ddd; // 淺灰色文字
+$footer-divider-color: #666; // 分隔線顏色
+
+.footer {
+  background-color: $footer-bg-color;
+  color: $footer-text-color;
+  padding: 2rem 3rem;
+  font-family: sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.footer-info {
+  // 左側區塊
+  .footer-logo {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+  }
+  .footer-tagline {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+.footer-links {
+  // 右側區塊
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+
+    li a {
+      text-decoration: none;
+      color: $footer-text-color;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #fff; // 滑鼠懸停時變亮
+      }
+    }
+  }
+}
+
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background-color: $footer-divider-color;
+  margin-bottom: 1.5rem;
+}
+
+.footer-copyright {
+  text-align: right;
+  font-size: 0.8rem;
+}
