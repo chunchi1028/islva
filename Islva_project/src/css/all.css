@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* 1. Reset */
 /* CSS Reset */
 * {
   box-sizing: border-box;
@@ -134,6 +135,11 @@ a {
   transition: 0.4s;
 }
 
+/* 2. Variables & Functions */
+/* 2. Variables & Functions */
+/* 2. Variables & Functions */
+/* 3. Components & Pages */
+/* 2. Variables & Functions */
 .site-header {
   position: sticky;
   top: 0;
@@ -233,6 +239,7 @@ a {
   transform: rotate(180deg);
 }
 
+/* 2. Variables & Functions */
 .shop-header {
   position: sticky;
   top: 0;
@@ -282,6 +289,7 @@ a {
   }
 }
 
+/* 2. Variables & Functions */
 .footer {
   background-color: #444;
   color: #ddd;
@@ -335,6 +343,15 @@ a {
   font-size: 0.8rem;
 }
 
+/* 2. Variables & Functions */
+.hero-image-bg {
+  width: 25vw;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 2. Variables & Functions */
 /*------ 按鈕區------*/
 .tabs-container {
   display: flex;
