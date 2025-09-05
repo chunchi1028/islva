@@ -14,10 +14,10 @@ import Form from "./pages/Form.jsx";
 import Lumen from "./pages/Lumen.jsx";
 import Core from "./pages/Core.jsx";
 
-import Care from "./pages/Care.jsx";
-import Material from "./pages/Material.jsx";
-import Craft from "./pages/Craft.jsx";
-import Finish from "./pages/Finish.jsx";
+// import Care from "./pages/Care.jsx";
+// import Material from "./pages/Material.jsx";
+// import Craft from "./pages/Craft.jsx";
+// import Finish from "./pages/Finish.jsx";
 
 // shop
 import Shop from "./pages/Shop/Shop.jsx";
@@ -44,10 +44,10 @@ const ISLVA_App = () => {
           <Route path="core" element={<Core />} />
 
           {/* Glossary 子頁 */}
-          <Route path="material" element={<Material />} />
+          {/* <Route path="material" element={<Material />} />
           <Route path="craft" element={<Craft />} />
           <Route path="finish" element={<Finish />} />
-          <Route path="care" element={<Care />} />
+          <Route path="care" element={<Care />} /> */}
         </Route>
 
         {/* Shop 獨立結構 */}

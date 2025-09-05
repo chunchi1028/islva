@@ -39,7 +39,7 @@ const Home = () => {
       </div>
 
     <div className="collections-section">
-  <div className="content-grid">
+  <div className="hero-content-grid">
     {/* 左邊文字 */}
     <div className="text-block">
       <p>

@@ -58,16 +58,15 @@ export default function Navbar() {
         <nav className={`nav-links ${isNavOpen ? "open" : ""}`}>
           <ul>
             <li>
-              <Link to="/about" onClick={() => setIsNavOpen(false)}>
+              <Link to="about" onClick={() => setIsNavOpen(false)}>
                 About
               </Link>
             </li>
 
             {/* Collection */}
             <li
-              className={`dropdown ${
-                openMenu === "collection" ? "active" : ""
-              }`}
+              className={`dropdown ${openMenu === "collection" ? "active" : ""
+                }`}
             >
               <button
                 className="menu-btn"
@@ -86,17 +85,17 @@ export default function Navbar() {
                 hidden={openMenu !== "collection"}
               >
                 <li>
-                  <Link to="/form" onClick={() => setIsNavOpen(false)}>
+                  <Link to="form" onClick={() => setIsNavOpen(false)}>
                     Form/純銀
                   </Link>
                 </li>
                 <li>
-                  <Link to="/lumen" onClick={() => setIsNavOpen(false)}>
+                  <Link to="lumen" onClick={() => setIsNavOpen(false)}>
                     Lumen/琺瑯
                   </Link>
                 </li>
                 <li>
-                  <Link to="/core" onClick={() => setIsNavOpen(false)}>
+                  <Link to="core" onClick={() => setIsNavOpen(false)}>
                     Core/鑲嵌
                   </Link>
                 </li>
@@ -105,7 +104,7 @@ export default function Navbar() {
 
             <li>
               <Link
-                to="/shop"
+                to="shop"
                 onClick={() => setIsNavOpen(false)}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -114,7 +113,13 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* Glossary */}
+
+            <li>
+              <Link to="glossary" onClick={() => setIsNavOpen(false)}>
+                Glossary
+              </Link>
+            </li>
+            {/* Glossary
             <li
               className={`dropdown ${openMenu === "glossary" ? "active" : ""}`}
             >
@@ -155,10 +160,10 @@ export default function Navbar() {
                   </Link>
                 </li>
               </ul>
-            </li>
+            </li> */}
 
             <li>
-              <Link to="/member" onClick={() => setIsNavOpen(false)}>
+              <Link to="member" onClick={() => setIsNavOpen(false)}>
                 Member
               </Link>
             </li>

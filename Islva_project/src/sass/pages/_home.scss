@@ -8,3 +8,49 @@
     margin: 0 auto;
 }
 
+.hero-content-grid{
+    background-image: url("/images/bg.jpg");
+}
+.image-item{
+    width: 20vw;
+}
+
+.image-section {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+  .image-grid {
+    display: flex;
+    gap: 20px; /* 圖片之間的間距 */
+    align-items: flex-start; /* 預設從上方對齊 */
+  }
+
+    .image-item {
+    flex: 1; /* 每張圖佔等寬 */
+    max-width: 300px; /* 控制單張圖片的最大寬度 */
+    border-radius: 12px;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+    .main-image {
+    transform: translateY(20px); /* 向下錯落 */
+  }
+
+  /* 左側小圖 */
+  .side-image {
+    transform: translateY(60px); /* 再低一點 */
+  }
+
+  /* 右側小圖 */
+  .top-right-image {
+    transform: translateY(0px); /* 保持最上面 */
+  }

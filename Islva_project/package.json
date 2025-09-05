@@ -5,10 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:sass": "sass --watch src/sass/all.scss src/css/all.min.css --embed-source-map --error-css",
-    "build:css": "sass src/sass/all.scss src/css/all.min.css --style=compressed --no-source-map",
-    "build": "npm run build:css && vite build",
-    "lint": "eslint .",
+    "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
