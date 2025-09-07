@@ -1,0 +1,73 @@
+.origin {
+  background-color: #eff2f4;
+  width: 60vw;
+  height: auto;
+  padding: 60px;
+  position: relative;
+}
+
+.origin_text {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  img {
+    width: 0.1vw;
+    height: 60px;
+  }
+}
+.deco_num01 {
+  position: absolute;
+  right: -40px;
+  bottom: -60px;
+  img {
+    width: 7vw;
+    height: auto;
+  }
+}
+
+.deco_text {
+  position: absolute;
+  left: 10px;
+  top: -80px;
+  font-size: 5.5rem;
+}
+
+.philosophy {
+  margin-top: 110px;
+  margin-left: auto;
+  background-color: #d9d9d9;
+  width: 72vw;
+  height: auto;
+  padding: 80px 40px;
+  position: relative;
+}
+
+.philosophy_text {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 0 0 0 200px;
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  img {
+    width: 0.1vw;
+    height: 60px;
+  }
+}
+.deco_num02 {
+  position: absolute;
+  left: -30px;
+  bottom: -110px;
+}
+.deco_text02 {
+  position: absolute;
+  right: 30px;
+  top: -80px;
+  font-size: 5.5rem;
+}
