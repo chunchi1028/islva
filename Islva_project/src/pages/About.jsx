@@ -59,6 +59,26 @@ const About = () => {
           <p>Philosophy</p>
         </div>
       </div>
+      <div className="craftmanship">
+        <div className="craftmanship_text">
+          <h3>工藝</h3>
+          <img src="./images/line.png" alt="" />
+          <p>
+            ISLVA
+            的每一件作品，皆由工匠之手反覆淬鍊而成。我們重視手工的痕跡，因為那是溫度的證明。
+            <br />
+            打磨、敲擊、鑲嵌，每一道工序都承載著耐心與專注。我們相信，工藝不只是技術，更是一種修行。
+            <br />
+            每個細節、每個紋理，都是我們對品質的堅持。無論是純銀的光澤、琺瑯的色彩層疊，或是寶石的穩固鑲嵌，都在在體現我們對「工藝之美」的執著與尊重。
+          </p>
+        </div>
+        <div className="deco_num03">
+          <img src="./images/deco/numb03.png" alt="" />
+        </div>
+        <div className="deco_text03">
+          <p>Craftmanship</p>
+        </div>
+      </div>
     </div>
   );
 };
