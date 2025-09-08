@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <div className="about_container">
-      <div className="abbout_intro">
+      <div className="about_intro">
         <p>
           在光影與材質交錯之間，ISLVA誕生了。
           <br />
@@ -77,6 +77,26 @@ const About = () => {
         </div>
         <div className="deco_text03">
           <p>Craftmanship</p>
+        </div>
+      </div>
+      <div className="spirit">
+        <div className="spirit_text">
+          <h3>精神</h3>
+          <img src="./images/line.png" alt="" />
+          <p>
+            ISLVA的精神,是讓「靈感持特漬流動」。我們相信，靈感不是突如其來的奇績,而是日常中隨處可見的細節:
+            <br />
+            陽光灑落的角度、城市建築的幾何線條、自然生物的形態與力量·ISLVA希望飾品能成為一種靈前前的延續,
+            <br />
+            ISLVA
+            陪伴每位佩戴者去發現、去感受，並最終轉化為屬於自己的人生故事。
+          </p>
+        </div>
+        <div className="deco_num04">
+          <img src="./images/deco/numb04.png" alt="" />
+        </div>
+        <div className="deco_text04">
+          <p>Spirit</p>
         </div>
       </div>
     </div>

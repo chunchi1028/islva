@@ -21,17 +21,17 @@
 }
 .deco_num01 {
   position: absolute;
-  right: -40px;
-  bottom: -60px;
+  right: -45px;
+  bottom: -70px;
   img {
-    width: 7vw;
+    width: 8vw;
     height: auto;
   }
 }
 
 .deco_text {
   position: absolute;
-  left: 10px;
+  left: 30px;
   top: -80px;
   font-size: 5.5rem;
 }
@@ -50,7 +50,7 @@
   display: flex;
   align-items: center;
   gap: 30px;
-  margin: 0 0 0 200px;
+ 
   h3 {
     font-size: 1.25rem;
   }
@@ -73,16 +73,18 @@
 }
 
 .craftmanship {
+  margin-top: 200px;
   background-color: #eff2f4;
   width: 100vw;
   height: auto;
-  padding: 80px 40px;
+  padding: 100px 40px;
   position: relative;
 }
 .craftmanship_text {
   display: flex;
   align-items: center;
   gap: 30px;
+ margin: 20px 0 0 20px;
   h3 {
     font-size: 1.25rem;
   }
@@ -91,4 +93,54 @@
     width: 0.1vw;
     height: 60px;
   }
+}
+
+.deco_num03 {
+  position: absolute;
+  right:80px;
+  bottom:-100px;
+}
+.deco_text03 {
+  position: absolute;
+ left: 30px;
+  top: -80px;
+  font-size: 5.5rem;
+}
+
+.spirit {
+  margin-top: 250px;
+   margin-bottom: 220px;
+  margin-left: auto;
+  background-color: #d9d9d9;
+  width: 72vw;
+  height: auto;
+  padding: 80px 40px;
+  position: relative;
+}
+
+.spirit_text {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 0 0 0 150px;
+ 
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  img {
+    width: 0.1vw;
+    height: 60px;
+  }
+}
+.deco_num04 {
+  position: absolute;
+  left: -30px;
+  bottom: -110px;
+}
+.deco_text04 {
+  position: absolute;
+  right: 30px;
+  top: -80px;
+  font-size: 5.5rem;
 }
