@@ -1,12 +1,25 @@
 @use "../variables" as *;
 @use "../functions" as *;
 
+
+.glossary_intro{
+  background-image: url("/images/bg.jpg");
+  width: $w-100;
+  height: auto;
+}
+.glossary_intro_desc{
+  text-align: center;
+  background-color: #fff;
+  width: 500px;
+  height: auto;
+}
 /*------ 按鈕區------*/
 .tabs-container {
   display: flex;
   justify-content: center;
   gap: 15px;
   padding: 20px 0;
+  
 }
 
 .tab-button {

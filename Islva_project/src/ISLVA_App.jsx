@@ -3,12 +3,14 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./layouts/Layout.jsx";
 import ShopLayout from "./layouts/ShopLayout.jsx";
 
+
+
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Glossary from "./pages/Glossary.jsx";
 import Member from "./pages/Member.jsx";
 import Collections from "./pages/Collections.jsx";
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
 
 import Form from "./pages/Form.jsx";
 import Lumen from "./pages/Lumen.jsx";
@@ -32,25 +34,17 @@ const ISLVA_App = () => {
         {/* 主站頁面：全部用 Layout 包 */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="glossary" element={<Glossary />} />
-          <Route path="member" element={<Member />} />
-          <Route path="collections" element={<Collections />} />
-          {/* <Route path="/login" element={<Login />} />
-          {/* 會員專區：受保護的頁面 */}
-          {/* <Route
-            path="/member/*"
-            element={
-              <ProtectedRoute>
-                <Member />
-              </ProtectedRoute>
-            }
-          />{" "}
-          */}
+          <Route path="/about" element={<About />} />
+          <Route path="/glossary" element={<Glossary />} />
+           <Route path="member" element={<Member />} /> 
+          <Route path="/collections" element={<Collections />} />
+         {/* <Route path="/login" element={<Login />} /> */}
+         
+         
           {/* Collection 子頁 */}
-          <Route path="form" element={<Form />} />
-          <Route path="lumen" element={<Lumen />} />
-          <Route path="core" element={<Core />} />
+          <Route path="/form" element={<Form />} />
+          <Route path="/lumen" element={<Lumen />} />
+          <Route path="/core" element={<Core />} />
           {/* Glossary 子頁 */}
           {/* <Route path="material" element={<Material />} />
           <Route path="craft" element={<Craft />} />

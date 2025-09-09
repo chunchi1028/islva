@@ -1,22 +1,35 @@
-.glossary {
-  display: grid;
-  gap: 20px;
+@use "../variables" as *;
+@use "../functions" as *;
 
+.glossary {
+  /* 外層排版 */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  /* ===== Tabs 區 ===== */
   &__tabs {
     display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
     justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+
+    @media($mediaSm){
+      gap: 40px;
+    }
+   
   }
 
   &__tab {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 10px 16px;
-    border-radius: 12px;
-    background: #f1f5f9;
-    font-weight: 600;
+    padding: 15px 40px;
+    border-radius: 6px;
+    background: #8AA1BD;
+    color: #fff;
+    font-size: 1.05rem;
+    letter-spacing: 3px;
     cursor: pointer;
     border: none;
     transition: background 0.2s, transform 0.15s;
@@ -26,7 +39,7 @@
     }
 
     &.is-active {
-      background: #1f2a37;
+      background: #253F60;
       color: #fff;
     }
   }
@@ -35,32 +48,48 @@
     font-size: 16px;
   }
 
+  /* ===== Panel 區（Flex 三欄）===== */
   &__panel {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+    display: flex;             /* 三欄：左圖｜中間文字｜右圖 */
+    align-items: center;       /* 垂直置中 */
+    justify-content: center;   /* 整排水平置中 */
     gap: 24px;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
+    padding: 8px 0;
   }
 
-  &__panelMedia img {
+  /* 左／右圖欄 */
+  &__panelMediaLeft,
+  &__panelMediaRight {
+    flex: 1;                   /* 1:1:1 等分 */
+    display: flex;
+    justify-content: center;   /* 圖片在各自欄置中 */
+  }
+
+  &__panelMediaLeft img,
+  &__panelMediaRight img {
     width: 100%;
-    max-width: 480px;
+    max-width: 260px;          /* 可調整側邊圖大小 */
+    height: auto;
     border-radius: 12px;
     display: block;
-    margin: 0 auto;
+  }
+
+  /* 中間文字欄（將來可同時放文字＋小圖也能置中） */
+  &__panelText {
+    flex: 1;                   /* 中間等分 */
+    text-align: center;        /* ★ 文字置中 */
+    display: flex;
+    flex-direction: column;    /* 垂直堆疊：h3 / p / (img...) */
+    align-items: center;       /* 區塊內水平置中所有子元素 */
+    justify-content: center;   /* 區塊垂直置中 */
+    gap: 12px;
+    max-width: 56ch;           /* 行寬更好讀（需要可調或移除） */
+    padding: 50px 0;
   }
 
   &__panelText h3 {
+    margin: 0;
     font-size: 24px;
-    margin: 0 0 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
 
   &__panelText p {
@@ -68,19 +97,61 @@
     line-height: 1.6;
     color: #475569;
   }
-}
 
-/* 淡入動畫 */
-.fade-in {
-  animation: fade 0.2s ease-out;
-}
-@keyframes fade {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
+  /* 如果未來在中間欄也要放圖，可加以下尺寸預設 */
+  &__panelText img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  /* ===== 淡入動畫 ===== */
+  .fade-in {
+    animation: fade 0.2s ease-out;
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ===== RWD：小於 768px 直向堆疊 ===== */
+  @media (max-width: 768px) {
+    &__panel {
+      flex-direction: column;  /* 直向堆疊：左圖 → 文字 → 右圖 */
+      gap: 16px;
+    }
+
+    &__panelMediaLeft,
+    &__panelMediaRight,
+    &__panelText {
+      flex: 0 0 auto;          /* 取消等分，依內容高度 */
+      width: 100%;             /* 滿寬 */
+    }
+
+    &__panelMediaLeft img,
+    &__panelMediaRight img {
+      max-width: 360px;        /* 手機端圖可略放大，保持視覺均衡 */
+      margin: 0 auto;
+    }
+
+    &__panelText {
+      max-width: 68ch;         /* 手機端可稍寬 */
+      padding: 0 12px;
+    }
+
+    /* 若要改堆疊順序（例如：手機時先顯示文字）：
+       取消註解以下設定即可：
+    */
+    // &__panelText      { order: 1; }
+    // &__panelMediaLeft { order: 2; }
+    // &__panelMediaRight{ order: 3; }
   }
 }
