@@ -3,14 +3,15 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./layouts/Layout.jsx";
 import ShopLayout from "./layouts/ShopLayout.jsx";
 
-
-
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Glossary from "./pages/Glossary.jsx";
-import Member from "./pages/Member.jsx";
 import Collections from "./pages/Collections.jsx";
-// import Login from "./pages/Login";
+
+import Member from "./pages/Member.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import ForgetPassord from "./pages/ForgetPssword.jsx";
 
 import Form from "./pages/Form.jsx";
 import Lumen from "./pages/Lumen.jsx";
@@ -36,11 +37,11 @@ const ISLVA_App = () => {
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/glossary" element={<Glossary />} />
-           <Route path="member" element={<Member />} /> 
           <Route path="/collections" element={<Collections />} />
-         {/* <Route path="/login" element={<Login />} /> */}
-         
-         
+          <Route path="member" element={<Member />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgetPassord" element={<ForgetPassord />} />
           {/* Collection 子頁 */}
           <Route path="/form" element={<Form />} />
           <Route path="/lumen" element={<Lumen />} />

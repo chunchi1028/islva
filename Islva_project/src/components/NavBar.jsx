@@ -65,8 +65,9 @@ export default function Navbar() {
 
             {/* Collection */}
             <li
-              className={`dropdown ${openMenu === "collection" ? "active" : ""
-                }`}
+              className={`dropdown ${
+                openMenu === "collection" ? "active" : ""
+              }`}
             >
               <button
                 className="menu-btn"
@@ -112,7 +113,6 @@ export default function Navbar() {
                 Shop
               </Link>
             </li>
-
 
             <li>
               <Link to="/glossary" onClick={() => setIsNavOpen(false)}>
@@ -163,7 +163,7 @@ export default function Navbar() {
             </li> */}
 
             <li>
-              <Link to="/member" onClick={() => setIsNavOpen(false)}>
+              <Link to="/login" onClick={() => setIsNavOpen(false)}>
                 Member
               </Link>
             </li>

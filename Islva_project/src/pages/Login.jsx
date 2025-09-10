@@ -1,22 +1,49 @@
-const LoginPage = () => {
+import React, { useState } from "react";
+import { Eye, EyeOff, Mail, Lock, Chrome, Facebook } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const MemberLogin = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    remember: false,
   });
+
   const [errors, setErrors] = useState({});
-  const [rememberMe, setRememberMe] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // 處理輸入變更
+  // 表單驗證
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.email || !validateEmail(formData.email)) {
+      newErrors.email = "請輸入有效的電子郵件地址";
+    }
+
+    if (!formData.password || formData.password.length < 6) {
+      newErrors.password = "密碼長度至少需要6個字元";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // 處理輸入變化
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
 
-    // 清除相關錯誤
+    // 清除錯誤訊息
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -25,158 +52,152 @@ const LoginPage = () => {
     }
   };
 
-  // 表單驗證
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.email) {
-      newErrors.email = "請輸入電子郵件";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "請輸入有效的電子郵件格式";
-    }
-
-    if (!formData.password) {
-      newErrors.password = "請輸入密碼";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "密碼長度至少需要6個字元";
-    }
-
-    return newErrors;
-  };
-
-  // 處理登入提交
+  // 處理表單提交
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e?.preventDefault();
 
-    const newErrors = validateForm();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsLoading(true);
-    setErrors({});
 
     // 模擬 API 請求
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
+    setTimeout(() => {
+      console.log("登入資料:", formData);
       setShowSuccess(true);
 
-      // 模擬跳轉
       setTimeout(() => {
-        alert("登入成功！跳轉到首頁...");
+        setIsLoading(false);
         setShowSuccess(false);
-        setFormData({ email: "", password: "" });
+        alert("登入成功！（這裡應該跳轉到會員頁面）");
       }, 1500);
-    } catch (error) {
-      setErrors({ general: "登入失敗，請檢查您的帳號密碼" });
-    } finally {
-      setIsLoading(false);
-    }
+    }, 1000);
   };
 
-  // 處理社群登入
+  // 社群登入
   const handleSocialLogin = (provider) => {
-    alert(`使用 ${provider} 登入功能（示範用）`);
+    alert(`準備使用 ${provider} 登入（此為示範功能）`);
   };
-
   return (
-    <div className={`login-container ${isLoading ? "loading" : ""}`}>
-      <div className="logo">
-        <h1>歡迎回來</h1>
-        <p>請登入您的帳戶</p>
-      </div>
+    <div className="login-page">
+      <div className="login-container">
+        <header className="login-header">
+          <h1>會員登入</h1>
+          <p>歡迎回來！請登入您的帳戶</p>
+        </header>
 
-      {showSuccess && (
-        <div className="success-message">登入成功！正在為您跳轉...</div>
-      )}
+        <div className="login-form">
+          <div className="form-group">
+            <label htmlFor="email">電子郵件</label>
+            <div className="input-wrapper">
+              <Mail className="input-icon" size={20} />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className={`form-input ${
+                  errors.email ? "form-input--error" : ""
+                }`}
+                placeholder="請輸入您的電子郵件"
+              />
+            </div>
+            {errors.email && (
+              <div className="error-message">{errors.email}</div>
+            )}
+          </div>
 
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">電子郵件</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder="請輸入您的電子郵件"
-            className={errors.email ? "error" : ""}
-            disabled={isLoading}
-          />
-          {errors.email && <div className="error-message">{errors.email}</div>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="password">密碼</label>
+            <div className="input-wrapper">
+              <Lock className="input-icon" size={20} />
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                className={`form-input ${
+                  errors.password ? "form-input--error" : ""
+                }`}
+                placeholder="請輸入您的密碼"
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+            {errors.password && (
+              <div className="error-message">{errors.password}</div>
+            )}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="password">密碼</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            placeholder="請輸入您的密碼"
-            className={errors.password ? "error" : ""}
-            disabled={isLoading}
-          />
-          {errors.password && (
-            <div className="error-message">{errors.password}</div>
+          <div className="form-options">
+            <div className="remember-me">
+              <input
+                type="checkbox"
+                id="remember"
+                name="remember"
+                checked={formData.remember}
+                onChange={handleInputChange}
+                className="checkbox-input"
+              />
+              <label htmlFor="remember" className="checkbox-label">
+                記住我
+              </label>
+            </div>
+            <Link to="/forgetPassord" className="forgot-link">
+              忘記密碼？
+            </Link>
+          </div>
+          <Link to="/member">
+            <button
+              type="button"
+              className={`login-btn ${isLoading ? "login-btn--loading" : ""}`}
+              disabled={isLoading}
+              onClick={handleSubmit}
+            >
+              {isLoading ? "登入中..." : "登入"}
+            </button>
+          </Link>
+
+          {showSuccess && (
+            <div className="success-message">登入成功！正在跳轉...</div>
           )}
         </div>
 
-        {errors.general && (
-          <div className="error-message" style={{ marginBottom: "1rem" }}>
-            {errors.general}
-          </div>
-        )}
-
-        <div className="form-options">
-          <label className="remember-me">
-            <input
-              type="checkbox"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
-              disabled={isLoading}
-            />
-            記住我
-          </label>
-          <a href="#" className="forgot-password">
-            忘記密碼？
-          </a>
+        <div className="divider">
+          <span>或使用以下方式登入</span>
         </div>
 
-        <button type="submit" className="login-button" disabled={isLoading}>
-          {isLoading ? "登入中..." : "登入"}
-        </button>
-      </form>
+        <div className="social-login">
+          <button
+            className="social-btn social-btn--google"
+            onClick={() => handleSocialLogin("Google")}
+          >
+            <Chrome size={20} />
+            <span>Google</span>
+          </button>
+          <button
+            className="social-btn social-btn--facebook"
+            onClick={() => handleSocialLogin("Facebook")}
+          >
+            <Facebook size={20} />
+            <span>Facebook</span>
+          </button>
+        </div>
 
-      <div className="divider">
-        <span>或</span>
-      </div>
-
-      <div className="social-login">
-        <button
-          type="button"
-          className="google"
-          onClick={() => handleSocialLogin("Google")}
-          disabled={isLoading}
-        >
-          Google 登入
-        </button>
-        <button
-          type="button"
-          className="facebook"
-          onClick={() => handleSocialLogin("Facebook")}
-          disabled={isLoading}
-        >
-          Facebook 登入
-        </button>
-      </div>
-
-      <div className="register-link">
-        還沒有帳戶？ <a href="#">立即註冊</a>
+        <div className="register-section">
+          還沒有帳戶？{" "}
+          <Link to="/register" className="register-link">
+            立即註冊
+          </Link>
+        </div>
       </div>
     </div>
   );
 };
+export default MemberLogin;

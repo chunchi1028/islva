@@ -1,3 +1,5 @@
+import Series from "../components/Series";
+
 export default function SeriesIntro({
   titleEn = "Form",
   titleZh = "純銀系列",
@@ -36,6 +38,20 @@ export default function SeriesIntro({
             Form
             系列專注於純銀本身的純粹之美。以線條與結構為設計語言，結合細膩的工藝處理，從鏡面拋光到紋理刻劃，每一件作品都以低調的姿態，描繪屬於日常的優雅與永恆。
           </p>
+        </div>
+        <div>
+          <Series
+            eyebrow="Animal Series"
+            title="靈動之境"
+            body="ISLVA 的動物系列，以純銀雕動物等象徵之形，承載守護與自由的寓意。每一件作品，都是一種「靈獸」的低語——既有大自然的野性之美，也蘊含佩戴者內心的柔軟與力量。 "
+            heroLeft="#"
+            product="#"
+            thumb1="#"
+            thumb2="#"
+            thumb3="#"
+            onNext={() => console.log("go next")}
+            productWidth={380}
+          />
         </div>
       </div>
     </section>

@@ -1,0 +1,154 @@
+.series {
+  --max-w: 1200px;
+  --gap: clamp(16px, 4vw, 32px);
+  --text: #334155;
+  --muted: #64748b;
+
+  display: flex;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 40px);
+
+  &__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr; /* 左大右文 */
+    grid-template-rows: auto auto; /* 上：左大圖+右文；下：縮圖列 */
+    grid-template-areas:
+      "left text"
+      "thumbs thumbs";
+    gap: var(--gap);
+    width: min(100%, var(--max-w));
+  }
+
+  /* 左側大圖 */
+  &__left {
+    grid-area: left;
+    background: #0b1220;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  /* 右側文字 */
+  &__text {
+    grid-area: text;
+    align-self: start;
+    padding: clamp(4px, 1.5vw, 12px) clamp(4px, 1.5vw, 12px);
+  }
+
+  &__eyebrow {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+    color: #0f172a;
+
+    .sep {
+      margin: 0 0.5ch;
+      color: var(--muted);
+    }
+  }
+
+  &__body {
+    color: var(--text);
+    line-height: 1.9;
+    margin: 10px 0 18px;
+    white-space: pre-line; /* 讓文字中的換行符號生效 */
+  }
+
+  &__next {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+    .arrow {
+      transition: transform 0.15s ease;
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      background: #f8fafc;
+
+      .arrow {
+        transform: translateX(2px);
+      }
+    }
+  }
+
+  /* 底部縮圖 */
+  &__thumbs {
+    grid-area: thumbs;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    margin-top: clamp(8px, 2vw, 16px);
+  }
+
+  &__thumb {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f1f5f9;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  /* 中央漂浮產品：絕對定位在網格中心稍偏左 */
+  &__product {
+    position: absolute;
+    top: 8%;
+    left: 42%;
+    transform: translate(-50%, 0); /* 視覺置中 */
+    filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.18));
+    pointer-events: none; /* 不擋按鈕 */
+    user-select: none;
+  }
+
+  /* RWD：平板以下改為直式，產品縮小，仍保持疊在兩區之間 */
+  @media (max-width: 900px) {
+    &__grid {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "left"
+        "text"
+        "thumbs";
+    }
+
+    &__product {
+      top: -30px; /* 往上漂一點 */
+      left: 50%;
+      transform: translate(-50%, 0) scale(0.8);
+    }
+
+    &__text {
+      padding-top: 32px;
+    }
+  }
+
+  /* 手機：縮圖改單欄或保留雙欄都可，這裡保留雙欄 */
+  @media (max-width: 560px) {
+    &__product {
+      transform: translate(-50%, 0) scale(0.7);
+    }
+    &__thumbs {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
