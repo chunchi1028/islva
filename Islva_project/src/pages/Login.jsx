@@ -1,203 +1,171 @@
-import React, { useState } from "react";
-import { Eye, EyeOff, Mail, Lock, Chrome, Facebook } from "lucide-react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-const MemberLogin = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    remember: false,
-  });
+const Member_login = () => {
+    // 登入表單狀態
+    const [loginForm, setLoginForm] = useState({
+        email: '',
+        password: '',
+        rememberMe: false
+    });
 
-  const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+    // 表單驗證狀態
+    const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 表單驗證
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+    // 處理表單輸入變更
+    const handleInputChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setLoginForm(prev => ({
+            ...prev,
+            [name]: type === 'checkbox' ? checked : value
+        }));
 
-  const validateForm = () => {
-    const newErrors = {};
+        // 清除錯誤訊息
+        if (errors[name]) {
+            setErrors(prev => ({
+                ...prev,
+                [name]: ''
+            }));
+        }
+    };
 
-    if (!formData.email || !validateEmail(formData.email)) {
-      newErrors.email = "請輸入有效的電子郵件地址";
-    }
+    // 表單驗證
+    const validateForm = () => {
+        const newErrors = {};
 
-    if (!formData.password || formData.password.length < 6) {
-      newErrors.password = "密碼長度至少需要6個字元";
-    }
+        if (!loginForm.email) {
+            newErrors.email = '請輸入電子郵件';
+        } else if (!/\S+@\S+\.\S+/.test(loginForm.email)) {
+            newErrors.email = '請輸入有效的電子郵件格式';
+        }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+        if (!loginForm.password) {
+            newErrors.password = '請輸入密碼';
+        } else if (loginForm.password.length < 6) {
+            newErrors.password = '密碼至少需要6個字元';
+        }
 
-  // 處理輸入變化
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
-    // 清除錯誤訊息
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
-  };
+    // 處理表單提交
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-  // 處理表單提交
-  const handleSubmit = async (e) => {
-    e?.preventDefault();
+        if (!validateForm()) {
+            return;
+        }
 
-    if (!validateForm()) return;
+        setIsSubmitting(true);
 
-    setIsLoading(true);
+        try {
+            // 這裡可以加入實際的登入邏輯
+            console.log('登入資料:', loginForm);
 
-    // 模擬 API 請求
-    setTimeout(() => {
-      console.log("登入資料:", formData);
-      setShowSuccess(true);
+            // 模擬 API 呼叫
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
-      setTimeout(() => {
-        setIsLoading(false);
-        setShowSuccess(false);
-        alert("登入成功！（這裡應該跳轉到會員頁面）");
-      }, 1500);
-    }, 1000);
-  };
+            // 登入成功後的處理
+            alert('登入成功！');
 
-  // 社群登入
-  const handleSocialLogin = (provider) => {
-    alert(`準備使用 ${provider} 登入（此為示範功能）`);
-  };
-  return (
-    <div className="login-page">
-      <div className="login-container">
-        <header className="login-header">
-          <h1>會員登入</h1>
-          <p>歡迎回來！請登入您的帳戶</p>
-        </header>
+        } catch (error) {
+            console.error('登入失敗:', error);
+            alert('登入失敗，請重試');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
-        <div className="login-form">
-          <div className="form-group">
-            <label htmlFor="email">電子郵件</label>
-            <div className="input-wrapper">
-              <Mail className="input-icon" size={20} />
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className={`form-input ${
-                  errors.email ? "form-input--error" : ""
-                }`}
-                placeholder="請輸入您的電子郵件"
-              />
+    return (
+        <main className='member_login_main'>
+            <div className='login_container'>
+                {/* 左側品牌區 */}
+                <div className='login_left'>
+                    <div className='brand_section'>
+                       
+                    </div> 
+                </div>
+
+                {/* 右側表單區 */}
+                <div className='login_right'>
+                    <div className='login_form_container'>
+                        <div className='form_header'>
+                            <div className='form_title'>會員登入</div>
+                            <p className='form_subtitle'>請輸入您的帳號密碼</p>
+                        </div>
+
+                        <form className='login_form' onSubmit={handleSubmit}>
+                            <div className='form_group'>
+                                <label className='form_label' htmlFor="email">電子郵件</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    className={`form_input ${errors.email ? 'error' : ''}`}
+                                    placeholder="請輸入電子郵件"
+                                    value={loginForm.email}
+                                    onChange={handleInputChange}
+                                />
+                                {errors.email && <span className='error_message'>{errors.email}</span>}
+                            </div>
+
+                            <div className='form_group'>
+                                <label className='form_label' htmlFor="password">密碼</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    className={`form_input ${errors.password ? 'error' : ''}`}
+                                    placeholder="請輸入密碼"
+                                    value={loginForm.password}
+                                    onChange={handleInputChange}
+                                />
+                                {errors.password && <span className='error_message'>{errors.password}</span>}
+                            </div>
+
+                            <div className='form_options'>
+                                <label className='remember_me'>
+                                    <input
+                                        type="checkbox"
+                                        name="rememberMe"
+                                        checked={loginForm.rememberMe}
+                                        onChange={handleInputChange}
+                                    />
+                                    <span className='checkmark'></span>
+                                    記住我
+                                </label>
+                                <Link to="/forgetPassword" className='forgot_password'>
+                                    忘記密碼？
+                                </Link>
+                            </div>
+
+                            
+                                <button
+                                    type="submit"
+                                    className={`login_button ${isSubmitting ? 'submitting' : ''}`}
+                                    disabled={isSubmitting}
+                                >
+                                    <Link to={'/member'}>
+                                    {isSubmitting ? '登入中...' : '登入'}
+                                    </Link>
+                                </button>
+                        </form>
+
+                        <div className='divider'>
+                            <span>或</span>
+                        </div>
+
+                        <div className='signup_link'>
+                            <span>還沒有帳號？</span>
+                            <Link to="/Register">立即註冊</Link>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {errors.email && (
-              <div className="error-message">{errors.email}</div>
-            )}
-          </div>
+        </main>
+    )
+}
 
-          <div className="form-group">
-            <label htmlFor="password">密碼</label>
-            <div className="input-wrapper">
-              <Lock className="input-icon" size={20} />
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                className={`form-input ${
-                  errors.password ? "form-input--error" : ""
-                }`}
-                placeholder="請輸入您的密碼"
-              />
-              <button
-                type="button"
-                className="password-toggle"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
-            </div>
-            {errors.password && (
-              <div className="error-message">{errors.password}</div>
-            )}
-          </div>
-
-          <div className="form-options">
-            <div className="remember-me">
-              <input
-                type="checkbox"
-                id="remember"
-                name="remember"
-                checked={formData.remember}
-                onChange={handleInputChange}
-                className="checkbox-input"
-              />
-              <label htmlFor="remember" className="checkbox-label">
-                記住我
-              </label>
-            </div>
-            <Link to="/forgetPassord" className="forgot-link">
-              忘記密碼？
-            </Link>
-          </div>
-          <Link to="/member">
-            <button
-              type="button"
-              className={`login-btn ${isLoading ? "login-btn--loading" : ""}`}
-              disabled={isLoading}
-              onClick={handleSubmit}
-            >
-              {isLoading ? "登入中..." : "登入"}
-            </button>
-          </Link>
-
-          {showSuccess && (
-            <div className="success-message">登入成功！正在跳轉...</div>
-          )}
-        </div>
-
-        <div className="divider">
-          <span>或使用以下方式登入</span>
-        </div>
-
-        <div className="social-login">
-          <button
-            className="social-btn social-btn--google"
-            onClick={() => handleSocialLogin("Google")}
-          >
-            <Chrome size={20} />
-            <span>Google</span>
-          </button>
-          <button
-            className="social-btn social-btn--facebook"
-            onClick={() => handleSocialLogin("Facebook")}
-          >
-            <Facebook size={20} />
-            <span>Facebook</span>
-          </button>
-        </div>
-
-        <div className="register-section">
-          還沒有帳戶？{" "}
-          <Link to="/register" className="register-link">
-            立即註冊
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-};
-export default MemberLogin;
+export default Member_login

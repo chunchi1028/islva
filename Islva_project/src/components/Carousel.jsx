@@ -68,19 +68,36 @@ export default function Carousel({
 
           if (abs > visibleRadius) return null; // 只畫附近卡片（效能）
 
-          // 視覺效果：位移、縮放、角度、zIndex
-          const translateX = half * 180; // 水平間距
-          const rotateY = half * -10; // 左右微轉
-          const scale = 1 - abs * 0.08; // 外側縮小
+          // // 視覺效果：位移、縮放、角度、zIndex
+          // const translateX = half * 180; // 水平間距
+          // const rotateY = half * -10; // 左右微轉
+          // const scale = 1 - abs * 0.08; // 外側縮小
           const zIndex = 100 - abs;
           const opacity = 1 - abs * 0.08;
 
+          const transform = `
+  translateX(${half * 100}px)
+  scale(${1 - abs * 0.08})
+  rotateY(${half * -25}deg) // 調整傾斜角度，讓效果更明顯
+  translateZ(${abs * -50}px) // 沿著 Z 軸向後推，創造景深感
+`;
+
           return (
+            // <div
+            //   key={i}
+            //   className={`carousel__item ${i === active ? "is-active" : ""}`}
+            //   style={{
+            //     transform: `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
+            //     zIndex,
+            //     opacity,
+            //   }}
+            // >
+
             <div
               key={i}
               className={`carousel__item ${i === active ? "is-active" : ""}`}
               style={{
-                transform: `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
+                transform,
                 zIndex,
                 opacity,
               }}

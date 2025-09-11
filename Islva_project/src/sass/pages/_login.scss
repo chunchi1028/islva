@@ -1,351 +1,344 @@
-// Variables
-$primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-$secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-$primary-color: #667eea;
-$secondary-color: #764ba2;
-$error-color: #e74c3c;
-$success-color: #27ae60;
-$text-primary: #333;
-$text-secondary: #666;
-$text-muted: #999;
-$border-color: #e1e5e9;
-$background-light: #f8f9fa;
-$white: #ffffff;
-$shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
-$shadow-medium: 0 10px 25px rgba(102, 126, 234, 0.3);
-$shadow-heavy: 0 25px 50px rgba(0, 0, 0, 0.1);
-$border-radius: 12px;
-$border-radius-large: 20px;
-$transition: all 0.3s ease;
+@use '../variables/' as *;
+@use '../functions/' as *;
 
-// Mixins
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin input-focus {
-  outline: none;
-  border-color: $primary-color;
-  background: $white;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  transform: translateY(-2px);
-}
-
-@mixin button-hover {
-  transform: translateY(-2px);
-  box-shadow: $shadow-medium;
-}
-
-@mixin slide-up-animation {
-  animation: slideUp 0.6s ease-out;
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-// Main styles
-.login-page {
+.member_login_main {
   background-image: url("/images/bg.jpg");
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-}
+  padding: $space-xl;
 
-.login-container {
-  background: rgba(255, 255, 255, 0.15); /* 半透明 */
-  backdrop-filter: blur(12px); /* 毛玻璃模糊 */
-  -webkit-backdrop-filter: blur(12px); /* Safari 相容 */
-  border-radius: 16px;
-  padding: 40px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* 陰影 */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* 微亮邊框 */
-  width: 100%;
-  max-width: 400px;
-  @include slide-up-animation;
-}
-
-.login-header {
-  text-align: center;
-  margin-bottom: 30px;
-
-  h1 {
-    color: #323c45;
-    font-size: 2em;
-    margin-bottom: 10px;
+  .login_container {
+    background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    min-height: 500px;
+    border: 1px solid #fff;
   }
 
-  p {
-    color: #4f6271;
-    font-size: 1.1em;
-  }
-}
+  // 左側品牌區
+  .login_left {
+    flex: 1;
+    background-image: url("/images/series01.jpg");
+background-size: cover;
+  background-position: center; /* 讓圖片居中 */
+  
+   }
 
-.form-group {
-  margin-bottom: 25px;
-
-  label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333, 10%;
-    font-weight: 500;
-  }
-}
-
-.input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-
-  .input-icon {
-    position: absolute;
-    left: 15px;
-    color: $text-muted;
-    z-index: 2;
-    pointer-events: none;
-  }
-}
-
-.form-input {
-  width: 100%;
-  padding: 15px 20px 15px 50px;
-  border: 2px solid $border-color;
-  border-radius: $border-radius;
-  font-size: 16px;
-  transition: 0.3s ease;
-  background: #fff;
-
-  &:focus {
-    @include input-focus;
-  }
-
-  &::placeholder {
-    color: #fff, 10%;
-    padding-left: 20px;
-  }
-
-  &--error {
-    border-color: $error-color;
-  }
-}
-
-.password-toggle {
-  position: absolute;
-  right: 15px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: $text-muted;
-  padding: 5px;
-  @include flex-center;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: $primary-color;
-  }
-}
-
-.error-message {
-  color: $error-color;
-  font-size: 14px;
-  margin-top: 5px;
-  animation: fadeIn 0.3s ease-out;
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-}
-
-.form-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.remember-me {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  .checkbox-input {
-    width: 18px;
-    height: 18px;
-    accent-color: $primary-color;
-    cursor: pointer;
-  }
-
-  .checkbox-label {
-    margin: 0;
-    cursor: pointer;
-    font-size: 14px;
-  }
-}
-
-.forgot-link {
-  color: $primary-color;
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: $secondary-color;
-  }
-}
-
-.login-btn {
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(45deg, #d4dbe3 0%, #778ba4 100%);
-  color: $white;
-  border: none;
-  border-radius: $border-radius;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 5px;
-  cursor: pointer;
-  transition: $transition;
-  margin-bottom: 20px;
-
-  &:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-
-  &--loading {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  &:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-}
-
-.success-message {
-  color: $success-color;
-  font-size: 14px;
-  text-align: center;
-  margin-top: 10px;
-  animation: fadeIn 0.3s ease-out;
-}
-
-.divider {
-  text-align: center;
-  margin: 25px 0;
-  position: relative;
-  color: $text-muted;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: $border-color;
-    z-index: 1;
-  }
-
-  span {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 0 20px;
-    position: relative;
-    z-index: 2;
-    font-size: 14px;
-  }
-}
-
-.social-login {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-.social-btn {
-  flex: 1;
-  padding: 12px;
-  border: 2px solid $border-color;
-  border-radius: 10px;
-  background: $white;
-  cursor: pointer;
-  transition: $transition;
-  @include flex-center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: $shadow-light;
-  }
-
-  &--google:hover {
-    border-color: #4285f4;
-    color: #4285f4;
-  }
-
-  &--facebook:hover {
-    border-color: #1877f2;
-    color: #1877f2;
-  }
-}
-
-.register-section {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-
-  .register-link {
-    color: $primary-color;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: $secondary-color;
-    }
-  }
-}
-
-// Responsive design
-@media (max-width: 480px) {
-  .login-container {
-    padding: 30px 20px;
-    margin: 10px;
-  }
-
-  .login-header h1 {
-    font-size: 2em;
-  }
-
-  .social-login {
+  // 右側表單區
+  .login_right {
+    flex: 1;
+    padding: $space-xxl $space-xl;
+    background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+ 
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .login_form_container {
+      max-width: 350px;
+      width: 100%;
+    }
+
+    .form_header {
+      text-align: center;
+      margin-bottom: $space-xl;
+
+      .form_title {
+       
+        color:#4F6271;
+        padding: $space-md $space-xl;
+        font-size: 1.5rem;
+        font-weight: $f-w-b;
+        margin-bottom: $space-xs;
+        display: inline-block;
+      }
+
+      .form_subtitle {
+        color: #000;
+        font-size: 1.05rem;
+        margin-top: $space-xs;
+      }
+    }
+
+    .login_form {
+      display: flex;
+      flex-direction: column;
+      gap: $space-lg;
+
+      .form_group {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xs;
+
+        .form_label {
+          color: #000;
+          font-weight: $f-w-b;
+          font-size: $f-s-sm;
+        }
+
+        .form_input {
+          padding: $space-md;
+          border: 2px solid $White;
+          border-radius: 6px;
+          font-size: $f-s-md;
+          background: $White;
+          color: #000;
+          transition: border-color 0.3s ease;
+
+
+          &:focus {
+            outline: none;
+            border-color: #778ca4;
+          }
+
+          &::placeholder {
+            color: #333;
+            
+          
+          }
+
+          &.error {
+            border-color: #e74c3c;
+          }
+        }
+
+        .error_message {
+          color: #e74c3c;
+          font-size: $f-s-xs;
+          margin-top: $space-xxs;
+        }
+      }
+
+      .form_options {
+          display: flex;
+    justify-content: space-between;
+    align-items: center;
+        font-size: $f-s-sm;
+        margin: $space-xs 0;
+
+        .remember_me {
+          @extend %flex-center;
+          gap: $space-xs;
+          color: #000;
+          cursor: pointer;
+          position: relative;
+
+          input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+
+            &:checked~.checkmark {
+              background-color: #778ca4;
+
+              &::after {
+                display: block;
+              }
+            }
+          }
+
+          .checkmark {
+            height: 18px;
+            width: 18px;
+            background-color: $White;
+            border: 2px solid #778ca4;
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+
+            &::after {
+              content: "";
+              position: absolute;
+              display: none;
+              left: 4px;
+              top: 1px;
+              width: 4px;
+              height: 8px;
+              border: solid $White;
+              border-width: 0 2px 2px 0;
+              transform: rotate(45deg);
+            }
+          }
+        }
+
+        .forgot_password {
+          color: #fff;
+          text-decoration: none;
+          transition: color 0.3s ease;
+
+          &:hover {
+            text-decoration: underline;
+            color: #778ca4;
+          }
+        }
+      }
+
+      .login_button {
+     background-image: linear-gradient(to bottom right,#778ca4, #b3bfcb );
+        border: none;
+        padding: $space-md;
+        border-radius: 6px;
+        font-size: $f-s-md;
+        font-weight: $f-w-b;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: $space-xs;
+  
+a{
+  color: #fff;
+  font-weight: 300;
+ letter-spacing: 5px;
+}
+        &:hover:not(:disabled) {
+   background-image: linear-gradient(to bottom right,#778ca4, #4f6271);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba( #778ca4, 0.3);
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+
+        &.submitting {
+          background-image: linear-gradient(to bottom right,#778ca4, #4f6271);
+        }
+      }
+    }
+
+    .divider {
+      text-align: center;
+      margin: $space-xl 0 $space-lg;
+      position: relative;
+      color: #000;
+      font-size: $f-s-sm;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: rgba(#000, 0.2);
+        z-index: 1;
+      }
+
+      span {
+        padding: 0 15px;
+        position: relative;
+        z-index: 2;
+        background: none;
+      }
+    }
+
+    .signup_link {
+      text-align: center;
+      margin-top: $space-lg;
+      color: #000;
+      font-size: $f-s-sm;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: $f-w-b;
+        margin-left: $space-xs;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
-  .form-options {
-    flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
+  // 響應式設計
+  @media ($mediaMd) {
+    padding: $space-lg;
+
+    .login_container {
+      flex-direction: column;
+      max-width: none;
+      margin: 0;
+    }
+
+    .login_left {
+      padding: $space-xl $space-lg;
+      min-height: 300px;
+
+      .brand_section {
+        .logo {
+          width: 80px;
+          height: 80px;
+          margin-bottom: $space-lg;
+
+          img {
+            width: 40px;
+          }
+        }
+
+        .welcome_title {
+          font-size: $f-s-xl;
+        }
+
+        .welcome_subtitle {
+          font-size: $f-s-sm;
+        }
+      }
+
+      .decoration_crocodile {
+        display: none;
+      }
+    }
+
+    .login_right {
+      padding: $space-xl $space-lg;
+
+      .login_form_container {
+        max-width: none;
+      }
+    }
+  }
+
+  @media ($mediaSm) {
+    padding: $space-md;
+
+    .login_left {
+      padding: $space-lg $space-md;
+
+      .brand_section {
+        .logo {
+          width: 60px;
+          height: 60px;
+
+          img {
+            width: 30px;
+          }
+        }
+
+        .welcome_title {
+          font-size: $f-s-lg;
+        }
+      }
+    }
+
+    .login_right {
+      padding: $space-lg $space-md;
+
+      .form_header .form_title {
+        font-size: $f-s-md;
+        padding: $space-sm $space-lg;
+      }
+    }
   }
 }

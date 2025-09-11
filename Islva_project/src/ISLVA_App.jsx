@@ -11,7 +11,7 @@ import Collections from "./pages/Collections.jsx";
 import Member from "./pages/Member.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import ForgetPassord from "./pages/ForgetPssword.jsx";
+import ForgetPassword from "./pages/ForgetPassword.jsx";
 
 import Form from "./pages/Form.jsx";
 import Lumen from "./pages/Lumen.jsx";
@@ -38,10 +38,10 @@ const ISLVA_App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/glossary" element={<Glossary />} />
           <Route path="/collections" element={<Collections />} />
-          <Route path="member" element={<Member />} />
+          <Route path="/member" element={<Member />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/forgetPassord" element={<ForgetPassord />} />
+          <Route path="/forgetPassword" element={<ForgetPassword />} />
           {/* Collection 子頁 */}
           <Route path="/form" element={<Form />} />
           <Route path="/lumen" element={<Lumen />} />
