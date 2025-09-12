@@ -1,7 +1,7 @@
 @use "../variables" as *;
 @use "../functions" as *;
 
-/*------*/
+/*------主視覺------*/
 /* 主視覺容器 */
 .main-visual {
   position: relative;
@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #eceff3
+  background-color: #eceff3;
 }
 
 /* Hero Section - 使用 Flexbox 讓圖片居中，文字在兩側 */
@@ -19,8 +19,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 1400px; /* 限制最大寬度 */
-  padding: 0 40px;
+  max-width: 1500px; /* 限制最大寬度 */
+  padding: 0 20px;
   gap: 60px; /* 控制元素間距 */
 }
 
@@ -28,14 +28,15 @@
 .hero-text-left {
   flex: 1;
   text-align: right;
-  padding-right: 20px;
+  padding-right: 10px;
+  transform: translateY(-220px);
 }
 
 /* 中間圖片容器 */
 .hero-image-container {
   position: relative;
   flex: 0 0 auto; /* 不伸縮，保持原始尺寸 */
-  max-width: 400px; /* 根據需要調整 */
+  max-width: 550px; /* 根據需要調整 */
   z-index: 2;
 }
 
@@ -58,12 +59,13 @@
 .hero-text-right {
   flex: 1;
   text-align: left;
-  padding-left: 20px;
+  padding-left: 10px;
+  transform: translateY(280px);
 }
 
 /* 文字樣式 */
 .english-caption {
-  font-size: 18px;
+  font-size: 1.2rem;
   color: #666;
   margin-bottom: 10px;
   font-style: italic;
@@ -71,8 +73,8 @@
 }
 
 .chinese-caption {
-  font-family: "Noto Serif TC",serif;
-  font-size: 3rem;
+  font-family: "Noto Serif TC", serif;
+  font-size: 3.2rem;
   font-weight: bold;
   color: #333;
   line-height: 1.2;
@@ -80,10 +82,10 @@
 
 /* 滾動箭頭 */
 .scroll-arrows {
-  position: relative;
-  // bottom: 40px;
-  left: 50px;
-  transform: translateX(-50%);
+  position: absolute; /* 改為 absolute */
+  bottom: 50px; /* 加上 bottom 定位 */
+  left: 50px; /* 距離左邊 20px */
+  transform: none; /* 移除 transform */
   z-index: 4;
 }
 
@@ -96,7 +98,11 @@
 
 /* 箭頭動畫效果 */
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0) translateX(-50%);
   }
   40% {
@@ -107,49 +113,62 @@
   }
 }
 /*------系列商品-------*/
-.hero-content-grid{
-    background-image: url("/images/bg.jpg");
+.collections-section {
+  background-image: url("/images/bg.jpg");
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh; /* 給一個最小高度 */
+  padding-bottom: 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
 }
-.image-item{
-    width: 20vw;
+.hero-content-grid {
+  padding-top: 30px;
+}
+.image-item {
+  width: 20vw;
 }
 
 .image-section {
   display: flex;
-  justify-content: center;
-  margin: 20px auto;
+  justify-content: flex-end;
+  margin-right: 100px;
 }
 
-  .image-grid {
-    display: flex;
-    gap: 20px; /* 圖片之間的間距 */
-    align-items: flex-start; /* 預設從上方對齊 */
-  }
+.image-grid {
+  display: flex;
+  gap: 60px; /* 圖片之間的間距 */
+  align-items: flex-start; /* 預設從上方對齊 */
+  padding-top: 120px;
+  padding-left: 120px;
+}
 
-    .image-item {
-    flex: 1; /* 每張圖佔等寬 */
-    max-width: 300px; /* 控制單張圖片的最大寬度 */
-    border-radius: 12px;
-    overflow: hidden;
+.image-item {
+  flex: 1; /* 每張圖佔等寬 */
+  max-width: 300px; /* 控制單張圖片的最大寬度 */
+  overflow: hidden;
 
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
   }
+}
+/* 左側小圖 */
+.main-image {
+  transform: translateY(80px); /* 向下錯落 */
+}
 
-    .main-image {
-    transform: translateY(20px); /* 向下錯落 */
-  }
+/* 中間小圖 */
+.side-image {
+  transform: translateY(220px); /* 再低一點 */
+}
 
-  /* 左側小圖 */
-  .side-image {
-    transform: translateY(60px); /* 再低一點 */
-  }
-
-  /* 右側小圖 */
-  .top-right-image {
-    transform: translateY(0px); /* 保持最上面 */
-  }
+/* 右側小圖 */
+.top-right-image {
+  transform: translateY(0px); /* 保持最上面 */
+}

@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 import ISLVA_App from "./ISLVA_App";
-import "./sass/all.scss"
+import "./sass/style.scss";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
