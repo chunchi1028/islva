@@ -34,7 +34,7 @@ const Home = () => {
           </div>
         </div>
         <div className="scroll-arrows">
-          <img src="./images/arrow" alt="箭頭" />
+          <img src="./images/arrow.svg" alt="箭頭" />
         </div>
       </div>
 

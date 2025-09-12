@@ -1,13 +1,112 @@
 @use "../variables" as *;
 @use "../functions" as *;
 
-.hero-image-bg {
-    width: 25vw;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+/*------*/
+/* 主視覺容器 */
+.main-visual {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #eceff3
 }
 
+/* Hero Section - 使用 Flexbox 讓圖片居中，文字在兩側 */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px; /* 限制最大寬度 */
+  padding: 0 40px;
+  gap: 60px; /* 控制元素間距 */
+}
+
+/* 左側文案 */
+.hero-text-left {
+  flex: 1;
+  text-align: right;
+  padding-right: 20px;
+}
+
+/* 中間圖片容器 */
+.hero-image-container {
+  position: relative;
+  flex: 0 0 auto; /* 不伸縮，保持原始尺寸 */
+  max-width: 400px; /* 根據需要調整 */
+  z-index: 2;
+}
+
+.hero-image-bg {
+  width: 100%;
+  height: auto;
+}
+
+.hero-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* 根據設計調整 */
+  height: auto;
+  z-index: 3;
+}
+
+/* 右側文案 */
+.hero-text-right {
+  flex: 1;
+  text-align: left;
+  padding-left: 20px;
+}
+
+/* 文字樣式 */
+.english-caption {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 10px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.chinese-caption {
+  font-family: "Noto Serif TC",serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.2;
+}
+
+/* 滾動箭頭 */
+.scroll-arrows {
+  position: relative;
+  // bottom: 40px;
+  left: 50px;
+  transform: translateX(-50%);
+  z-index: 4;
+}
+
+.scroll-arrows img {
+  width: 24px;
+  height: auto;
+  opacity: 0.7;
+  animation: bounce 2s infinite;
+}
+
+/* 箭頭動畫效果 */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-5px) translateX(-50%);
+  }
+}
+/*------系列商品-------*/
 .hero-content-grid{
     background-image: url("/images/bg.jpg");
 }
