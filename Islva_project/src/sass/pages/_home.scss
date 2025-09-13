@@ -172,3 +172,34 @@
 .top-right-image {
   transform: translateY(0px); /* 保持最上面 */
 }
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-content {
+  margin: 0;
+  padding: 0;
+  display: flex; /* 改用 flex */
+  animation: smoothMarquee 25s linear infinite;
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes smoothMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* 因為您重複了圖片，所以移動 50% */
+  }
+}
+
+.marquee-content img {
+  height: 300px;
+  width: auto;
+  margin-right: 20px;
+  flex-shrink: 0; /* 防止圖片縮小 */
+}

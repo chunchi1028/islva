@@ -112,13 +112,32 @@ const Home = () => {
         </div>
       </div>
       <div className="about-section">
-        <figure>
-          <img src="./images/about/about01.jpg" alt="About Us" />
-          <img src="./images/about/about02.jpg" alt="About Us" />
-          <img src="./images/about/about03.jpg" alt="About Us" />
-          <img src="./images/about/about04.jpg" alt="About Us" />
-          <img src="./images/about/about05.jpg" alt="About Us" />
-        </figure>
+        <div className="about_title">
+          <p>03</p>
+          <p>
+            About<span>/</span>
+          </p>
+          <p>關於我們</p>
+        </div>
+        <div className="marquee-container">
+          <figure className="marquee-content">
+            <img src="./images/about/about01.jpg" alt="About Us" />
+            <img src="./images/about/about02.jpg" alt="About Us" />
+            <img src="./images/about/about03.jpg" alt="About Us" />
+            <img src="./images/about/about04.jpg" alt="About Us" />
+            <img src="./images/about/about05.jpg" alt="About Us" />
+            <img src="./images/about/about01.jpg" alt="About Us" />
+            <img src="./images/about/about02.jpg" alt="About Us" />
+            <img src="./images/about/about03.jpg" alt="About Us" />
+            <img src="./images/about/about04.jpg" alt="About Us" />
+            <img src="./images/about/about05.jpg" alt="About Us" />
+          </figure>
+        </div>
+        <div>
+          在 ISLVA，我們相信飾品不只是裝飾
+          <br />
+          而是情感與記憶的延伸，一種能隨時間而愈發動人的陪伴。
+        </div>
       </div>
     </div>
   );
