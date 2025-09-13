@@ -43,15 +43,16 @@ const Home = () => {
 
       <div className="collections-section">
         <div className="hero-content-grid">
-          {/* 標題 */}
-          <div className="series_title">
-            <p>01</p>
-            <p>
-              Collections<span>/</span>
-            </p>
-            <p>系列商品</p>
-          </div>
           {/* 左邊文字 */}
+          <div className="series-title">
+            <p className="series-title-num">01</p>
+            <div className="series-title-text">
+              <span className="series-en">Collections</span>
+              <span className="series-divider">/</span>
+              <span className="series-ch">系列商品</span>
+            </div>
+          </div>
+
           <div className="text-block">
             <p>
               三大系列交織出 ISLVA 的獨特語彙
@@ -65,6 +66,10 @@ const Home = () => {
             <Link to="/collections" className="cta-btn">
               探索系列
             </Link>
+          </div>
+          <div className="seeries-deco-text">
+            Each collection is a journey <br />
+            through light, color, and emotion.
           </div>
         </div>
         {/* 右邊圖片（錯落） */}
@@ -89,12 +94,13 @@ const Home = () => {
         </div>
       </div>
       <div className="glossary-section">
-        <div className="glossary_title">
-          <p>02</p>
-          <p>
-            Glossary<span>/</span>
-          </p>
-          <p>材質辭典</p>
+        <div className="glossary-title">
+          <p className="glossary-title-num">02</p>
+          <div className="glossary-title-text">
+            <span className="glossary-en">Glossary</span>
+            <span className="glossary-divider">/</span>
+            <span className="glossary-ch">材質辭典</span>
+          </div>
         </div>
         <div className="glossart_carousel"></div>
         <div className="glossary_description">

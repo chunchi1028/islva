@@ -126,7 +126,64 @@
   gap: 60px;
 }
 .hero-content-grid {
-  padding-top: 30px;
+  transform: translateY(160px);
+  margin-left: 80px;
+}
+.series-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  gap: 30px;
+}
+.series-title-num {
+  font-size: 2rem;
+  font-family: "Noto Serif TC", serif;
+  font-weight: 100;
+  margin: 0;
+  letter-spacing: 2px;
+}
+.series-title-text {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  gap: 8px;
+
+  span {
+    margin: 0;
+  }
+}
+.series-divider {
+  font-size: 80px;
+  font-weight: 100;
+  margin: 0 10px;
+  transform: rotate(15deg);
+  display: inline-block;
+}
+.series-en {
+  padding-bottom: 30px;
+}
+.series-ch {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: 5px;
+  padding-top: 50px;
+}
+.text-block {
+  line-height: 1.8;
+  font-weight: 400;
+  letter-spacing: 1px;
+  opacity: 0.9;
+
+  p {
+    margin: 0 0 8px 0;
+  }
+}
+.seeries-deco-text {
+  font-size: 2.2rem;
+  color: azure;
+  margin-top: 230px;
 }
 .image-item {
   width: 20vw;
@@ -142,8 +199,8 @@
   display: flex;
   gap: 60px; /* 圖片之間的間距 */
   align-items: flex-start; /* 預設從上方對齊 */
-  padding-top: 120px;
-  padding-left: 120px;
+  padding-top: 80px;
+  // padding-left: 60px;
 }
 
 .image-item {
@@ -172,7 +229,52 @@
 .top-right-image {
   transform: translateY(0px); /* 保持最上面 */
 }
+/*------材質辭典-------*/
+.glossary-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 30px;
+}
+.glossary-title-num {
+  font-size: 2rem;
+  font-family: "Noto Serif TC", serif;
+  font-weight: 100;
+  margin: 0;
+  letter-spacing: 2px;
+}
+.glossary-title-text {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  gap: 8px;
 
+  span {
+    margin: 0;
+  }
+}
+.glossary-divider {
+  font-size: 80px;
+  font-weight: 100;
+  margin: 0 10px;
+  transform: rotate(15deg);
+  display: inline-block;
+}
+.glossary-en {
+  padding-bottom: 30px;
+}
+.glossary-ch {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: 5px;
+  padding-top: 50px;
+}
+.glossary_description {
+  max-width: 600px; // 控制文字寬度
+  margin-left: auto; // 整個區塊推到右邊
+}
+/*------關於我們-------*/
 .marquee-container {
   width: 100%;
   overflow: hidden;
