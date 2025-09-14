@@ -1,154 +1,289 @@
-.form_continer {
-  display: grid;
-  grid-template-columns: min(520px, 45vw) 1fr; // 左圖右文
-  align-items: center;
-  gap: 135px;
+// ================================
+// 主要樣式
+// ================================
+.series-intro {
+  padding: 80px 0;
+  background: white;
+  overflow: hidden;
 
-  max-width: 1200px; // 控制整體最大寬度
-  width: 100%; // 占滿可用空間
-  margin: 110px auto 0;
+  // 手機版
+  @media (max-width: 768px) {
+    padding: 60px 0;
+  }
 }
 
-.series-intro {
-  /* 兩欄：左圖右文 */
-  padding: 60px; // 上下留白 + 左右邊界
-  display: flex; // 用 flex 讓內容置中
-  justify-content: center;
+// 反向布局
+.series-intro.is-reverse {
+  .form_continer {
+    flex-direction: row-reverse;
 
-  //   /* 需要圖文對調時 */
-  //   &.is-reverse {
-  //     grid-template-columns: 1fr min(520px, 45vw);
-
-  //     .series-intro__media {
-  //       order: 2;
-  //     }
-  //     .series-intro__text {
-  //       order: 1;
-  //     }
-  //   }
-
-  /* 左邊媒體：用 grid 疊放＋位移做錯落 */
-  &__media {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    align-items: end;
-    /* 讓圖片不會超出容器 */
-    overflow: visible;
-  }
-
-  &__img {
-    position: relative;
-    overflow: hidden;
-
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      transform: translateZ(0); // 更順滑
-    }
-
-    /* 左圖（稍微往下） */
-    &--a {
-      grid-column: 1;
-      transform: translateY(-25px);
-    }
-
-    /* 右圖（稍微往上），營造錯落 */
-    &--b {
-      grid-column: 2;
-      transform: translateY(60px);
+    @media (max-width: 768px) {
+      flex-direction: column;
     }
   }
+}
 
-  /* 右邊文字 */
-  &__text {
-    max-width: 520px;
-    justify-self: start;
-    padding-top: 150px;
+// 主要容器
+.form_continer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+
+  @media (min-width: 768px) {
+    padding: 0 40px;
   }
 
-  &__eyebrow {
-    font-size: clamp(18px, 2.2vw, 22px);
-    font-weight: 600;
-    color: #1f2937;
-    letter-spacing: 0.02em;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
 
-    .slash {
-      display: inline-block;
-      margin: 0 0.5ch;
-      color: #64748b;
-    }
+// ================================
+// 媒體區域
+// ================================
+.series-intro__media {
+  flex: 1;
+  position: relative;
+  min-height: 600px;
+  gap: 30px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    min-height: 500px;
+  }
+}
+
+.series-intro__img {
+  position: absolute;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
   }
 
-  &__desc {
-    color: #475569;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+// 第一張圖片 (左上)
+.series-intro__img--a {
+  width: 50%;
+  height: 100%;
+  top: -30px;
+  left: -10px;
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    width: 65%;
+    height: 55%;
+  }
+}
+
+// 第二張圖片 (右下)
+.series-intro__img--b {
+  width: 50%;
+  height: 100%;
+  bottom: -60px;
+  right: -10px;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    width: 60%;
+    height: 50%;
+  }
+}
+
+// ================================
+// 文字區域
+// ================================
+.series-intro__text {
+  flex: 1;
+  max-width: 500px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.series-intro__eyebrow {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #2c3e50;
+  margin-bottom: 24px;
+  line-height: 1.3;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .slash {
+    color: #7f8c8d;
+    margin: 0 8px;
+  }
+}
+
+.series-intro__desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #7f8c8d;
+  margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 28px;
+  }
+}
+
+.series-intro__btn {
+  background: #2c3e50;
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: lighten(#2c3e50, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:focus {
+    outline: 2px solid #2c3e50;
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+// ================================
+// 底部文字區域
+// ================================
+.form_txt {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+  background: white;
+  position: relative;
+  z-index: 10;
+
+  @media (min-width: 768px) {
+    padding: 80px 40px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 60px 20px;
+  }
+
+  p {
+    font-size: 1.1rem;
     line-height: 1.8;
-    font-size: clamp(14px, 1.4vw, 16px);
-    margin: 0 0 20px;
+    color: #7f8c8d;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 100%;
+    }
+  }
+}
+
+// ================================
+// 額外的響應式調整
+// ================================
+@media (max-width: 480px) {
+  .form_continer {
+    padding: 0 16px;
   }
 
-  &__btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 18px;
-    border: 1px solid #e2e8f0;
-    background: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  .series-intro {
+    padding: 40px 0;
+  }
 
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
-      background: #f8fafc;
-    }
+  .series-intro__media {
+    min-height: 280px;
+  }
 
-    &:active {
-      transform: translateY(0);
-      box-shadow: none;
-    }
+  .series-intro__eyebrow {
+    font-size: 1.3rem;
+  }
+
+  .series-intro__btn {
+    padding: 12px 24px;
+    font-size: 0.85rem;
   }
 
   .form_txt {
-    /* 讓它在 grid 裡跨兩欄，置中放 */
-    grid-column: 1 / -1; /* 橫跨整排 */
-    justify-self: center; /* 盒子在格線內水平置中 */
+    padding: 50px 16px;
 
-    /* 內容與寬度控制 */
-    text-align: center;
-    max-width: 820px; /* 你想要的最大寬 */
-    width: min(90vw, 820px); /* RWD：不超過視口 */
-    margin: 40px auto 0; /* 與上方區塊留距、水平置中 */
+    p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
   }
+}
 
-  /* RWD：窄螢幕直式排列，圖片疊放得更明顯 */
-  @media (max-width: 820px) {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: left;
+// ================================
+// 動畫效果
+// ================================
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    &__text {
-      max-width: 640px;
-      padding-inline: 16px;
-      justify-self: stretch;
-    }
+// 可選：添加進場動畫
+.series-intro__text > * {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
 
-    &__media {
-      width: min(640px, 92vw);
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(8px, 2vw, 14px);
-      margin-bottom: 8px;
-    }
+.series-intro__eyebrow {
+  animation-delay: 0.1s;
+}
 
-    &__img--a {
-      transform: translateY(6px);
-    }
-    &__img--b {
-      transform: translateY(-12px);
-    }
+.series-intro__desc {
+  animation-delay: 0.2s;
+}
+
+.series-intro__btn {
+  animation-delay: 0.3s;
+}
+
+// 減少動畫偏好設定
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

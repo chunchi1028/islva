@@ -67,7 +67,7 @@ const Home = () => {
               探索系列
             </Link>
           </div>
-          <div className="seeries-deco-text">
+          <div className="series-deco-text">
             Each collection is a journey <br />
             through light, color, and emotion.
           </div>
@@ -118,12 +118,13 @@ const Home = () => {
         </div>
       </div>
       <div className="about-section">
-        <div className="about_title">
-          <p>03</p>
-          <p>
-            About<span>/</span>
-          </p>
-          <p>關於我們</p>
+        <div className="about-title">
+          <p className="about-title-num">03</p>
+          <div className="about-title-text">
+            <span className="about-en">About</span>
+            <span className="about-divider">/</span>
+            <span className="about-ch">關於我們</span>
+          </div>
         </div>
         <div className="marquee-container">
           <figure className="marquee-content">
@@ -139,7 +140,7 @@ const Home = () => {
             <img src="./images/about/about05.jpg" alt="About Us" />
           </figure>
         </div>
-        <div>
+        <div className="about_description">
           在 ISLVA，我們相信飾品不只是裝飾
           <br />
           而是情感與記憶的延伸，一種能隨時間而愈發動人的陪伴。

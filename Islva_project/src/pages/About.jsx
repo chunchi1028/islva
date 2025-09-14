@@ -1,8 +1,19 @@
 import React from "react";
+import Picture_carousel from "../components/Picture_carousel";
 
 const About = () => {
   return (
     <div className="about_container">
+      <div className="about_banner">
+        <div className="about_carousel">
+          <Picture_carousel />
+        </div>
+        <div className="about_banner_title">
+          <span className="about-banner-en">About</span>
+          <span className="about-banner-divider">/</span>
+          <span className="about-banner-ch">關於我們</span>
+        </div>
+      </div>
       <div className="about_intro">
         <p>
           在光影與材質交錯之間，ISLVA誕生了。
@@ -88,8 +99,7 @@ const About = () => {
             <br />
             陽光灑落的角度、城市建築的幾何線條、自然生物的形態與力量·ISLVA希望飾品能成為一種靈前前的延續,
             <br />
-            ISLVA
-            陪伴每位佩戴者去發現、去感受，並最終轉化為屬於自己的人生故事。
+            ISLVA 陪伴每位佩戴者去發現、去感受，並最終轉化為屬於自己的人生故事。
           </p>
         </div>
         <div className="deco_num04">

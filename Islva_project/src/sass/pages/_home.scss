@@ -123,11 +123,12 @@
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  gap: 60px;
+  // gap: 60px;
 }
 .hero-content-grid {
   transform: translateY(160px);
-  margin-left: 80px;
+  // margin-left: 80px;
+  overflow: visible;
 }
 .series-title {
   display: flex;
@@ -135,12 +136,13 @@
   justify-content: center;
   margin-bottom: 15px;
   gap: 30px;
+  transform: translateX(-90px);
 }
 .series-title-num {
   font-size: 2rem;
   font-family: "Noto Serif TC", serif;
   font-weight: 100;
-  margin: 0;
+
   letter-spacing: 2px;
 }
 .series-title-text {
@@ -149,10 +151,6 @@
   font-size: 1.5rem;
   font-weight: 400;
   gap: 8px;
-
-  span {
-    margin: 0;
-  }
 }
 .series-divider {
   font-size: 80px;
@@ -168,7 +166,7 @@
   font-size: 1.5rem;
   font-weight: 500;
   margin-left: 5px;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 .text-block {
   line-height: 1.8;
@@ -180,10 +178,10 @@
     margin: 0 0 8px 0;
   }
 }
-.seeries-deco-text {
+.series-deco-text {
   font-size: 2.2rem;
   color: azure;
-  margin-top: 230px;
+  margin-top: 300px;
 }
 .image-item {
   width: 20vw;
@@ -199,7 +197,7 @@
   display: flex;
   gap: 60px; /* 圖片之間的間距 */
   align-items: flex-start; /* 預設從上方對齊 */
-  padding-top: 80px;
+  margin-top: 80px;
   // padding-left: 60px;
 }
 
@@ -230,10 +228,14 @@
   transform: translateY(0px); /* 保持最上面 */
 }
 /*------材質辭典-------*/
+.glossary-section {
+  min-height: 100vh;
+}
 .glossary-title {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
+  margin-left: 100px;
   gap: 30px;
 }
 .glossary-title-num {
@@ -249,10 +251,6 @@
   font-size: 1.5rem;
   font-weight: 400;
   gap: 8px;
-
-  span {
-    margin: 0;
-  }
 }
 .glossary-divider {
   font-size: 80px;
@@ -271,18 +269,74 @@
   padding-top: 50px;
 }
 .glossary_description {
-  max-width: 600px; // 控制文字寬度
+  display: block;
+  max-width: 800px; // 控制文字寬度
   margin-left: auto; // 整個區塊推到右邊
+  line-height: 1.8;
 }
 /*------關於我們-------*/
+.about-section {
+  background-image: linear-gradient(
+    to right,
+    #323c45 0%,
+    #323c45 60%,
+    transparent 50%
+  );
+  min-height: 100vh;
+}
+.about-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-left: 100px;
+  gap: 30px;
+  color: white;
+  transform: translateY(80px);
+}
+.about-title-num {
+  font-size: 2rem;
+  font-family: "Noto Serif TC", serif;
+  font-weight: 100;
+  margin: 0;
+  letter-spacing: 2px;
+}
+.about-title-text {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 400;
+  gap: 8px;
+}
+.about-divider {
+  font-size: 80px;
+  font-weight: 100;
+  margin: 0 10px;
+  transform: rotate(15deg);
+  display: inline-block;
+}
+.about-en {
+  padding-bottom: 30px;
+}
+.about-ch {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: 5px;
+  padding-top: 50px;
+}
+.about_description {
+  display: block;
+  line-height: 1.8;
+  color: white;
+  margin-left: 80px;
+  transform: translateY(220px);
+}
 .marquee-container {
   width: 100%;
   overflow: hidden;
+  transform: translateY(100px);
 }
 
 .marquee-content {
-  margin: 0;
-  padding: 0;
   display: flex; /* 改用 flex */
   animation: smoothMarquee 25s linear infinite;
   &:hover {
@@ -300,7 +354,7 @@
 }
 
 .marquee-content img {
-  height: 300px;
+  height: 360px;
   width: auto;
   margin-right: 20px;
   flex-shrink: 0; /* 防止圖片縮小 */

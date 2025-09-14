@@ -1,0 +1,398 @@
+// ================================
+// 變數定義 (Variables)
+// ================================
+$primary-color: #2c3e50;
+$secondary-color: #95a5a6;
+$accent-color: #e8f4f8;
+$text-dark: #2c3e50;
+$text-light: #7f8c8d;
+$border-color: #ecf0f1;
+$shadow-light: rgba(0, 0, 0, 0.1);
+$shadow-medium: rgba(0, 0, 0, 0.15);
+$shadow-heavy: rgba(0, 0, 0, 0.3);
+
+// 間距變數
+$spacing-xs: 8px;
+$spacing-sm: 12px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 40px;
+$spacing-xxl: 50px;
+$spacing-xxxl: 60px;
+
+// 字體大小
+$font-xs: 0.9rem;
+$font-sm: 1rem;
+$font-md: 1.2rem;
+$font-lg: 2rem;
+$font-xl: 2.5rem;
+
+// 圓角
+$radius-sm: 8px;
+$radius-md: 12px;
+
+// ================================
+// Mixins
+// ================================
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+@mixin button-hover {
+  @include transition();
+
+  &:hover {
+    background: $accent-color;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px $shadow-medium;
+  }
+}
+
+@mixin image-hover {
+  @include transition(transform);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// 響應式斷點
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+// ================================
+// 主要樣式 (Main Styles)
+// ================================
+
+.butterfly-jewelry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  font-family: "Arial", "Helvetica", sans-serif;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60vh auto;
+  }
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50vh auto;
+  }
+}
+
+// ================================
+// 左側主圖區域 (Main Image Section)
+// ================================
+.main-image-section {
+  position: relative;
+  overflow: hidden;
+
+  .main-image-container {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    display: block; // 移除任何間距
+  }
+
+  .main-image {
+    width: 80%;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  // 蝴蝶裝飾元素
+  .butterfly-overlay {
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    z-index: 2;
+
+    .butterfly-decoration {
+      width: 60px;
+      height: 60px;
+
+      border-radius: 50%;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 20px;
+        // background: rgba(255, 255, 255, 0.3);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      }
+
+      &::before {
+        top: 10px;
+        left: 5px;
+        transform: rotate(-20deg);
+      }
+
+      &::after {
+        top: 10px;
+        right: 5px;
+        transform: rotate(20deg);
+      }
+    }
+  }
+}
+
+// ================================
+// 右側產品詳情區域 (Product Details)
+// ================================
+.product-details {
+  padding: $spacing-xxxl $spacing-xxl;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include mobile {
+    padding: $spacing-xl $spacing-lg;
+  }
+
+  @include tablet {
+    padding: $spacing-xl $spacing-xl;
+  }
+}
+
+// 產品標題區域
+.product-header {
+  margin-bottom: $spacing-xl;
+
+  .product-title {
+    font-size: $font-xl;
+    font-weight: 300;
+    color: $text-dark;
+    margin: 0 0 $spacing-sm 0;
+    letter-spacing: 2px;
+    line-height: 1.2;
+
+    @include mobile {
+      font-size: $font-lg;
+    }
+  }
+
+  .product-subtitle {
+    @include flex-align-center;
+    gap: $spacing-sm;
+    color: $text-light;
+    font-size: $font-xs;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    .separator {
+      color: $secondary-color;
+      font-weight: bold;
+    }
+  }
+}
+
+// 產品描述
+.product-description {
+  margin-bottom: $spacing-xl;
+  line-height: 1.8;
+  color: $text-light;
+  font-size: $font-sm;
+
+  p {
+    margin-bottom: $spacing-md;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Next按鈕
+.next-btn {
+  border: 1px solid $border-color;
+  background: white;
+  padding: $spacing-sm $spacing-lg;
+  cursor: pointer;
+  @include flex-align-center;
+  gap: $spacing-xs;
+  width: fit-content;
+  margin-bottom: $spacing-xxl;
+  font-size: $font-xs;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: $text-dark;
+  border-radius: 4px;
+  @include button-hover;
+
+  .btn-arrow {
+    @include transition(transform);
+  }
+
+  &:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+}
+
+// ================================
+// 產品縮圖區域 (Product Thumbnails)
+// ================================
+
+.product-thumbnails {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap; // 強制單行排列
+  align-items: center;
+
+  .thumbnail {
+    width: 220px; // 增加寬度
+    height: 220px; // 增加高度，比較適合橫向排列
+    border-radius: $radius-sm;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    border: 2px solid transparent;
+    @include transition();
+    flex-shrink: 0; // 防止縮圖被壓縮
+
+    img {
+      width: 100%; // 改為填滿整個縮圖容器
+      height: 100%; // 改為填滿整個縮圖容器
+      object-fit: cover;
+      display: block;
+    }
+
+    //   .thumbnail-overlay {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background: rgba(0, 0, 0, 0.3);
+    //     @include transition();
+    //   }
+
+    //   &.active {
+    //     border-color: $primary-color;
+    //     transform: translateY(-4px);
+    //     box-shadow: 0 6px 20px $shadow-medium;
+
+    //     .thumbnail-overlay {
+    //       background: rgba(0, 0, 0, 0.1);
+    //     }
+    //   }
+
+    //   &:hover:not(.active) {
+    //     transform: translateY(-2px);
+    //     box-shadow: 0 8px 20px $shadow-medium;
+
+    //     .thumbnail-overlay {
+    //       background: rgba(0, 0, 0, 0.2);
+    //     }
+    //   }
+
+    //   &:focus {
+    //     outline: 2px solid $primary-color;
+    //     outline-offset: 2px;
+    //   }
+  }
+}
+
+// ================================
+// 動畫效果 (Animations)
+// ================================
+//   @keyframes fadeInUp {
+//     from {
+//       opacity: 0;
+//       transform: translateY(30px);
+//     }
+//     to {
+//       opacity: 1;
+//       transform: translateY(0);
+//     }
+//   }
+
+//   @keyframes float {
+//     0%,
+//     100% {
+//       transform: translateY(0px);
+//     }
+//     50% {
+//       transform: translateY(-10px);
+//     }
+//   }
+
+//   // 進場動畫
+//   .product-details > * {
+//     animation: fadeInUp 0.6s ease forwards;
+//     opacity: 0;
+//   }
+
+//   .product-header {
+//     animation-delay: 0.1s;
+//   }
+
+//   .product-description {
+//     animation-delay: 0.2s;
+//   }
+
+//   .next-btn {
+//     animation-delay: 0.3s;
+//   }
+
+//   .product-thumbnails {
+//     animation-delay: 0.4s;
+//   }
+
+//   // ================================
+//   // 可訪問性改進 (Accessibility)
+//   // ================================
+//   @media (prefers-reduced-motion: reduce) {
+//     * {
+//       animation-duration: 0.01ms !important;
+//       animation-iteration-count: 1 !important;
+//       transition-duration: 0.01ms !important;
+//     }
+//   }
+
+//   // 高對比度模式
+//   @media (prefers-contrast: high) {
+//     .butterfly-jewelry {
+//       .product-title {
+//         color: #000;
+//       }
+
+//       .next-btn {
+//         border-color: #000;
+//         color: #000;
+//       }
+
+//       .thumbnail.active {
+//         border-color: #000;
+//       }
+//     }
+//   }
