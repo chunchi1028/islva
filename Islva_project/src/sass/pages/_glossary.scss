@@ -6,6 +6,14 @@
   background-image: url("/images/bg.jpg");
   width: $w-100;
   height: auto;
+  margin-bottom: 50px;
+}
+
+.glossary_intro_bg{
+  background-color: #8AA1BD;
+  width: 90vw;
+  height: 700px;
+  // margin-top: 30px;
 }
 .glossary_intro_desc{
   text-align: center;

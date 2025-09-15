@@ -17,6 +17,9 @@ import Form from "./pages/Form.jsx";
 import Lumen from "./pages/Lumen.jsx";
 import Core from "./pages/Core.jsx";
 
+import AnimalSeries from "./components/AnimalSeries.jsx"
+import ScrollGallery from "./components/ScrollGallery.jsx"
+
 // import Care from "./pages/Care.jsx";
 // import Material from "./pages/Material.jsx";
 // import Craft from "./pages/Craft.jsx";
@@ -42,6 +45,8 @@ const ISLVA_App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgetPassword" element={<ForgetPassword />} />
+          <Route path="/animalSeries" element={<AnimalSeries />} />
+           <Route path="/scrollGallery" element={<ScrollGallery />} />
           {/* Collection 子頁 */}
           <Route path="/form" element={<Form />} />
           <Route path="/lumen" element={<Lumen />} />

@@ -1,4 +1,4 @@
-import AnimalSeries from "../components/AaimalSeries";
+import AnimalSeries from "../components/AnimalSeries";
 
 export default function SeriesIntro({
   titleEn = "Form",
@@ -13,7 +13,7 @@ export default function SeriesIntro({
   return (
     <div>
       <section className={`series-intro ${reverse ? "is-reverse" : ""}`}>
-        <div className="form_continer">
+        <div className="form_container">
           {/* 媒體區：兩張錯落圖片 */}
           <div className="series-intro__media">
             <figure className="series-intro__img series-intro__img--a">

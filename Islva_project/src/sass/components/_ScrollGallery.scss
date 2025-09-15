@@ -1,0 +1,297 @@
+
+// 響應式斷點
+$mobile: 768px;
+$tablet: 1024px;
+
+.scroll-gallery {
+  width: 100%;
+  height: 100vh;
+  font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+
+  .gallery-container {
+    display: flex;
+    height: 100%;
+    
+    // 左側滾動區域
+    .scroll-section {
+      flex: 1;
+      height: 100vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      
+      // 隱藏滾動條但保持功能
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .scroll-item {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: all 0.6s ease;
+
+        &.active {
+          .scroll-item-content {
+            transform: scale(1.05);
+            
+            .main-image {
+              filter: brightness(1) contrast(1.1);
+            }
+          }
+        }
+
+        .scroll-item-content {
+          width: 90%;
+          height: 80%;
+          max-width: 600px;
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          
+          .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.6s ease;
+            filter: brightness(0.9);
+          }
+        }
+      }
+    }
+
+    // 右側內容區域
+    .content-section {
+      flex: 0 0 450px;
+      background: linear-gradient(135deg, #fff 0%, #ecf0f1 100%);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      box-shadow: -2px 0 20px rgba(0, 0, 0, 0.05);
+      
+      .content-wrapper {
+        width: 100%;
+        
+        .side-images {
+          position: relative;
+          height: 200px;
+          margin-bottom: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          .side-image-item {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            &.active {
+              opacity: 1;
+              transform: translateX(-50%) translateY(0);
+              
+              .side-image {
+                transform: scale(1);
+              }
+            }
+            
+            &:not(.active) {
+              transform: translateX(-50%) translateY(20px);
+              
+              .side-image {
+                transform: scale(0.9);
+              }
+            }
+            
+            .side-image {
+              width: 280px;
+              height: 180px;
+              object-fit: cover;
+              border-radius: 8px;
+              box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+              transition: transform 0.6s ease;
+            }
+          }
+        }
+        
+        .content-info {
+          .content-text {
+            .category {
+              color:#ecf0f1;
+              font-size: 14px;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              margin-bottom: 12px;
+              opacity: 0.8;
+            }
+            
+            .title {
+              font-size: 28px;
+              font-weight: 700;
+              color: #2c3e50;
+              margin-bottom: 20px;
+              line-height: 1.3;
+              opacity: 0;
+              transform: translateY(20px);
+              animation: fadeInUp 0.8s ease forwards;
+              animation-delay: 0.2s;
+            }
+            
+            .description {
+              font-size: 16px;
+              line-height: 1.7;
+              color:#34495e;
+              margin-bottom: 30px;
+              opacity: 0;
+              transform: translateY(20px);
+              animation: fadeInUp 0.8s ease forwards;
+              animation-delay: 0.4s;
+            }
+            
+            .more-btn {
+              background: linear-gradient(135deg,  #3498db, lighten( #3498db, 10%));
+              color: #fff;
+              border: none;
+              padding: 12px 30px;
+              font-size: 14px;
+              font-weight: 600;
+              border-radius: 25px;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              box-shadow: 0 4px 15px rgba( #3498db, 0.3);
+              opacity: 0;
+              transform: translateY(20px);
+              animation: fadeInUp 0.8s ease forwards;
+              animation-delay: 0.6s;
+              
+              &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba( #3498db, 0.4);
+              }
+              
+              &:active {
+                transform: translateY(0);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 動畫定義
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 響應式設計
+@media (max-width: $tablet) {
+  .scroll-gallery {
+    .gallery-container {
+      .content-section {
+        flex: 0 0 380px;
+        padding: 30px;
+        
+        .content-wrapper {
+          .side-images {
+            height: 150px;
+            margin-bottom: 30px;
+            
+            .side-image-item {
+              .side-image {
+                width: 220px;
+                height: 130px;
+              }
+            }
+          }
+          
+          .content-info {
+            .content-text {
+              .title {
+                font-size: 24px;
+              }
+              
+              .description {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .scroll-gallery {
+    .gallery-container {
+      flex-direction: column;
+      
+      .scroll-section {
+        flex: 1;
+        height: 60vh;
+        
+        .scroll-item {
+          height: 60vh;
+        }
+      }
+      
+      .content-section {
+        flex: 0 0 40vh;
+        padding: 20px;
+        
+        .content-wrapper {
+          .side-images {
+            height: 100px;
+            margin-bottom: 20px;
+            
+            .side-image-item {
+              .side-image {
+                width: 160px;
+                height: 90px;
+              }
+            }
+          }
+          
+          .content-info {
+            .content-text {
+              .title {
+                font-size: 20px;
+                margin-bottom: 15px;
+              }
+              
+              .description {
+                font-size: 12px;
+                margin-bottom: 20px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+              }
+              
+              .more-btn {
+                padding: 10px 25px;
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

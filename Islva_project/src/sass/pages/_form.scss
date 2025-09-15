@@ -14,7 +14,7 @@
 
 // 反向布局
 .series-intro.is-reverse {
-  .form_continer {
+  .form_container {
     flex-direction: row-reverse;
 
     @media (max-width: 768px) {
@@ -24,7 +24,7 @@
 }
 
 // 主要容器
-.form_continer {
+.form_container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;

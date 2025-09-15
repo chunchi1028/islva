@@ -1,4 +1,5 @@
 import GlossaryTab from "../components/GlossaryTab";
+import { useState, useEffect } from "react";
 
 export default function GlossaryPage() {
   const [carouselData, setCarouselData] = useState([]);
@@ -30,15 +31,17 @@ export default function GlossaryPage() {
   return (
     <div className="glossary_container">
       <div className="glossary_intro">
-        <div className="glossary_intro_desc">
-          <h3>材質辭典</h3>
-          <p>
-            在這裡，你可以了解關於銀的特性、琺瑯的色彩、
-            <br />
-            寶石的切割與鑲嵌，以及表面處理、工藝技法與保養方式的完整解說。
-            <br />
-            透過它，你能更清楚地認識每一件飾品的細節，讓每一次的佩戴，都多一份理解與連結。
-          </p>
+        <div className="glossary_intro_bg">
+          <div className="glossary_intro_desc">
+            <h3>材質辭典</h3>
+            <p>
+              在這裡，你可以了解關於銀的特性、琺瑯的色彩、
+              <br />
+              寶石的切割與鑲嵌，以及表面處理、工藝技法與保養方式的完整解說。
+              <br />
+              透過它，你能更清楚地認識每一件飾品的細節，讓每一次的佩戴，都多一份理解與連結。
+            </p>
+          </div>
         </div>
       </div>
 

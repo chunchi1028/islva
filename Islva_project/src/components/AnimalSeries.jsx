@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom";
 
 const ButterflyJewelry = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -48,12 +49,12 @@ const ButterflyJewelry = () => {
             ——既有大自然的野性之美，也蘊含佩戴者內心的柔軟與力量。
           </p>
         </div>
-
-        <button className="next-btn">
-          <span className="btn-text">NEXT</span>
-          <span className="btn-arrow">→</span>
-        </button>
-
+        <Link to="/scrollGallery">
+          <button className="next-btn">
+            <span className="btn-text">NEXT</span>
+            <span className="btn-arrow">→</span>
+          </button>
+        </Link>
         {/* 產品圖片縮圖 */}
         <div className="product-thumbnails">
           {productImages.map((image, index) => (
