@@ -1,5 +1,5 @@
 import GlossaryTab from "../components/GlossaryTab";
-import AnimatedDisclosures from "../components/AnimatedDisclosures";
+import HorizontalAccordion from "../components/HorizontalAccordion";
 
 export default function GlossaryPage() {
   return (
@@ -33,10 +33,10 @@ export default function GlossaryPage() {
           </div>
         </div>
       </div>
-      <div className="glossasry-content">
+      <div className="glossary-content">
         {/* 上方四個按鈕 + 內容卡 */}
         <GlossaryTab />
-        <AnimatedDisclosures dense />
+          <HorizontalAccordion initial={null} clampLines={5} />
       </div>
     </div>
   );

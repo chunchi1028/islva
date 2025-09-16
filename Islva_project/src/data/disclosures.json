@@ -1,34 +1,48 @@
 [
   {
-    "category": "Craft",
-    "title": "The Craft",
-    "desc": "Gain the confidence to build anything you envision, transforming motion, interaction, and design principles into second nature.",
-    "img": "https://picsum.photos/720/720?random=12",
-    "ctaText": "看更多",
-    "extraText": "這裡是 Craft 額外介紹文字。你也可以放更長的段落、連結、或清單。"
+    "title": "925銀",
+    "desc": "含銀量達 92.5%，是珠寶常用的標準純銀材質，兼具光澤與耐用性。",
+    "img": "https://picsum.photos/1200/800?grayscale&random=12",
+    "ctaText": "View more",
+    "ctaBelow":["925銀，又稱純銀，是由 92.5% 的銀 與 7.5% 的合金（多為銅） 所組成。這樣的比例讓銀飾兼具 穩定性、耐用性與美觀光澤，比起純銀更適合日常配戴。",
+"它擁有溫潤亮澤的銀白色調，適合各類飾品設計，並且能長久保持質感。隨著時間可能出現自然氧化現象，但只要適度保養與清潔，就能恢復原有光彩。"]
   },
   {
-    "category": "CSS",
-    "title": "CSS Animation",
-    "desc": "Master CSS animations from your very first set of @keyframes through to techniques no one else teaches.",
-    "img": "https://picsum.photos/720/720?random=17",
-    "ctaText": "看更多",
-    "extraText": "這裡是 CSS 額外介紹文字。"
+    "title": "琺瑯",
+    "desc": "將玻璃質粉末高溫熔融於金屬表面，呈現出晶瑩色澤與藝術感的裝飾工藝。",
+    "img": "https://picsum.photos/1200/800?grayscale&random=17",
+    "ctaText": "View more",
+     "ctaBelow":["琺瑯（Enamel）是一種將 玻璃或陶瓷質粉末 塗敷於金屬表面，經過高溫燒製後熔結而成的工藝。其特色是能展現 鮮豔而持久的色彩，表面光澤晶瑩，具有良好的耐腐蝕與抗刮性。",
+"琺瑯廣泛運用於首飾與工藝品中，能夠呈現多變的藝術效果，從細膩的花紋到大面積的純色，都展現出獨特質感。由於製程繁複，每一件琺瑯飾品幾乎都是獨一無二的存在。"]
   },
   {
-    "category": "SVG",
-    "title": "SVG Filters",
+    "title": "SVG FILTERS",
     "desc": "Shaders on a budget. Use noise to your advantage while making flames and stickers.",
-    "img": "https://picsum.photos/720/720?random=19",
-    "ctaText": "看更多",
-    "extraText": "這裡是 SVG 額外介紹文字。"
+    "img": "https://picsum.photos/1200/800?grayscale&random=19",
+    "ctaText": "View more"
   },
   {
-    "category": "Craft",
-    "title": "Layout Tricks",
+    "title": "SCROLL ANIMATION",
+    "desc": "Take users on a journey with tasteful scroll animation. You might not even need JavaScript.",
+    "img": "https://picsum.photos/1200/800?grayscale&random=42",
+    "ctaText": "View more"
+  },
+  {
+    "title": "TAMING CANVAS",
+    "desc": "Tame the pixel playground—build with performance in mind.",
+    "img": "https://picsum.photos/1200/800?grayscale&random=128",
+    "ctaText": "View more"
+  },
+  {
+    "title": "LAYOUT TRICKS",
     "desc": "Sometimes rethinking the problem yields a nifty solution—you may not need a library.",
-    "img": "https://picsum.photos/720/720?random=56",
-    "ctaText": "看更多",
-    "extraText": "Craft 類別的第二張卡，示範同類多卡。"
+    "img": "https://picsum.photos/1200/800?grayscale&random=56",
+    "ctaText": "View more"
+  },
+  {
+    "title": "MASTERING TIME",
+    "desc": "It's not all easings and compositions. Time is crucial in many UI patterns.",
+    "img": "https://picsum.photos/1200/800?grayscale&random=39",
+    "ctaText": "View more"
   }
 ]
