@@ -1,0 +1,34 @@
+[
+  {
+    "category": "Craft",
+    "title": "The Craft",
+    "desc": "Gain the confidence to build anything you envision, transforming motion, interaction, and design principles into second nature.",
+    "img": "https://picsum.photos/720/720?random=12",
+    "ctaText": "看更多",
+    "extraText": "這裡是 Craft 額外介紹文字。你也可以放更長的段落、連結、或清單。"
+  },
+  {
+    "category": "CSS",
+    "title": "CSS Animation",
+    "desc": "Master CSS animations from your very first set of @keyframes through to techniques no one else teaches.",
+    "img": "https://picsum.photos/720/720?random=17",
+    "ctaText": "看更多",
+    "extraText": "這裡是 CSS 額外介紹文字。"
+  },
+  {
+    "category": "SVG",
+    "title": "SVG Filters",
+    "desc": "Shaders on a budget. Use noise to your advantage while making flames and stickers.",
+    "img": "https://picsum.photos/720/720?random=19",
+    "ctaText": "看更多",
+    "extraText": "這裡是 SVG 額外介紹文字。"
+  },
+  {
+    "category": "Craft",
+    "title": "Layout Tricks",
+    "desc": "Sometimes rethinking the problem yields a nifty solution—you may not need a library.",
+    "img": "https://picsum.photos/720/720?random=56",
+    "ctaText": "看更多",
+    "extraText": "Craft 類別的第二張卡，示範同類多卡。"
+  }
+]

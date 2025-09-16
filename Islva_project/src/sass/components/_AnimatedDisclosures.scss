@@ -1,0 +1,221 @@
+/* 色彩與基礎 */
+
+$bg: #0b0c10;
+$fg: #e6e9ef;
+$muted: #a7b0c0;
+$accent: #78e8d8;
+/* ===== Container ===== */
+.disclosures {
+  /* 全域間距（可以再調小） */
+  --gap-grid: 8px; /* 卡片與卡片之間 */
+  --gap-inline: 6px; /* 左圖與右面板之間 */
+  --pad-panel: 10px 12px; /* 右側面板 padding */
+
+  color: $fg;
+  padding: clamp(12px, 2vw, 20px); /* 外圍間距縮小 */
+  background: radial-gradient(1200px 600px at 10% -10%, #182034, $bg 40%);
+}
+
+/* ===== Tabs ===== */
+.tabs {
+  display: flex;
+  gap: var(--gap-inline);
+  margin-bottom: var(--gap-grid);
+
+  .tab {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid $accent;
+    background: transparent;
+    color: $fg;
+    cursor: pointer;
+    transition: 0.25s;
+    outline: none;
+
+    &.is-active {
+      background: $accent;
+      color: #000;
+      font-weight: 600;
+    }
+    &:hover {
+      transform: translateY(-1px);
+    }
+    &:focus-visible {
+      box-shadow: 0 0 0 3px rgba(120, 232, 216, 0.45);
+    }
+  }
+}
+
+/* ===== Grid list ===== */
+.disclosures__list {
+  --cols: 1;
+  display: grid;
+  gap: var(--gap-grid); /* ← 關鍵：卡片間距 */
+  row-gap: var(--gap-grid);
+  column-gap: var(--gap-grid);
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  justify-content: start; /* 不要平均分布造成額外空隙 */
+  align-content: start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  @media (min-width: 720px) {
+    --cols: 2;
+  }
+  @media (min-width: 1060px) {
+    --cols: 3;
+  }
+}
+
+/* ===== Card reset ===== */
+.disclosures__item,
+.disclosures__item > .card {
+  margin: 0;
+} /* 清任何殘留外邊距 */
+
+.card {
+  /* 這裡用變數控制「圖片高度、寬度(收/展)」 */
+  --media-h: clamp(180px, 34vw, 360px); /* 圖片高度固定 → 水平打開 */
+  --media-w-closed: clamp(110px, 18vw, 170px); /* 收合時圖片寬（瘦） */
+  --media-w-open: clamp(200px, 26vw, 320px); /* 展開時圖片寬（變寬） */
+
+  border: 0; /* 外框交給圖片容器 */
+  background: transparent;
+  box-shadow: none;
+
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 不要讓展開跨欄（避免看起來留大洞） */
+@media (min-width: 1060px) {
+  .disclosures__item[data-expanded] {
+    grid-column: auto;
+  }
+}
+
+/* ===== Row layout ===== */
+.card__row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--gap-inline); /* ← 左圖與右面板的間距 */
+  flex-wrap: nowrap; /* 展開時避免換行 */
+}
+
+/* 左側可點擊區（div + role="button"） */
+.card__left {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 0; /* 讓框貼圖，去內距 */
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid $accent;
+    outline-offset: 2px;
+  }
+}
+
+/* ===== Image box：外框貼圖 + 水平打開（固定高度、寬度動畫） ===== */
+.card__media {
+  height: var(--media-h); /* ★ 固定高度 */
+  width: var(--media-w-closed); /* ★ 從收合寬開始 */
+  overflow: hidden;
+
+  /* 外框直接貼在圖片容器 */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+
+  transition: width 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    /* ★ 水平打開的關鍵 */ box-shadow 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s ease;
+}
+
+/* 展開：圖片也變寬（高度不變 → 視覺等於水平打開） */
+.disclosures__item[data-expanded] .card__media {
+  width: var(--media-w-open);
+  border-color: rgba(120, 232, 216, 0.45);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* 影像質感 */
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  filter: brightness(0.9) saturate(0.95);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.disclosures__item[data-expanded] .card__img {
+  transform: scale(1);
+  filter: brightness(0.98) saturate(1);
+}
+
+/* 標題更緊 */
+.card__header {
+  margin-top: 4px;
+  padding: 0 2px;
+}
+.card__title {
+  margin: 0;
+  font-size: clamp(16px, 1.7vw, 18px);
+}
+
+/* ===== 右側水平展開面板（寬度動畫） ===== */
+.card__panel {
+  flex: 0 0 0px; /* 初始 0 寬 */
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  border-left: 1px solid transparent;
+  padding: 0;
+  transition: flex-basis 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease,
+    border-color 0.28s ease, padding 0.28s ease;
+}
+
+/* 展開後：給面板一個寬度（與圖片寬度協調） */
+.disclosures__item[data-expanded] .card__panel {
+  flex-basis: clamp(220px, 32vw, 420px);
+  max-width: clamp(220px, 32vw, 420px);
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.12);
+  padding: var(--pad-panel);
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+}
+
+/* 文字 */
+.card__desc {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: $fg;
+}
+.card__extra {
+  font-size: 13px;
+  color: $muted;
+  line-height: 1.7;
+}
+
+/* ===== Mobile：直向堆疊 ===== */
+@media (max-width: 680px) {
+  .card__row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .card__panel {
+    max-width: none;
+    flex-basis: auto;
+    border-left: 0;
+  }
+  .disclosures__item:not([data-expanded]) .card__panel {
+    display: none;
+  }
+}

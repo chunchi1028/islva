@@ -1,0 +1,9 @@
+.collapse {
+  overflow: hidden;
+  transition-property: height;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.collapse__inner {
+  padding: 16px 18px;
+}

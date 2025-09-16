@@ -1,4 +1,3 @@
-
 // 響應式斷點
 $mobile: 768px;
 $tablet: 1024px;
@@ -6,19 +5,19 @@ $tablet: 1024px;
 .scroll-gallery {
   width: 100%;
   height: 100vh;
-  font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+  font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
 
   .gallery-container {
     display: flex;
     height: 100%;
-    
+
     // 左側滾動區域
     .scroll-section {
       flex: 1;
       height: 100vh;
       overflow-y: auto;
       scroll-behavior: smooth;
-      
+
       // 隱藏滾動條但保持功能
       scrollbar-width: none;
       -ms-overflow-style: none;
@@ -38,7 +37,7 @@ $tablet: 1024px;
         &.active {
           .scroll-item-content {
             transform: scale(1.05);
-            
+
             .main-image {
               filter: brightness(1) contrast(1.1);
             }
@@ -50,7 +49,7 @@ $tablet: 1024px;
           height: 80%;
           max-width: 600px;
           transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-          
+
           .main-image {
             width: 100%;
             height: 100%;
@@ -72,10 +71,10 @@ $tablet: 1024px;
       display: flex;
       align-items: center;
       box-shadow: -2px 0 20px rgba(0, 0, 0, 0.05);
-      
+
       .content-wrapper {
         width: 100%;
-        
+
         .side-images {
           position: relative;
           height: 200px;
@@ -83,7 +82,7 @@ $tablet: 1024px;
           display: flex;
           align-items: center;
           justify-content: center;
-          
+
           .side-image-item {
             position: absolute;
             top: 0;
@@ -91,24 +90,24 @@ $tablet: 1024px;
             transform: translateX(-50%);
             opacity: 0;
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            
+
             &.active {
               opacity: 1;
               transform: translateX(-50%) translateY(0);
-              
+
               .side-image {
                 transform: scale(1);
               }
             }
-            
+
             &:not(.active) {
               transform: translateX(-50%) translateY(20px);
-              
+
               .side-image {
                 transform: scale(0.9);
               }
             }
-            
+
             .side-image {
               width: 280px;
               height: 180px;
@@ -119,11 +118,11 @@ $tablet: 1024px;
             }
           }
         }
-        
+
         .content-info {
           .content-text {
             .category {
-              color:#ecf0f1;
+              color: #ecf0f1;
               font-size: 14px;
               font-weight: 600;
               text-transform: uppercase;
@@ -131,7 +130,7 @@ $tablet: 1024px;
               margin-bottom: 12px;
               opacity: 0.8;
             }
-            
+
             .title {
               font-size: 28px;
               font-weight: 700;
@@ -143,20 +142,20 @@ $tablet: 1024px;
               animation: fadeInUp 0.8s ease forwards;
               animation-delay: 0.2s;
             }
-            
+
             .description {
               font-size: 16px;
               line-height: 1.7;
-              color:#34495e;
+              color: #34495e;
               margin-bottom: 30px;
               opacity: 0;
               transform: translateY(20px);
               animation: fadeInUp 0.8s ease forwards;
               animation-delay: 0.4s;
             }
-            
+
             .more-btn {
-              background: linear-gradient(135deg,  #3498db, lighten( #3498db, 10%));
+              background: linear-gradient(135deg, #3498db, #3498db, 10%);
               color: #fff;
               border: none;
               padding: 12px 30px;
@@ -165,17 +164,17 @@ $tablet: 1024px;
               border-radius: 25px;
               cursor: pointer;
               transition: all 0.3s ease;
-              box-shadow: 0 4px 15px rgba( #3498db, 0.3);
+              box-shadow: 0 4px 15px rgba(#3498db, 0.3);
               opacity: 0;
               transform: translateY(20px);
               animation: fadeInUp 0.8s ease forwards;
               animation-delay: 0.6s;
-              
+
               &:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba( #3498db, 0.4);
+                box-shadow: 0 6px 20px rgba(#3498db, 0.4);
               }
-              
+
               &:active {
                 transform: translateY(0);
               }
@@ -206,12 +205,12 @@ $tablet: 1024px;
       .content-section {
         flex: 0 0 380px;
         padding: 30px;
-        
+
         .content-wrapper {
           .side-images {
             height: 150px;
             margin-bottom: 30px;
-            
+
             .side-image-item {
               .side-image {
                 width: 220px;
@@ -219,13 +218,13 @@ $tablet: 1024px;
               }
             }
           }
-          
+
           .content-info {
             .content-text {
               .title {
                 font-size: 24px;
               }
-              
+
               .description {
                 font-size: 14px;
               }
@@ -241,25 +240,25 @@ $tablet: 1024px;
   .scroll-gallery {
     .gallery-container {
       flex-direction: column;
-      
+
       .scroll-section {
         flex: 1;
         height: 60vh;
-        
+
         .scroll-item {
           height: 60vh;
         }
       }
-      
+
       .content-section {
         flex: 0 0 40vh;
         padding: 20px;
-        
+
         .content-wrapper {
           .side-images {
             height: 100px;
             margin-bottom: 20px;
-            
+
             .side-image-item {
               .side-image {
                 width: 160px;
@@ -267,14 +266,14 @@ $tablet: 1024px;
               }
             }
           }
-          
+
           .content-info {
             .content-text {
               .title {
                 font-size: 20px;
                 margin-bottom: 15px;
               }
-              
+
               .description {
                 font-size: 12px;
                 margin-bottom: 20px;
@@ -283,7 +282,7 @@ $tablet: 1024px;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
               }
-              
+
               .more-btn {
                 padding: 10px 25px;
                 font-size: 12px;
