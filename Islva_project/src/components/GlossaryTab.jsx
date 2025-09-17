@@ -31,9 +31,8 @@ const TABS = [
   },
 ];
 
-export default function GlossaryTabs() {
-  const [active, setActive] = useState(TABS[0].key);
-  const current = TABS.find((t) => t.key === active);
+export default function GlossaryTabs({ active, setActive }) {
+  const current = TABS.find((t) => t.key === active) ?? TABS[0];
 
   return (
     <section className="glossary">
@@ -42,20 +41,20 @@ export default function GlossaryTabs() {
         {TABS.map((t) => (
           <button
             key={t.key}
+            id={`tab-${t.key}`}
+            type="button"
             className={`glossary__tab ${active === t.key ? "is-active" : ""}`}
-            role="tab"
+            onClick={() => setActive(t.key)} // ★ 用父層的 setActive
             aria-selected={active === t.key}
             aria-controls={`panel-${t.key}`}
-            id={`tab-${t.key}`}
-            onClick={() => setActive(t.key)}
+            role="tab"
           >
-            <span className="glossary__tabIcon">{t.icon}</span>
             {t.label}
           </button>
         ))}
       </div>
 
-      {/* 圖片 + 文字 */}
+      {/* 可選：上方圖文面板（若你需要一起變換就保留；不需要可以拿掉這段） */}
       <div
         className="glossary__panel fade-in"
         role="tabpanel"
@@ -66,10 +65,7 @@ export default function GlossaryTabs() {
           {/* <img src={current.img} alt={current.title} loading="lazy" /> */}
         </div>
         <div className="glossary__panelText">
-          <h3>
-            <span className="glossary__titleIcon">{current.icon}</span>
-            {current.title}
-          </h3>
+          <h3>{current.title}</h3>
           <p>{current.desc}</p>
         </div>
       </div>

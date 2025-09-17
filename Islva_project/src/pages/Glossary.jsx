@@ -1,7 +1,20 @@
+import { useState, useMemo } from "react";
 import GlossaryTab from "../components/GlossaryTab";
 import HorizontalAccordion from "../components/HorizontalAccordion";
+import disclosures from "../data/disclosures.json";
 
 export default function GlossaryPage() {
+  const [active, setActive] = useState("material");
+
+  // 每個 Tab 記憶「視窗起點」與「上次展開的卡（title）」：
+  const [starts, setStarts] = useState({}); // { material: 0, finish: 3, ... }
+  const [actives, setActives] = useState({}); // { material: "純銀 925", ... }
+
+  const items = useMemo(
+    () => disclosures.filter((it) => it.tabKey === active),
+    [active]
+  );
+
   return (
     <div className="glossary_container">
       <div className="glossary-banner">
@@ -35,8 +48,20 @@ export default function GlossaryPage() {
       </div>
       <div className="glossary-content">
         {/* 上方四個按鈕 + 內容卡 */}
-        <GlossaryTab />
-          <HorizontalAccordion initial={null} clampLines={5} />
+        <GlossaryTab active={active} setActive={setActive} />
+        <HorizontalAccordion
+          key={active}
+          items={items}
+          windowSize={5}
+          slideBy={1}
+          clampLines={5}
+          externalStart={starts[active] ?? 0}
+          onStartChange={(s) => setStarts((p) => ({ ...p, [active]: s }))}
+          initialByTitle={actives[active] ?? null}
+          onActiveChange={(title) =>
+            setActives((p) => ({ ...p, [active]: title }))
+          }
+        />
       </div>
     </div>
   );

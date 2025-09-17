@@ -4,45 +4,109 @@
     "desc": "含銀量達 92.5%，是珠寶常用的標準純銀材質，兼具光澤與耐用性。",
     "img": "https://picsum.photos/1200/800?grayscale&random=12",
     "ctaText": "View more",
-    "ctaBelow":["925銀，又稱純銀，是由 92.5% 的銀 與 7.5% 的合金（多為銅） 所組成。這樣的比例讓銀飾兼具 穩定性、耐用性與美觀光澤，比起純銀更適合日常配戴。",
-"它擁有溫潤亮澤的銀白色調，適合各類飾品設計，並且能長久保持質感。隨著時間可能出現自然氧化現象，但只要適度保養與清潔，就能恢復原有光彩。"]
+    "ctaBelow": [
+      "925銀，又稱純銀，是由 92.5% 的銀 與 7.5% 的合金（多為銅） 所組成。這樣的比例讓銀飾兼具 穩定性、耐用性與美觀光澤，比起純銀更適合日常配戴。",
+      "它擁有溫潤亮澤的銀白色調，適合各類飾品設計，並且能長久保持質感。隨著時間可能出現自然氧化現象，但只要適度保養與清潔，就能恢復原有光彩。"
+    ],
+    "tabKey": "material"
   },
   {
     "title": "琺瑯",
     "desc": "將玻璃質粉末高溫熔融於金屬表面，呈現出晶瑩色澤與藝術感的裝飾工藝。",
     "img": "https://picsum.photos/1200/800?grayscale&random=17",
     "ctaText": "View more",
-     "ctaBelow":["琺瑯（Enamel）是一種將 玻璃或陶瓷質粉末 塗敷於金屬表面，經過高溫燒製後熔結而成的工藝。其特色是能展現 鮮豔而持久的色彩，表面光澤晶瑩，具有良好的耐腐蝕與抗刮性。",
-"琺瑯廣泛運用於首飾與工藝品中，能夠呈現多變的藝術效果，從細膩的花紋到大面積的純色，都展現出獨特質感。由於製程繁複，每一件琺瑯飾品幾乎都是獨一無二的存在。"]
+    "ctaBelow": [
+      "琺瑯（Enamel）是一種將 玻璃或陶瓷質粉末 塗敷於金屬表面，經過高溫燒製後熔結而成的工藝。其特色是能展現 鮮豔而持久的色彩，表面光澤晶瑩，具有良好的耐腐蝕與抗刮性。",
+      "琺瑯廣泛運用於首飾與工藝品中，能夠呈現多變的藝術效果，從細膩的花紋到大面積的純色，都展現出獨特質感。由於製程繁複，每一件琺瑯飾品幾乎都是獨一無二的存在。"
+    ],
+    "tabKey": "material"
   },
   {
-    "title": "SVG FILTERS",
-    "desc": "Shaders on a budget. Use noise to your advantage while making flames and stickers.",
+    "title": "鏡面拋光",
+    "desc": "表面如鏡般光亮，能反射光線，展現高雅與精緻感。",
     "img": "https://picsum.photos/1200/800?grayscale&random=19",
-    "ctaText": "View more"
+    "ctaText": "View more",
+    "ctaBelow": [
+      "鏡面拋光是一種經過細緻打磨的表面處理，使銀飾表面如同鏡子般光滑，能夠清晰映照光線。這種效果能突顯首飾的純淨與精緻，適合喜愛閃耀質感、追求高雅風格的佩戴者。",
+      "不過因為光滑表面容易留下刮痕與指紋，建議日常要細心保護與收納。"
+    ],
+    "tabKey": "finish"
   },
   {
-    "title": "SCROLL ANIMATION",
-    "desc": "Take users on a journey with tasteful scroll animation. You might not even need JavaScript.",
-    "img": "https://picsum.photos/1200/800?grayscale&random=42",
-    "ctaText": "View more"
+    "title": "霧面處理",
+    "desc": "柔和的霧面質感，低調卻帶有溫潤的光澤。",
+    "img": "https://picsum.photos/1200/800?grayscale&random=19",
+    "ctaText": "View more",
+    "ctaBelow": [
+      "霧面處理透過特殊打磨方式，讓銀飾表面呈現細膩的霧感，光澤柔和不刺眼，營造出沉穩低調的氛圍。這種效果適合日常佩戴，不僅更耐看，也能避免鏡面拋光容易出現的小刮痕。",
+      "不霧面銀飾展現簡約、自然的質感，深受極簡設計愛好者的喜愛。"
+    ],
+    "tabKey": "finish"
   },
   {
-    "title": "TAMING CANVAS",
-    "desc": "Tame the pixel playground—build with performance in mind.",
+    "title": "拉絲紋理",
+    "desc": "細緻線條打磨，帶有工藝感與現代感。",
     "img": "https://picsum.photos/1200/800?grayscale&random=128",
-    "ctaText": "View more"
+    "ctaText": "View more",
+    "ctaBelow": [
+      "拉絲紋理透過方向性打磨，在銀飾表面留下均勻的細線，營造出獨特的金屬質感。與霧面相比，拉絲表面更具工藝感和層次感，適合展現設計細節。",
+      "它常被運用在簡約又不失特色的首飾中，男女款式都適合，能夠平衡日常與時尚的需求。"
+    ],
+    "tabKey": "finish"
   },
   {
-    "title": "LAYOUT TRICKS",
-    "desc": "Sometimes rethinking the problem yields a nifty solution—you may not need a library.",
-    "img": "https://picsum.photos/1200/800?grayscale&random=56",
-    "ctaText": "View more"
+    "title": "錘紋效果",
+    "desc": "細緻線條打磨，帶有工藝感與現代感。",
+    "img": "https://picsum.photos/1200/800?grayscale&random=128",
+    "ctaText": "View more",
+    "ctaBelow": [
+      "拉絲紋理透過方向性打磨，在銀飾表面留下均勻的細線，營造出獨特的金屬質感。與霧面相比，拉絲表面更具工藝感和層次感，適合展現設計細節。",
+      "它常被運用在簡約又不失特色的首飾中，男女款式都適合，能夠平衡日常與時尚的需求。"
+    ],
+    "tabKey": "finish"
   },
   {
-    "title": "MASTERING TIME",
-    "desc": "It's not all easings and compositions. Time is crucial in many UI patterns.",
-    "img": "https://picsum.photos/1200/800?grayscale&random=39",
-    "ctaText": "View more"
+    "title": "氧化處理",
+    "desc": "深淺層次的黑銀質感，凸顯立體與復古氛圍。",
+    "img": "https://picsum.photos/1200/800?grayscale&random=128",
+    "ctaText": "View more",
+    "ctaBelow": [
+      "黑銀處理是透過氧化工藝，讓銀飾表面產生深色層次，營造出復古與古典的效果。這種方式特別適合帶有雕刻或紋樣的設計，能強化立體感，讓細節更突出。",
+      "黑銀飾品不僅具有懷舊氣息，也能與現代服飾搭配出鮮明個性，是非常耐看的表面處理之一。"
+    ],
+    "tabKey": "finish"
+  },
+  {
+    "title": "砂面效果",
+    "desc": "細膩顆粒質感，呈現低調卻粗獷的美感。",
+    "img": "https://picsum.photos/1200/800?grayscale&random=128",
+    "ctaText": "View more",
+    "ctaBelow": [
+      "砂面效果是透過噴砂工藝，讓銀飾表面形成均勻的細小顆粒，呈現出特殊的啞光質感。與霧面相比，它的觸感與視覺效果更粗獷，卻不失精緻。",
+      "這種效果在光線下會散射出柔和的光澤，適合打造個性化或設計感強烈的飾品，為佩戴者增添一種與眾不同的氣質。"
+    ],
+    "tabKey": "finish"
+  },
+  {
+    "title": "局部拋光",
+    "desc": "亮面與霧面並存，營造立體層次感。",
+    "img": "https://picsum.photos/1200/800?grayscale&random=128",
+    "ctaText": "View more",
+    "ctaBelow": [
+      "局部拋光是一種結合不同表面處理的手法，通常在部分區域採用鏡面拋光，而其他部分保持霧面或氧化處理。這樣的對比效果能讓首飾更具層次感，凸顯細節設計，並增添視覺上的動態感。",
+      "它特別適合雕刻紋樣或多層結構的銀飾，能展現出既精緻又富有變化的風格。"
+    ],
+    "tabKey": "finish"
+  },
+  {
+    "title": "拉絲紋理",
+    "desc": "凹凸敲打的自然紋理，光影變化獨特迷人。",
+    "img": "https://picsum.photos/1200/800?grayscale&random=128",
+    "ctaText": "View more",
+    "ctaBelow": [
+      "錘紋效果是透過手工敲打或模具製作，在銀飾表面形成不規則的凹凸紋理。每一個小凹面都能捕捉光線，讓首飾隨著角度變化展現不同的閃爍效果。",
+      "這種處理方式帶有強烈的手工痕跡，營造自然、樸實卻獨一無二的質感，非常適合喜愛獨特個性風格的佩戴者。"
+    ],
+    "tabKey": "finish"
   }
 ]
