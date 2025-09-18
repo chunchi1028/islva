@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SimpleCarousel from "../components/SimpleCarousel";
 
 const Home = () => {
   return (
@@ -20,7 +21,7 @@ const Home = () => {
               className="hero-image-bg"
             />
             <img
-              // src={butterflyRing}
+              src="./images/butterflyRing.png"
               alt="ISLVA Silver Butterfly Ring"
               className="hero-image"
             />
@@ -102,7 +103,9 @@ const Home = () => {
             <span className="glossary-ch">材質辭典</span>
           </div>
         </div>
-        <div className="glossart_carousel"></div>
+        <div className="glossary_carousel">
+          <SimpleCarousel />
+        </div>
         <div className="glossary_description">
           在每一件靜物誕生之前，材質先說了話。
           <br />
@@ -115,6 +118,9 @@ const Home = () => {
           在這裡，你可以閱讀每一種材質的性格、它在作品中扮演的角色，
           <br />
           理解每一次觸摸、佩戴與創作背後，所包含的記憶與寧靜。
+          <Link to="/glossary" className="glossary-btn">
+            view more→
+          </Link>
         </div>
       </div>
       <div className="about-section">
@@ -144,6 +150,9 @@ const Home = () => {
           在 ISLVA，我們相信飾品不只是裝飾
           <br />
           而是情感與記憶的延伸，一種能隨時間而愈發動人的陪伴。
+          <Link to="/about" className="about-btn">
+            view more →
+          </Link>
         </div>
       </div>
     </div>

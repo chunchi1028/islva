@@ -39,7 +39,7 @@ export default function Navbar() {
     <header className="site-header" ref={navRef}>
       <div className="nav-bar">
         <Link to="/" className="logo" aria-label="Home">
-          ISLVA
+          <img src="./images/logo.svg" alt="" />
         </Link>
 
         {/* 漢堡鍵（手機） */}

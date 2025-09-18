@@ -28,16 +28,27 @@
   margin: 0 auto;
   transform: translateY(100px);
   overflow: visible; /* 不裁掉前景（大字） */
+  position: relative;
 }
 
+.ring-section {
+  position: absolute;
+  left: 100px;
+  top: 90px;
+  z-index: 99;
+  img {
+    width: 50%;
+    height: auto;
+  }
+}
 /* ================= Banner 內容 ================= */
 .content-section {
   position: relative;
 
   .text-content {
     position: absolute;
-    right: 100px;
-    top: 300px;
+    right: 120px;
+    top: 330px;
     background-color: #fff;
     width: 40%;
     height: 360px;
@@ -64,8 +75,8 @@
   /* 超大 “Glossary” 字樣（不裁切、不擋點擊、隨寬縮放） */
   .glossary-title {
     position: absolute;
-    left: 50%;
-    top: 560px; /* 你的原始視覺高度，可依需求微調 */
+    left: 100%;
+    top: 600px; /* 你的原始視覺高度，可依需求微調 */
     transform: translateX(-50%);
     width: 100%;
     max-width: calc(100% - 48px); /* 兩側留邊，避免貼邊 */
@@ -88,8 +99,8 @@
 /* 滾動提示箭頭（僅視覺、不吃點擊） */
 .glossary-arrows {
   position: absolute;
-  bottom: 50px;
-  left: 50px;
+  bottom: -150px;
+  left: -50px;
   transform: none;
   z-index: 4;
   pointer-events: none;

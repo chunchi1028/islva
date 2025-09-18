@@ -19,8 +19,12 @@ export default function GlossaryPage() {
     <div className="glossary_container">
       <div className="glossary-banner">
         <div className="glossary-card">
-          <div className="book-section">
-            <img src="#" alt="Open book" className="book-image" />
+          <div className="ring-section">
+            <img
+              src="./images/glossary/glossary-1.jpg"
+              alt=""
+              className="ring-image"
+            />
             <div className="glossary-arrows">
               <img src="./images/arrow.svg" alt="" />
             </div>

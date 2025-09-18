@@ -1,12 +1,18 @@
 import React from "react";
 import Picture_carousel from "../components/Picture_carousel";
-
+const aboutImages = [
+  "/images/about/about01.jpg",
+  "/images/about/about02.jpg",
+  "/images/about/about03.jpg",
+  "/images/about/about04.jpg",
+  "/images/about/about05.jpg",
+];
 const About = () => {
   return (
     <div className="about_container">
       <div className="about_banner">
         <div className="about_carousel">
-          <Picture_carousel />
+          <Picture_carousel images={aboutImages} interval={3000} />
         </div>
         <div className="about_banner_title">
           <span className="about-banner-en">About</span>

@@ -10,7 +10,7 @@
   .shop-bar {
     margin: 0 auto;
     padding: 0 30px;
-    height: 42.5px;
+    height: 55px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,19 +27,19 @@
       }
     }
 
-    .shop-nav{
-       ul {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      list-style: none;
-    }
+    .shop-nav {
+      ul {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        list-style: none;
+      }
 
-    li {
-      position: relative;
+      li {
+        position: relative;
+      }
     }
-    }
-     a,
+    a,
     .menu-btn {
       display: inline-flex;
       align-items: center;
