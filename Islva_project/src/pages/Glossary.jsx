@@ -52,7 +52,7 @@ export default function GlossaryPage() {
         <HorizontalAccordion
           key={active}
           items={items}
-          windowSize={5}
+          windowSize={6}
           slideBy={1}
           clampLines={5}
           externalStart={starts[active] ?? 0}

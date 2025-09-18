@@ -19,8 +19,9 @@ export default function HorizontalAccordion({
 }) {
   const data = useMemo(() => items ?? [], [items]);
   const n = data.length;
+    const slotCount = Math.min(windowSize, n);                  // ← 真的可見的槽數
   const descLines = Number.isFinite(clampLinesProp) ? clampLinesProp : 5;
-
+  const px = Array(slotCount).fill(collapsedW);
   const [start, setStart] = useState(controlledStart ? externalStart ?? 0 : 0);
   const [belowMsg, setBelowMsg] = useState("");
   const [active, setActive] = useState(null); // ★ 展開中的卡片 index
@@ -83,8 +84,9 @@ export default function HorizontalAccordion({
     [centerOn]
   );
 
+
   const ghostCount = Math.max(0, windowSize - visibleIndices.length);
-  const phantomN = Math.max(windowSize, visibleIndices.length || 0);
+  const phantomN = Math.max(slotCount, visibleIndices.length || 0);
 
   const expandedBasisPx = useMemo(() => {
     if (!rowRef.current || phantomN === 0) return 0;
@@ -96,10 +98,10 @@ export default function HorizontalAccordion({
 
   const weights = useMemo(() => {
     if (!visibleIndices.length)
-      return Array(windowSize).fill(1 / Math.max(windowSize, 1));
-
+      return Array(slotCount).fill(1 / Math.max(slotCount, 1));
+    const px = Array(slotCount).fill(collapsedW);   // idle = 全部窄卡
     // ★ 初始沒有任何展開：全部採用 collapsedW（窄窄的）
-    const px = Array(windowSize).fill(collapsedW);
+
 
     // ★ 有展開時，只有該張用 expandedBasisPx，其餘維持 collapsedW
     if (active != null) {
@@ -109,7 +111,8 @@ export default function HorizontalAccordion({
 
     const sum = px.reduce((a, b) => a + b, 0) || 1;
     return px.map((w) => w / sum);
-  }, [windowSize, visibleIndices, active, expandedBasisPx, collapsedW]);
+  }, [slotCount, visibleIndices, active, expandedBasisPx, collapsedW]);
+
   const slidePrev = useCallback(() => {
     if (!canSlide) return;
     _setStart((start - slideBy + n) % n);
@@ -215,7 +218,7 @@ export default function HorizontalAccordion({
         })}
 
         {/* ★ idle 狀態下不要渲染幽靈卡，避免把寬度又撐開 */}
-        {!isIdle &&
+        {n > windowSize && !isIdle &&
           Array.from({
             length: Math.max(0, windowSize - visibleIndices.length),
           }).map((_, i) => {
