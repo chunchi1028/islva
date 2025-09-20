@@ -1,294 +1,306 @@
-// 響應式斷點
-$mobile: 768px;
-$tablet: 1024px;
-
 .scroll-gallery {
   width: 100%;
   height: 100vh;
-  font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+  overflow: hidden;
+  background-color: #f5f5f5;
 
   .gallery-container {
     display: flex;
     height: 100%;
+  }
 
-    // 左側滾動區域
-    .scroll-section {
-      flex: 1;
-      height: 100vh;
-      overflow-y: auto;
-      scroll-behavior: smooth;
+  // 左側文字區域
+  .text-section {
+    width: 35%;
+    height: 100%;
+    padding: 60px 40px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 
-      // 隱藏滾動條但保持功能
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      &::-webkit-scrollbar {
-        display: none;
+    .text-content {
+      width: 100%;
+
+      .category {
+        font-size: 14px;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        font-weight: 500;
       }
 
-      .scroll-item {
-        height: 100vh;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        transition: all 0.6s ease;
+      .title {
+        font-size: 42px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 25px;
+        line-height: 1.2;
+      }
 
-        &.active {
-          .scroll-item-content {
-            transform: scale(1.05);
+      .description {
+        font-size: 18px;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 40px;
+      }
 
-            .main-image {
-              filter: brightness(1) contrast(1.1);
-            }
-          }
+      .more-btn {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
         }
 
-        .scroll-item-content {
-          width: 90%;
-          height: 80%;
-          max-width: 600px;
-          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-
-          .main-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            transition: all 0.6s ease;
-            filter: brightness(0.9);
-          }
+        &:active {
+          transform: translateY(0);
         }
       }
     }
+  }
 
-    // 右側內容區域
-    .content-section {
-      flex: 0 0 450px;
-      background: linear-gradient(135deg, #fff 0%, #ecf0f1 100%);
-      padding: 40px;
+  // 中間主圖區域
+  .main-image-section {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+
+    .main-image-container {
+      width: 100%;
+      height: 70%;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+
+      .main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+
+  // 右側滾動圖片區域
+  .scroll-section {
+    width: 25%;
+    height: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE
+    padding: 20px 10px;
+    outline: none; // 移除焦點邊框
+    position: relative;
+
+    // 隱藏 webkit 滾動條
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    // 添加滾動區域的視覺提示
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.02);
+
+      .scroll-hint {
+        opacity: 0.8;
+      }
+    }
+
+    &:focus {
+      background-color: rgba(52, 152, 219, 0.05);
+    }
+
+    // 滾動提示
+    .scroll-hint {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      z-index: 10;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .scroll-item {
+      // 改為固定高度，而不是 100vh
+      height: 200px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
-      box-shadow: -2px 0 20px rgba(0, 0, 0, 0.05);
+      justify-content: center;
 
-      .content-wrapper {
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .scroll-item-content {
         width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
 
-        .side-images {
-          position: relative;
-          height: 200px;
-          margin-bottom: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        &.active {
+          transform: scale(1.05);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+          opacity: 1;
+          border: 3px solid #3498db;
 
-          .side-image-item {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-
-            &.active {
-              opacity: 1;
-              transform: translateX(-50%) translateY(0);
-
-              .side-image {
-                transform: scale(1);
-              }
-            }
-
-            &:not(.active) {
-              transform: translateX(-50%) translateY(20px);
-
-              .side-image {
-                transform: scale(0.9);
-              }
-            }
-
-            .side-image {
-              width: 280px;
-              height: 180px;
-              object-fit: cover;
-              border-radius: 8px;
-              box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-              transition: transform 0.6s ease;
-            }
+          .item-title {
+            background: linear-gradient(transparent, rgba(52, 152, 219, 0.9));
+            color: white;
+            font-weight: 600;
           }
         }
 
-        .content-info {
-          .content-text {
-            .category {
-              color: #ecf0f1;
-              font-size: 14px;
-              font-weight: 600;
-              text-transform: uppercase;
-              letter-spacing: 1px;
-              margin-bottom: 12px;
-              opacity: 0.8;
-            }
+        &.inactive {
+          opacity: 0.7;
+          transform: scale(1);
 
-            .title {
-              font-size: 28px;
-              font-weight: 700;
-              color: #2c3e50;
-              margin-bottom: 20px;
-              line-height: 1.3;
-              opacity: 0;
-              transform: translateY(20px);
-              animation: fadeInUp 0.8s ease forwards;
-              animation-delay: 0.2s;
-            }
-
-            .description {
-              font-size: 16px;
-              line-height: 1.7;
-              color: #34495e;
-              margin-bottom: 30px;
-              opacity: 0;
-              transform: translateY(20px);
-              animation: fadeInUp 0.8s ease forwards;
-              animation-delay: 0.4s;
-            }
-
-            .more-btn {
-              background: linear-gradient(135deg, #3498db, #3498db, 10%);
-              color: #fff;
-              border: none;
-              padding: 12px 30px;
-              font-size: 14px;
-              font-weight: 600;
-              border-radius: 25px;
-              cursor: pointer;
-              transition: all 0.3s ease;
-              box-shadow: 0 4px 15px rgba(#3498db, 0.3);
-              opacity: 0;
-              transform: translateY(20px);
-              animation: fadeInUp 0.8s ease forwards;
-              animation-delay: 0.6s;
-
-              &:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(#3498db, 0.4);
-              }
-
-              &:active {
-                transform: translateY(0);
-              }
-            }
+          &:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
           }
+        }
+
+        .side-image {
+          width: 100%;
+          height: 80%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        .item-title {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+          color: white;
+          padding: 15px 10px 8px;
+          font-size: 12px;
+          font-weight: 500;
+          text-align: center;
+          transition: all 0.3s ease;
+        }
+
+        &:hover .side-image {
+          transform: scale(1.1);
         }
       }
     }
-  }
-}
-
-// 動畫定義
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
 // 響應式設計
-@media (max-width: $tablet) {
+@media (max-width: 1024px) {
   .scroll-gallery {
-    .gallery-container {
-      .content-section {
-        flex: 0 0 380px;
-        padding: 30px;
+    .text-section {
+      width: 40%;
+      padding: 40px 30px;
 
-        .content-wrapper {
-          .side-images {
-            height: 150px;
-            margin-bottom: 30px;
+      .text-content {
+        .title {
+          font-size: 32px;
+        }
 
-            .side-image-item {
-              .side-image {
-                width: 220px;
-                height: 130px;
-              }
-            }
-          }
-
-          .content-info {
-            .content-text {
-              .title {
-                font-size: 24px;
-              }
-
-              .description {
-                font-size: 14px;
-              }
-            }
-          }
+        .description {
+          font-size: 16px;
         }
       }
+    }
+
+    .main-image-section {
+      width: 35%;
+      padding: 30px;
+    }
+
+    .scroll-section {
+      width: 25%;
     }
   }
 }
 
-@media (max-width: $mobile) {
+@media (max-width: 768px) {
   .scroll-gallery {
     .gallery-container {
       flex-direction: column;
+    }
 
-      .scroll-section {
-        flex: 1;
-        height: 60vh;
+    .text-section {
+      width: 100%;
+      height: 40%;
+      padding: 30px 20px;
 
-        .scroll-item {
-          height: 60vh;
+      .text-content {
+        .title {
+          font-size: 28px;
+          margin-bottom: 15px;
+        }
+
+        .description {
+          font-size: 14px;
+          margin-bottom: 20px;
         }
       }
+    }
 
-      .content-section {
-        flex: 0 0 40vh;
-        padding: 20px;
+    .main-image-section {
+      width: 100%;
+      height: 40%;
+      padding: 20px;
 
-        .content-wrapper {
-          .side-images {
-            height: 100px;
-            margin-bottom: 20px;
+      .main-image-container {
+        height: 100%;
+      }
+    }
 
-            .side-image-item {
-              .side-image {
-                width: 160px;
-                height: 90px;
-              }
-            }
-          }
+    .scroll-section {
+      width: 100%;
+      height: 20%;
+      display: flex;
+      flex-direction: row;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      padding: 10px;
 
-          .content-info {
-            .content-text {
-              .title {
-                font-size: 20px;
-                margin-bottom: 15px;
-              }
+      .scroll-item {
+        height: 100%;
+        width: 150px;
+        flex-shrink: 0;
+        padding: 5px;
 
-              .description {
-                font-size: 12px;
-                margin-bottom: 20px;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-              }
-
-              .more-btn {
-                padding: 10px 25px;
-                font-size: 12px;
-              }
-            }
-          }
+        .scroll-item-content {
+          height: 100%;
+          width: 100%;
         }
       }
     }
