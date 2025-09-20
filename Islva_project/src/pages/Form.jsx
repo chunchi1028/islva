@@ -1,4 +1,6 @@
 import AnimalSeries from "../components/AnimalSeries";
+import LaceSeries from "../components/LaceSeries";
+import ClassicalSeries from "../components/ClassicalSeries";
 
 export default function SeriesIntro({
   titleEn = "Form",
@@ -44,6 +46,8 @@ export default function SeriesIntro({
       </div>
       <div>
         <AnimalSeries />
+        <LaceSeries />
+        <ClassicalSeries />
       </div>
     </div>
   );

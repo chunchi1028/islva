@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const AnimalSeries = () => {
+const LaceSeries = () => {
   const [selectedImage, setSelectedImage] = useState(0);
 
   const productImages = [
@@ -25,38 +25,32 @@ const AnimalSeries = () => {
   const mainImage = "./images/series/animals/butterfly.jpg";
 
   return (
-    <div className="butterfly-jewelry">
-      {/* 左側主圖區域 */}
-      <div className="main-image-section">
-        <div className="main-image-container">
-          <img src={mainImage} alt="蝴蝶與花朵藝術圖" className="main-image" />
-        </div>
-      </div>
-
-      {/* 右側產品詳情區域 */}
-      <div className="product-details">
-        <div className="product-header">
-          <h1 className="product-title">
-            靈獸之境<span>Animal Series</span>
+    <div className="butterfly-jewelry1">
+      {/* 左側產品詳情區域 */}
+      <div className="product-details1">
+        <div className="product-header1">
+          <h1 className="product-title1">
+            幻影之境<span>Lace Series</span>
           </h1>
         </div>
 
-        <div className="product-description">
+        <div className="product-description1">
           <p>
-            ISLVA
-            的動物系列，以純銀雕動物等象徵之形，承載守護與自由的寓意。每一件作品，都是一種「靈獸」的低語
+            在蕾絲系列中，銀絲化為繁複的紋理，卻依然保有呼吸般的透光。
             <br />
-            ——既有大自然的野性之美，也蘊含佩戴者內心的柔軟與力量。
+            這是一場金屬與柔軟的交會，將優雅與浪漫定格於指尖，仿佛在低聲呢喃一首無聲的情詩。
           </p>
         </div>
+
         <Link to="/scrollGallery">
-          <button className="next-btn">
-            <span className="btn-text">NEXT</span>
-            <span className="btn-arrow">→</span>
+          <button className="next-btn1">
+            <span className="btn-text1">NEXT</span>
+            <span className="btn-arrow1">→</span>
           </button>
         </Link>
+
         {/* 產品圖片縮圖 */}
-        <div className="product-thumbnails">
+        <div className="product-thumbnails1">
           {productImages.map((image, index) => (
             <div
               key={image.id}
@@ -64,13 +58,18 @@ const AnimalSeries = () => {
               onClick={() => setSelectedImage(index)}
             >
               <img src={image.src} alt={image.alt} />
-              {/* <div className="thumbnail-overlay"></div> */}
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* 右側主圖區域 - 移到這裡，與product-details1並列 */}
+      <div className="main-image-section1">
+        <div className="main-image-container1">
+          <img src={mainImage} alt="蝴蝶與花朵藝術圖" className="main-image" />
         </div>
       </div>
     </div>
   );
 };
-
-export default AnimalSeries;
+export default LaceSeries;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const AnimalSeries = () => {
+const ClassicalSeries = () => {
   const [selectedImage, setSelectedImage] = useState(0);
 
   const productImages = [
@@ -37,7 +37,7 @@ const AnimalSeries = () => {
       <div className="product-details">
         <div className="product-header">
           <h1 className="product-title">
-            靈獸之境<span>Animal Series</span>
+            經典之境<span>Classical series</span>
           </h1>
         </div>
 
@@ -73,4 +73,4 @@ const AnimalSeries = () => {
   );
 };
 
-export default AnimalSeries;
+export default ClassicalSeries;
