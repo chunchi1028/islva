@@ -1,15 +1,19 @@
 @use "../variables" as *;
 @use "../functions" as *;
 
-$footer-bg-color: #444; // 深灰色背景
-$footer-text-color: #ddd; // 淺灰色文字
-$footer-divider-color: #666; // 分隔線顏色
-
 .footer {
-  background-color: $footer-bg-color;
-  color: $footer-text-color;
+  background-color: #444;
+  color: #ddd;
   padding: 2rem 3rem;
   font-family: sans-serif;
+
+  @media (max-width: 1024px) {
+    padding: 1.5rem 2rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1rem;
+  }
 }
 
 .footer-content {
@@ -17,23 +21,76 @@ $footer-divider-color: #666; // 分隔線顏色
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .footer-info {
-  // 左側區塊
+  flex: 1;
+
+  @media (max-width: 1024px) {
+    text-align: center;
+    order: 1;
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+
   .footer-logo {
     font-size: 1.5rem;
     font-weight: normal;
     margin-bottom: 1rem;
+
+    @media (max-width: 1024px) {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+    }
   }
+
   .footer-tagline {
     font-size: 0.9rem;
     line-height: 1.5;
+
+    @media (max-width: 1024px) {
+      font-size: 0.85rem;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+      line-height: 1.4;
+      max-width: 250px;
+    }
   }
 }
 
 .footer-links {
-  // 右側區塊
+  @media (max-width: 1024px) {
+    order: 2;
+    width: 100%;
+  }
+
   ul {
     list-style: none;
     margin: 0;
@@ -41,14 +98,63 @@ $footer-divider-color: #666; // 分隔線顏色
     display: flex;
     gap: 2rem;
 
-    li a {
-      text-decoration: none;
-      color: $footer-text-color;
-      font-size: 0.9rem;
-      transition: color 0.3s;
+    @media (max-width: 1024px) {
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
 
-      &:hover {
-        color: #fff; // 滑鼠懸停時變亮
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    li {
+      @media (max-width: 768px) {
+        width: 100%;
+        text-align: center;
+      }
+
+      a {
+        text-decoration: none;
+        color: #ddd;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+        display: block;
+        padding: 0.3rem 0;
+
+        @media (max-width: 1024px) {
+          font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 0.9rem;
+          padding: 0.5rem 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        &:hover {
+          color: #fff;
+
+          @media (max-width: 768px) {
+            background-color: rgba(255, 255, 255, 0.05);
+          }
+        }
+
+        // 移除最後一個連結的底線
+        &:last-child {
+          @media (max-width: 768px) {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+
+    // 最後一個 li 移除底線
+    li:last-child a {
+      @media (max-width: 768px) {
+        border-bottom: none;
       }
     }
   }
@@ -57,11 +163,83 @@ $footer-divider-color: #666; // 分隔線顏色
 .footer-divider {
   width: 100%;
   height: 1px;
-  background-color: $footer-divider-color;
+  background-color: #666;
   margin-bottom: 1.5rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 1.2rem;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 }
 
 .footer-copyright {
   text-align: right;
   font-size: 0.8rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 1024px) {
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+    font-size: 0.7rem;
+  }
+
+  p {
+    margin: 0;
+    padding: 0.5rem 0;
+
+    @media (max-width: 768px) {
+      padding: 0.3rem 0;
+    }
+  }
+}
+
+// 優化觸控體驗
+@media (max-width: 768px) {
+  .footer-links ul li a {
+    min-height: 44px; // 符合觸控友善的最小點擊區域
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// 高對比模式支持
+@media (prefers-contrast: high) {
+  .footer {
+    background-color: black;
+    color: white;
+    border-top: 2px solid white;
+  }
+
+  .footer-divider {
+    background-color: white;
+  }
+
+  .footer-links ul li a {
+    color: white;
+
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+  }
+}
+
+// 減少動畫偏好支持
+@media (prefers-reduced-motion: reduce) {
+  .footer-links ul li a {
+    transition: none;
+  }
 }

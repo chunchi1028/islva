@@ -10,6 +10,11 @@ export default function Navbar() {
     setOpenMenu((prev) => (prev === name ? null : name));
   };
 
+  const toggleNavbar = () => {
+    setIsNavOpen(!isNavOpen);
+    setOpenMenu(null); // 關閉所有下拉選單
+  };
+
   // 點外面關閉
   useEffect(() => {
     const onClickOutside = (e) => {
@@ -42,17 +47,17 @@ export default function Navbar() {
           <img src="./images/logo.svg" alt="" />
         </Link>
 
-        {/* 漢堡鍵（手機） */}
-        {/* <button
-          className="hamburger"
-          aria-label="Toggle navigation"
+        {/* 漢堡按鈕 - 只在平板以下顯示 */}
+        <button
+          className={`hamburger ${isNavOpen ? "active" : ""}`}
+          onClick={toggleNavbar}
+          aria-label="Toggle navigation menu"
           aria-expanded={isNavOpen}
-          onClick={() => setIsNavOpen((v) => !v)}
         >
-          <span />
-          <span />
-          <span />
-        </button> */}
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+        </button>
 
         {/* 導覽清單 */}
         <nav className={`nav-links ${isNavOpen ? "open" : ""}`}>
@@ -119,48 +124,6 @@ export default function Navbar() {
                 Glossary
               </Link>
             </li>
-            {/* Glossary
-            <li
-              className={`dropdown ${openMenu === "glossary" ? "active" : ""}`}
-            >
-              <button
-                className="menu-btn"
-                aria-expanded={openMenu === "glossary"}
-                aria-controls="submenu-glossary"
-                onClick={() => toggleMenu("glossary")}
-              >
-                Glossary
-                <span className="caret" aria-hidden="true">
-                  ▾
-                </span>
-              </button>
-              <ul
-                id="submenu-glossary"
-                className="submenu"
-                hidden={openMenu !== "glossary"}
-              >
-                <li>
-                  <Link to="/material" onClick={() => setIsNavOpen(false)}>
-                    Material/材質
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/craft" onClick={() => setIsNavOpen(false)}>
-                    Craft/工藝
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/finish" onClick={() => setIsNavOpen(false)}>
-                    Finish/表面效果
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/care" onClick={() => setIsNavOpen(false)}>
-                    Care/保養方式
-                  </Link>
-                </li>
-              </ul>
-            </li> */}
 
             <li>
               <Link to="/login" onClick={() => setIsNavOpen(false)}>
