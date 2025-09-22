@@ -30,9 +30,11 @@ const About = () => {
           <br />
           在ISLVA，我們追尋的不只是美學，更是讓美成為日常的可能。
         </p>
-        <img src="#" alt="" />
-        <img src="#" alt="" />
-        <img src="#" alt="" />
+        <div className="about_intro-images">
+          <img src="./images/about/aboutPic01.jpg" alt="" />
+          <img src="./images/about/aboutPic02.jpg" alt="" />
+          <img src="./images/about/aboutPic03.jpg" alt="" />
+        </div>
       </div>
       <div className="origin">
         <div className="origin_text">
