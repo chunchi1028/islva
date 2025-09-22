@@ -25,9 +25,9 @@ export default function GlossaryPage() {
               alt=""
               className="ring-image"
             />
-            <div className="glossary-arrows">
+            {/* <div className="glossary-arrows">
               <img src="./images/arrow.svg" alt="" />
-            </div>
+            </div> */}
           </div>
           <div className="content-section">
             <div className="text-content">

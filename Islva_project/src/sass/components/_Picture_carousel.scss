@@ -1,10 +1,12 @@
+/* 基本輪播容器樣式 */
 .slideshow-container {
   position: relative;
   width: 100%;
-  max-width: 1400px; // 根據需求調整最大寬度
-  height: 720px; // 根據需求調整高度
+  max-width: 1400px;
+  height: 720px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // 可選：陰影效果
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* 確保容器置中 */
 
   .slide {
     position: absolute;
@@ -12,13 +14,141 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; // 保持比例並填滿容器
-    opacity: 0; // 預設隱藏
-    transition: opacity 0.5s ease-in-out; // 淡入淡出效果
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 
-    // 當圖片為 active 狀態時顯示
     &.active {
       opacity: 1;
+    }
+  }
+}
+
+/* 大螢幕 (1200px以上) */
+@media (min-width: 1200px) {
+  .slideshow-container {
+    max-width: 1400px;
+    height: 720px;
+  }
+}
+
+/* 桌面 (992px - 1199px) */
+@media (max-width: 1199px) {
+  .slideshow-container {
+    max-width: 1200px;
+    height: 600px;
+  }
+}
+
+/* 平板橫向 (768px - 991px) */
+@media (max-width: 991px) {
+  .slideshow-container {
+    max-width: 100%;
+    height: 60vw; /* 使用視窗寬度的60%作為高度 */
+    max-height: 600px; /* 限制最大高度 */
+    min-height: 400px; /* 確保最小高度 */
+    margin: 0 10px;
+  }
+}
+
+/* 平板直向 (576px - 767px) */
+@media (max-width: 767px) {
+  .slideshow-container {
+    height: 65vw; /* 稍微增加高度比例 */
+    max-height: 500px;
+    min-height: 300px;
+    margin: 0 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* 手機橫向 (481px - 575px) */
+@media (max-width: 575px) {
+  .slideshow-container {
+    height: 300px;
+    margin: 0 10px;
+    
+    // .slide {
+    //   /* 可以考慮調整 object-fit 為 contain 以避免裁切重要內容 */
+    //   /* object-fit: contain; */
+    // }
+  }
+}
+
+/* 手機直向 (320px - 480px) */
+@media (max-width: 480px) {
+  .slideshow-container {
+    height: 250px;
+    margin: 0 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    
+    // .slide {
+    //   /* 在小螢幕上可能需要調整圖片適應方式 */
+    //   /* object-fit: contain; */
+    //   /* object-position: center; */
+    // }
+  }
+}
+
+/* 極小手機 (最大 320px) */
+@media (max-width: 320px) {
+  .slideshow-container {
+    height: 200px;
+    margin: 0;
+    
+    .slide {
+      /* 確保在極小螢幕上也能正常顯示 */
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}
+
+/* 特殊比例適配 */
+/* 16:9 比例適配 (推薦用於影片或特定設計需求) */
+@media (max-width: 768px) {
+  .slideshow-container.ratio-16-9 {
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 = 9/16 = 56.25% */
+    
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+/* 4:3 比例適配 */
+@media (max-width: 768px) {
+  .slideshow-container.ratio-4-3 {
+    height: 0;
+    padding-bottom: 75%; /* 4:3 = 3/4 = 75% */
+    
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+/* 正方形比例適配 */
+@media (max-width: 768px) {
+  .slideshow-container.ratio-1-1 {
+    height: 0;
+    padding-bottom: 100%; /* 1:1 = 100% */
+    
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
   }
 }

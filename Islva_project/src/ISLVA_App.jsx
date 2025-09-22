@@ -1,5 +1,5 @@
-import { Route, Routes } from "react-router-dom";
-
+import { Route, Routes } from "react-router-dom"; 
+import ScrollToTop from "./components/ScrollToTop.jsx"
 import Layout from "./layouts/Layout.jsx";
 import ShopLayout from "./layouts/ShopLayout.jsx";
 
@@ -33,42 +33,45 @@ import ShopCollections from "./pages/Shop/ShopCollections.jsx";
 
 const ISLVA_App = () => {
   return (
-    <div className="wrap">
-      <Routes>
-        {/* 主站頁面：全部用 Layout 包 */}
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/glossary" element={<Glossary />} />
-          <Route path="/collections" element={<Collections />} />
-          <Route path="/member" element={<Member />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgetPassword" element={<ForgetPassword />} />
-          <Route path="/animalSeries" element={<AnimalSeries />} />
-           <Route path="/scrollGallery" element={<ScrollGallery />} />
-          {/* Collection 子頁 */}
-          <Route path="/form" element={<Form />} />
-          <Route path="/lumen" element={<Lumen />} />
-          <Route path="/core" element={<Core />} />
-          {/* Glossary 子頁 */}
-          {/* <Route path="material" element={<Material />} />
+    
+      <div className="wrap">
+          <ScrollToTop />
+        <Routes>
+          {/* 主站頁面：全部用 Layout 包 */}
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/glossary" element={<Glossary />} />
+            <Route path="/collections" element={<Collections />} />
+            <Route path="/member" element={<Member />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgetPassword" element={<ForgetPassword />} />
+            <Route path="/animalSeries" element={<AnimalSeries />} />
+            <Route path="/scrollGallery" element={<ScrollGallery />} />
+            {/* Collection 子頁 */}
+            <Route path="/form" element={<Form />} />
+            <Route path="/lumen" element={<Lumen />} />
+            <Route path="/core" element={<Core />} />
+            {/* Glossary 子頁 */}
+            {/* <Route path="material" element={<Material />} />
           <Route path="craft" element={<Craft />} />
           <Route path="finish" element={<Finish />} />
           <Route path="care" element={<Care />} /> */}
-        </Route>
+          </Route>
 
-        {/* Shop 獨立結構 */}
-        <Route path="/shop" element={<ShopLayout />}>
-          <Route index element={<Shop />} />
-          <Route path="new" element={<ShopNew />} />
-          <Route path="sale" element={<ShopSale />} />
-          <Route path="collections" element={<ShopCollections />} />
-        </Route>
+          {/* Shop 獨立結構 */}
+          <Route path="/shop" element={<ShopLayout />}>
+            <Route index element={<Shop />} />
+            <Route path="new" element={<ShopNew />} />
+            <Route path="sale" element={<ShopSale />} />
+            <Route path="collections" element={<ShopCollections />} />
+          </Route>
 
-        <Route path="*" element={<div>404 Not Found</div>} />
-      </Routes>
-    </div>
+          <Route path="*" element={<div>404 Not Found</div>} />
+        </Routes>
+      </div>
+     
   );
 };
 
