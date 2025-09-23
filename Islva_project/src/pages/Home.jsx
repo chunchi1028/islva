@@ -2,13 +2,23 @@ import { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
-import SimpleCarousel from "../components/SimpleCarousel"
+import SimpleCarousel from "../components/SimpleCarousel";
+import useAnimatedText from "../hook/useAnimatedText";
+import useGlossaryAnimation from "../hook/useGlossaryAnimation";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
-  const heroRef = useRef(null);
+  const heroSectionRef = useRef(null); // 圖片動畫用
   const bgRef = useRef(null);
   const ringRef = useRef(null);
+
+  // 文字動畫 Hook - 使用獨立的 ref
+  const { heroRef: textRef } = useAnimatedText({
+    autoPlay: true,
+    delay: 1000,
+    threshold: 0.7, // 調高避免重複觸發
+  });
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -23,7 +33,7 @@ const Home = () => {
           const { conditions } = context;
           const isMobile = conditions.mobile;
 
-          // 初始狀態（手機版少一點旋轉與位移）
+          // 初始狀態
           gsap.set(bgRef.current, {
             opacity: 0,
             scale: isMobile ? 0.98 : 0.94,
@@ -44,13 +54,12 @@ const Home = () => {
           // 進場動畫
           const enterTl = gsap.timeline({
             scrollTrigger: {
-              trigger: heroRef.current,
+              trigger: heroSectionRef.current,
               start: isMobile ? "top 80%" : "top 72%",
               end: "bottom 40%",
               toggleActions: "restart none restart reverse",
-              invalidateOnRefresh: true,
-              // markers: true,
             },
+            defaults: { ease: "power2.out" },
           });
 
           enterTl
@@ -79,11 +88,11 @@ const Home = () => {
               "-=0.2"
             );
 
-          // 視差（scrub）— 手機版減量，避免「歪」
+          // 視差動畫
           gsap
             .timeline({
               scrollTrigger: {
-                trigger: heroRef.current,
+                trigger: heroSectionRef.current,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: true,
@@ -93,43 +102,70 @@ const Home = () => {
             .fromTo(
               bgRef.current,
               { y: isMobile ? 8 : 26, rotate: isMobile ? 0 : -1 },
-              { y: isMobile ? -10 : -18, rotate: isMobile ? 0 : 0.5, ease: "none" },
+              {
+                y: isMobile ? -10 : -18,
+                rotate: isMobile ? 0 : 0.5,
+                ease: "none",
+              },
               0
             )
             .fromTo(
               ringRef.current,
               { y: isMobile ? 4 : 8, scale: 1.0 },
-              { y: isMobile ? -20 : -60, scale: isMobile ? 1.01 : 1.03, ease: "none" },
+              {
+                y: isMobile ? -20 : -60,
+                scale: isMobile ? 1.01 : 1.03,
+                ease: "none",
+              },
               0
             );
         }
       );
 
-      // 圖片載入後再 refresh，避免圖片晚到導致定位錯
-      const imgs = heroRef.current?.querySelectorAll("img") ?? [];
+      // 圖片載入處理
+      const imgs = heroSectionRef.current?.querySelectorAll("img") ?? [];
       imgs.forEach((img) => {
         if (img.complete) return;
-        img.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+        img.addEventListener("load", () => ScrollTrigger.refresh(), {
+          once: true,
+        });
       });
-    }, heroRef);
+    }, heroSectionRef);
 
     return () => ctx.revert();
   }, []);
-// 文字gsap
+
+  // glossary動畫
+  const { glossaryRef } = useGlossaryAnimation({
+    carouselAnimation: "slide",
+    textAnimation: "flyIn",
+  });
 
   return (
     <div className="home_container">
       <div className="main-visual">
         {/* 首頁主視覺 Hero Section */}
-        <div className="hero-section">
-          {/* 左側文案 */}
-          <div className="hero-text-left">
-            <p className="english-caption">Captured in the light of silver</p>
-            <p className="chinese-caption">光影之間</p>
+        <div className="hero-section" ref={heroSectionRef}>
+          {/* 文字容器 - 只包含文字 */}
+          <div className="hero-text-container" ref={textRef}>
+            <div className="hero-text-left">
+              <p
+                className="english-caption"
+                data-text="Captured in the light of silver"
+              ></p>
+              <p className="chinese-caption" data-text="光影之間"></p>
+            </div>
+            <div className="hero-text-right">
+              <p
+                className="english-caption"
+                data-text="Born of|island and forest"
+              ></p>
+              <p className="chinese-caption" data-text="島嶼森靈的細語"></p>
+            </div>
           </div>
 
-          {/* 中間圖片區 */}
-          <div className="hero-image-container" ref={heroRef}>
+          {/* 圖片容器 - 獨立在外面 */}
+          <div className="hero-image-container">
             <img
               ref={bgRef}
               src="./images/square-bg.png"
@@ -143,25 +179,16 @@ const Home = () => {
               className="hero-image"
             />
           </div>
-
-          {/* 右側文案 */}
-          <div className="hero-text-right">
-            <p className="english-caption">
-              Born of
-              <br />
-              island and forest
-            </p>
-            <p className="chinese-caption">島嶼森靈的細語</p>
-          </div>
         </div>
+
         <div className="scroll-arrows">
           <img src="./images/arrow.svg" alt="箭頭" />
         </div>
       </div>
 
+      {/* 其他區塊保持不變 */}
       <div className="collections-section">
         <div className="hero-content-grid">
-          {/* 左邊文字 */}
           <div className="series-title">
             <p className="series-title-num">01</p>
             <div className="series-title-text">
@@ -190,7 +217,7 @@ const Home = () => {
             through light, color, and emotion.
           </div>
         </div>
-        {/* 右邊圖片（錯落） */}
+
         <div className="image-section">
           <div className="image-grid">
             <div className="image-item main-image">
@@ -211,7 +238,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="glossary-section">
+
+      <div className="glossary-section" ref={glossaryRef}>
         <div className="glossary-title">
           <p className="glossary-title-num">02</p>
           <div className="glossary-title-text">
@@ -240,6 +268,7 @@ const Home = () => {
           </Link>
         </div>
       </div>
+
       <div className="about-section">
         <div className="about-title">
           <p className="about-title-num">03</p>
