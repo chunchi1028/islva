@@ -1,7 +1,122 @@
+import { useRef, useLayoutEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "react-router-dom";
-import SimpleCarousel from "../components/SimpleCarousel";
+import SimpleCarousel from "../components/SimpleCarousel"
+gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
+  const heroRef = useRef(null);
+  const bgRef = useRef(null);
+  const ringRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          desktop: "(min-width: 769px)",
+          mobile: "(max-width: 768px)",
+        },
+        (context) => {
+          const { conditions } = context;
+          const isMobile = conditions.mobile;
+
+          // 初始狀態（手機版少一點旋轉與位移）
+          gsap.set(bgRef.current, {
+            opacity: 0,
+            scale: isMobile ? 0.98 : 0.94,
+            rotate: isMobile ? 0 : -6,
+            y: isMobile ? 8 : 24,
+            transformOrigin: "50% 50%",
+            willChange: "transform, opacity, filter",
+          });
+
+          gsap.set(ringRef.current, {
+            opacity: 0,
+            y: isMobile ? 14 : 38,
+            scale: 1,
+            transformOrigin: "50% 50%",
+            willChange: "transform, opacity, filter",
+          });
+
+          // 進場動畫
+          const enterTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: isMobile ? "top 80%" : "top 72%",
+              end: "bottom 40%",
+              toggleActions: "restart none restart reverse",
+              invalidateOnRefresh: true,
+              // markers: true,
+            },
+          });
+
+          enterTl
+            .to(
+              bgRef.current,
+              {
+                opacity: 1,
+                scale: 1,
+                rotate: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                overwrite: "auto",
+                immediateRender: false,
+              },
+              0
+            )
+            .to(
+              ringRef.current,
+              {
+                opacity: 1,
+                duration: 0.9,
+                ease: "power3.out",
+                overwrite: "auto",
+                immediateRender: false,
+              },
+              "-=0.2"
+            );
+
+          // 視差（scrub）— 手機版減量，避免「歪」
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: heroRef.current,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            })
+            .fromTo(
+              bgRef.current,
+              { y: isMobile ? 8 : 26, rotate: isMobile ? 0 : -1 },
+              { y: isMobile ? -10 : -18, rotate: isMobile ? 0 : 0.5, ease: "none" },
+              0
+            )
+            .fromTo(
+              ringRef.current,
+              { y: isMobile ? 4 : 8, scale: 1.0 },
+              { y: isMobile ? -20 : -60, scale: isMobile ? 1.01 : 1.03, ease: "none" },
+              0
+            );
+        }
+      );
+
+      // 圖片載入後再 refresh，避免圖片晚到導致定位錯
+      const imgs = heroRef.current?.querySelectorAll("img") ?? [];
+      imgs.forEach((img) => {
+        if (img.complete) return;
+        img.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+      });
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+// 文字gsap
+
   return (
     <div className="home_container">
       <div className="main-visual">
@@ -14,13 +129,15 @@ const Home = () => {
           </div>
 
           {/* 中間圖片區 */}
-          <div className="hero-image-container">
+          <div className="hero-image-container" ref={heroRef}>
             <img
+              ref={bgRef}
               src="./images/square-bg.png"
               alt=""
               className="hero-image-bg"
             />
             <img
+              ref={ringRef}
               src="./images/butterflyRing.png"
               alt="ISLVA Silver Butterfly Ring"
               className="hero-image"
