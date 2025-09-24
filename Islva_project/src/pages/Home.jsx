@@ -15,11 +15,11 @@ const Home = () => {
 
   // 文字動畫 Hook - 使用獨立的 ref
   const { heroRef: textRef } = useAnimatedText({
-    autoPlay: true,
-    delay: 1000,
-    threshold: 0.7, // 調高避免重複觸發
-  });
-
+  autoPlay: true,
+  delay: 1000,
+  threshold: 0.7,
+  preventInitialRepeat: true, // 防止初始重複播放
+});
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
@@ -251,7 +251,7 @@ const Home = () => {
             <span className="glossary-ch">材質辭典</span>
           </div>
         </div>
-         <div className="glossary-content">
+         <div className="home-glossary-content">
         <div className="glossary_carousel">
           <SimpleCarousel />
         </div>

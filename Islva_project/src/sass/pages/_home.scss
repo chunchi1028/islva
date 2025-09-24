@@ -465,7 +465,7 @@ $breakpoints: (
 }
 
 /* 左圖右文（桌機）；平板直排置中；手機文字靠左 */
-.glossary-content {
+.home-glossary-content {
   /* 桌機：兩欄 */
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);

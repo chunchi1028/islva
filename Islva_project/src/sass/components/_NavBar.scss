@@ -1,4 +1,7 @@
 /* 主要導航容器 */
+* {
+  outline: none !important;
+}
 .site-header {
   position: fixed;
   top: 0;

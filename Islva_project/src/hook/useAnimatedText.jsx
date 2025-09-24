@@ -6,6 +6,7 @@ const useAnimatedText = (options = {}) => {
     autoPlay = true,
     delay = 500,
     threshold = 0.5,
+    preventInitialRepeat = true, // 新增：防止初始重複播放
     leftEnglishDuration = 1.2,
     leftChineseDuration = 1,
     rightEnglishDuration = 1.2,
@@ -19,6 +20,8 @@ const useAnimatedText = (options = {}) => {
   const heroRef = useRef(null);
   const observerRef = useRef(null);
   const timelineRef = useRef(null);
+  const autoPlayTriggeredRef = useRef(false); // 記錄 autoPlay 是否已觸發
+  const scrollPlayEnabledRef = useRef(false); // 記錄是否啟用滾動播放
 
   // 分割文字函數
   const splitTextToChars = (element) => {
@@ -49,13 +52,28 @@ const useAnimatedText = (options = {}) => {
   };
 
   // 播放動畫
-  const playAnimation = () => {
+  const playAnimation = (isAutoPlay = false) => {
+    // 如果是 autoPlay 觸發，且已經自動播放過，則不播放
+    if (isAutoPlay && preventInitialRepeat && autoPlayTriggeredRef.current) {
+      return;
+    }
+
     // 如果有正在執行的動畫，先停止它
     if (timelineRef.current) {
       timelineRef.current.kill();
     }
 
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      onComplete: () => {
+        if (isAutoPlay) {
+          autoPlayTriggeredRef.current = true; // 標記 autoPlay 已觸發
+          // autoPlay 完成後，啟用滾動播放
+          setTimeout(() => {
+            scrollPlayEnabledRef.current = true;
+          }, 1000); // 給一點延遲，避免立即滾動觸發
+        }
+      }
+    });
     timelineRef.current = tl;
 
     // 限制選擇器範圍到當前組件
@@ -150,7 +168,10 @@ const useAnimatedText = (options = {}) => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            playAnimation();
+            // 只有在滾動播放啟用後才播放
+            if (scrollPlayEnabledRef.current) {
+              playAnimation(false); // 不是 autoPlay
+            }
           }
         });
       },
@@ -164,11 +185,20 @@ const useAnimatedText = (options = {}) => {
 
   // 手動觸發動畫
   const triggerAnimation = () => {
-    return playAnimation();
+    return playAnimation(false);
   };
 
   // 停止動畫
   const stopAnimation = () => {
+    if (timelineRef.current) {
+      timelineRef.current.kill();
+    }
+  };
+
+  // 重置動畫狀態
+  const resetAnimation = () => {
+    autoPlayTriggeredRef.current = false;
+    scrollPlayEnabledRef.current = false;
     if (timelineRef.current) {
       timelineRef.current.kill();
     }
@@ -181,13 +211,18 @@ const useAnimatedText = (options = {}) => {
     const textElements = heroRef.current.querySelectorAll("[data-text]");
     textElements.forEach(splitTextToChars);
 
-    // 設置滾動觸發器
+    // 總是設置滾動觸發器
     setupScrollTrigger();
 
-    // 首次載入自動播放
+    // 如果啟用自動播放，延遲後播放
     let timer;
     if (autoPlay) {
-      timer = setTimeout(playAnimation, delay);
+      timer = setTimeout(() => {
+        playAnimation(true); // 標記為 autoPlay
+      }, delay);
+    } else {
+      // 如果不自動播放，立即啟用滾動播放
+      scrollPlayEnabledRef.current = true;
     }
 
     // 清理函數
@@ -200,13 +235,14 @@ const useAnimatedText = (options = {}) => {
         timelineRef.current.kill();
       }
     };
-  }, [autoPlay, delay, threshold]);
+  }, [autoPlay, delay, threshold, preventInitialRepeat]);
 
   return {
     heroRef,
     playAnimation: triggerAnimation,
     stopAnimation,
+    resetAnimation,
+    autoPlayTriggered: autoPlayTriggeredRef.current, // 返回 autoPlay 狀態
   };
 };
-
 export default useAnimatedText;

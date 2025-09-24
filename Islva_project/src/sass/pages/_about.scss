@@ -69,6 +69,31 @@
   height: auto; /* 固定高度，讓三張齊高 */
   object-fit: cover; /* 保持比例，必要時裁切 */
 }
+/* 新增：平板尺寸 (1024px ~ 769px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .about_intro {
+    flex-direction: column; /* 改為垂直排列 */
+    align-items: center; /* 內容置中 */
+    gap: 40px; /* 文字和圖片之間的間距 */
+  }
+  
+  .about_intro p {
+    margin-left: 0; /* 重置左邊距 */
+    margin-top: 0; /* 重置上邊距 */
+    max-width: 90%; /* 適應平板寬度 */
+    text-align: center; /* 文字置中（可選） */
+  }
+  
+  .about_intro-images {
+    gap: 20px; /* 圖片之間的間距 */
+    justify-content: center; /* 圖片置中 */
+  }
+  
+  .about_intro-images img {
+    width: 200px; /* 適合平板的圖片大小 */
+    margin-bottom: 0; /* 重置，因為改用 gap */
+  }
+}
 
 /* 手機 RWD */
 @media (max-width: 768px) {
@@ -325,7 +350,7 @@
   }
 
   .about_intro {
-    margin: 40px 20px;
+    margin: 80px 20px;
   }
 
   .origin,
