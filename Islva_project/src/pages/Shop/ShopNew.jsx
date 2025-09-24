@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const ShopNew = () => {
-  return (
-    <div>ShopNew</div>
-  )
-}
+  return <div className="shop-title">商店還在準備中，請敬請期待</div>;
+};
 
-export default ShopNew
+export default ShopNew;

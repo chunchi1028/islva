@@ -2,7 +2,7 @@ import AnimalSeries from "../components/AnimalSeries";
 import LaceSeries from "../components/LaceSeries";
 import ClassicalSeries from "../components/ClassicalSeries";
 
-export default function SeriesIntro({
+export default function Form({
   titleEn = "Form",
   titleZh = "純銀系列",
   desc = "在簡練的形體之中，蘊藏著銀最純粹的力量。 「Form」是結構與秩序，也是自由與流動， 以極簡線條勾勒出日常與永恆的輪廓。",

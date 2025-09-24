@@ -31,7 +31,7 @@ export default function GlossaryPage() {
           </div>
           <div className="content-section">
             <div className="text-content">
-              <h3 className="title">材料詞典</h3>
+              <h3 className="title">材質辭典</h3>
               <p className="glossary-description">
                 在這裡，你可以了解關於銀的特性、琺瑯的色彩、
                 <br />
