@@ -46,7 +46,6 @@ const Home = () => {
           gsap.set(ringRef.current, {
             opacity: 0,
             x: 0,  // 新增
-            y: 0,  // 新增
             xPercent: -50,  // 新增，等同於 translate(-50%, -50%)
             yPercent: -50,  // 新增
             y: isMobile ? 14 : 38,
