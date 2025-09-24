@@ -45,7 +45,7 @@ $breakpoints: (
   padding: 0 20px;
   gap: 60px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1300px) {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
@@ -69,7 +69,7 @@ $breakpoints: (
   pointer-events: none;
   z-index: 1;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1300px) {
     position: static;
     display: contents; // 讓子元素直接參與父層的 flex 排序
     pointer-events: auto;
@@ -84,12 +84,7 @@ $breakpoints: (
   text-align: left;
   pointer-events: auto;
 
-  @media (max-width: 1200px) and (min-width: 1025px) {
-    left: 50px;
-    top: 30px;
-  }
-
-  @media (max-width: 1024px) {
+  @media (max-width: 1300px) {
     position: static;
     order: 1; // 上方
     text-align: center;
@@ -109,7 +104,7 @@ $breakpoints: (
   max-width: 550px;
   z-index: 2;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1300px) {
     order: 2; // 中間
     max-width: 400px;
     margin: 0 auto;
@@ -127,10 +122,10 @@ $breakpoints: (
 
 .hero-image {
   position: absolute;
-  top: 35%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  width: 155%;
+  top: 38%;
+  left: 42%;
+  // transform: translate(-50%, -50%);
+  width: 160%;
   height: auto;
   z-index: 3;
 
@@ -150,17 +145,12 @@ $breakpoints: (
 /* 右側文字 - 桌面版右下角，小螢幕下方 */
 .hero-text-right {
   position: absolute;
-  right: 0;
+  right: 20px;
   bottom: 20px;
   text-align: right;
   pointer-events: auto;
 
-  @media (max-width: 1200px) and (min-width: 1025px) {
-    right: 50px;
-    bottom: 30px;
-  }
-
-  @media (max-width: 1024px) {
+  @media (max-width: 1300px) {
     position: static;
     order: 3; // 下方
     text-align: center;
@@ -258,6 +248,7 @@ $breakpoints: (
 
 /* 箭頭動畫效果 */
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -265,384 +256,207 @@ $breakpoints: (
   100% {
     transform: translateY(0) translateX(-50%);
   }
+
   40% {
     transform: translateY(-10px) translateX(-50%);
   }
+
   60% {
     transform: translateY(-5px) translateX(-50%);
   }
 }
+
 /*------系列商品-------*/
 .collections-section {
-  background-image: url("/images/bg.jpg");
-  background-size: cover;
-  width: 100%;
-  min-height: 100vh;
-  padding-bottom: 100px;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
+  /* 背景 */
+  background: center / cover no-repeat url("/images/bg.jpg");
 
+  /* 版型：桌機兩欄（左 1/3 文字；右 2/3 圖片） */
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(16px, 4vw, 48px);
+  padding: clamp(24px, 6vw, 80px) clamp(20px, 6vw, 100px) clamp(40px, 8vw, 120px);
+  min-height: 80vh;
+
+  /* 平板 & 手機：直排置中、統一容器寬 */
   @media (max-width: 1024px) {
-    flex-direction: column;
-    padding-bottom: 60px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
     min-height: auto;
+
+    /* 讓左右兩塊中心線一致 */
+    & > * {
+      width: min(100%, 900px);
+      margin-inline: auto;
+    }
   }
 
   @media (max-width: 768px) {
-    padding-bottom: 40px;
-    background-size: cover;
+    & > * { width: min(100%, 700px); }
   }
 }
 
+/* ========== 左側：標題 + 文案 ========== */
 .hero-content-grid {
-  transform: translateY(160px);
-  overflow: visible;
-
-  @media (max-width: 1024px) {
-    transform: translateY(60px);
-    padding: 0 20px;
-    text-align: center;
-  }
-
-  @media (max-width: 768px) {
-    transform: translateY(40px);
-    padding: 0 15px;
-  }
+  display: grid;
+  align-content: start;
+  row-gap: clamp(10px, 2vw, 24px);
 }
 
 .series-title {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 15px;
-  gap: 30px;
-  transform: translateX(-90px);
+  gap: clamp(12px, 2vw, 30px);
+  margin: 0;
 
-  @media (max-width: 1024px) {
-    transform: translateX(0);
-    gap: 20px;
-    justify-content: center;
-  }
-
-  @media (max-width: 768px) {
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
+  @media (min-width: 1025px) { justify-content: flex-start; }
+  @media (max-width: 1024px) { justify-content: center; }
 }
-
 .series-title-num {
-  font-size: 2rem;
   font-family: "Noto Serif TC", serif;
   font-weight: 100;
   letter-spacing: 2px;
-
-  @media (max-width: 1024px) {
-    font-size: 1.8rem;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-  }
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
 }
-
 .series-title-text {
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
-  font-weight: 400;
   gap: 8px;
-
-  @media (max-width: 1024px) {
-    font-size: 1.3rem;
-  }
-  @media (max-width: 768px) {
-    font-size: 1.1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
 .series-divider {
-  font-size: 80px;
-  font-weight: 100;
-  margin: 0 10px;
-  transform: rotate(15deg);
   display: inline-block;
-
-  @media (max-width: 1024px) {
-    font-size: 60px;
-    margin: 0 5px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 40px;
-    margin: 0 3px;
-  }
+  transform: rotate(15deg);
+  margin: 0 10px;
+  font-weight: 100;
+  font-size: clamp(40px, 6vw, 80px);
 }
-
-.series-en {
-  padding-bottom: 30px;
-
-  @media (max-width: 1024px) {
-    padding-bottom: 15px;
-  }
-}
-
-.series-ch {
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-left: 5px;
-  padding-top: 30px;
-
-  @media (max-width: 1024px) {
-    font-size: 1.3rem;
-    margin-left: 0;
-    padding-top: 15px;
-  }
-  @media (max-width: 768px) {
-    font-size: 1.1rem;
-    padding-top: 10px;
-  }
-}
+.series-en { padding-bottom: clamp(12px, 2vw, 30px); }
+.series-ch { font-weight: 500; padding-top: clamp(10px, 2vw, 30px); font-size: clamp(1.1rem, 1.5vw, 1.5rem); }
 
 .text-block {
+  max-width: 56ch;
   line-height: 1.8;
-  font-weight: 400;
   letter-spacing: 1px;
-  opacity: 0.9;
-  @media (max-width: 1024x) {
-    max-width: 600px;
-    margin: 0 auto;
-  }
+  opacity: .9;
 
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    letter-spacing: 0.5px;
-    max-width: 100%;
-  }
+  @media (max-width: 1024px) { margin-inline: auto; }
+  @media (max-width: 768px)  { font-size: .95rem; line-height: 1.7; letter-spacing: .5px; max-width: 100%; }
 
-  p {
-    margin: 0 0 8px 0;
-
-    @media (max-width: 768px) {
-      margin: 0 0 6px 0;
-    }
-  }
+  p { margin: 0 0 8px 0; }
 }
+.cta-btn { display: inline-block; margin-top: 12px; }
 
-.cta-btn {
-  @media (max-width: 768px) {
-    display: inline-block;
-    margin-top: 15px;
-  }
-}
-
+/* 裝飾字（可依需要保留/調整） */
 .series-deco-text {
-  font-size: 2.2rem;
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
   color: azure;
-  margin-top: 300px;
-
-  @media (max-width: 1024px) {
-    font-size: 1.8rem;
-    margin-top: 150px;
-    text-align: center;
-  }
-  @media (max-width: 768px) {
-    font-size: 1.4rem;
-    margin-top: 80px;
-    text-align: center;
-  }
+  margin-top: clamp(40px, 10vw, 300px);
+  @media (min-width: 1025px) { text-align: left; }
 }
 
+/* ========== 右側：圖片區 ========== */
 .image-section {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 100px;
-
-  @media (max-width: 1024px) {
-    justify-content: center;
-    margin-right: 0;
-    margin-top: 40px;
-  }
-
-  @media (max-width: 768px) {
-    margin-top: 30px;
-    padding: 0 20px; /* 增加左右內距，避免貼邊 */
-  }
+  width: 100%;
+  justify-self: stretch;
+  align-self: start;
 }
 
+/* 桌機：Grid 三欄 + 錯位（用 margin-top，不會超出背景） */
 .image-grid {
-  display: flex;
-  gap: 60px;
-  align-items: flex-start;
-  margin-top: 80px;
+  --img-gap: clamp(16px, 2vw, 28px);
 
-  @media (max-width: 1024px) {
-    gap: 30px;
-    margin-top: 40px;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--img-gap);
+  align-items: start;
+  width: 100%;
+  max-width: 980px;
+  margin: clamp(20px, 4vw, 80px) 0 0 auto;
+
+  /* 錯位幅度 */
+  --stagger-main: 48px;
+  --stagger-side: 96px;
+
+  /* 防止最後一張下緣被吃掉陰影 */
+  padding-bottom: calc(var(--stagger-side) * 0.4);
+}
+
+.main-image      { margin-top: var(--stagger-main); }
+.top-right-image { margin-top: 0; }
+.side-image      { margin-top: var(--stagger-side); }
+
+/* 平板 & 手機：三張同一排，不換行、不滑動、置中 */
+@media (max-width: 1024px) {
+  .image-grid {
+    display: flex;
+    flex-wrap: nowrap;            /* 不換行 */
+    justify-content: center;      /* 整列置中 */
+    align-items: flex-start;
+    gap: var(--img-gap);
+    max-width: 100%;
+    margin: clamp(12px, 3vw, 24px) auto 0;
+    padding-bottom: 6px;          /* 視覺緩衝 */
+    overflow: visible;            /* 不要橫向滑動 */
   }
 
-  @media (max-width: 768px) {
-    flex-direction: row;
-    gap: 15px; /* 可以調整為 20px 或更大，增加圖片間距 */
-    margin-top: 20px;
-    align-items: flex-start;
-    justify-content: center; /* 改為居中對齊，而不是 space-between */
-    flex-wrap: nowrap;
-    padding: 0 10px; /* 增加內距避免貼邊 */
+  /* 取消錯位 */
+  .main-image, .top-right-image, .side-image { margin-top: 0; }
+
+  /* 三張圖平均分配一列寬度，可縮小以塞入畫面 */
+  .image-item {
+    flex: 1 1 0;                  /* 等分一排 */
+    min-width: 0;                 /* 允許縮小避免撐出邊界 */
   }
 }
 
+/* 手機再微調間距，確保三張仍能並排 */
+@media (max-width: 768px) {
+  .image-grid { --img-gap: clamp(8px, 2.5vw, 14px); }
+}
+
+/* 單張卡片（固定 9:16 長方形） */
 .image-item {
-  flex: 1;
-  max-width: 300px;
-  overflow: hidden;
   position: relative;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+  transition: transform .35s ease, box-shadow .35s ease;
   cursor: pointer;
-
-  @media (max-width: 1024px) {
-    max-width: 220px;
-  }
-
-  @media (max-width: 768px) {
-    max-width: 110px;
-    min-width: 90px;
-    flex-shrink: 0;
-    border-radius: 6px;
-  }
-
-  /* Hover 效果 */
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-
-    @media (max-width: 768px) {
-      transform: translateY(-5px); /* 手機版減少位移 */
-    }
-  }
-
-  /* 添加覆蓋層效果 */
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      45deg,
-      rgba(0, 0, 0, 0.1),
-      rgba(255, 255, 255, 0.1)
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 8px;
-    pointer-events: none;
-
-    @media (max-width: 768px) {
-      border-radius: 6px;
-    }
-  }
-
-  &:hover::before {
-    opacity: 1;
-  }
 
   img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    aspect-ratio: 9 / 16;     /* ★ 直幅固定比例 */
     object-fit: cover;
-    transition: transform 0.4s ease, filter 0.3s ease;
-    border-radius: 8px;
-
-    @media (max-width: 768px) {
-      border-radius: 6px;
-    }
+    border-radius: inherit;
+    transition: transform .35s ease, filter .3s ease;
   }
 
-  &:hover img {
-    transform: scale(1.08);
-    filter: brightness(1.1) contrast(1.05);
-  }
+  &:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+  &:hover img { transform: scale(1.06); filter: brightness(1.06) contrast(1.04); }
 
-  /* 添加閃光效果 */
-  &:hover::after {
+  /* 閃光效果（可移除） */
+  &::before {
     content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      45deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    transform: rotate(45deg);
-    animation: shine 0.6s ease-in-out;
-    pointer-events: none;
+    position: absolute; inset: 0;
+    background: linear-gradient(45deg, rgba(0,0,0,.08), rgba(255,255,255,.08));
+    opacity: 0; transition: opacity .3s ease; pointer-events: none; border-radius: inherit;
   }
+  &:hover::before { opacity: .8; }
 }
-
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) translateY(-100%) rotate(45deg);
-  }
-  100% {
-    transform: translateX(100%) translateY(100%) rotate(45deg);
-  }
-}
-
-/* 桌面版錯落效果，平板版取消錯位，手機版也取消 */
-.main-image {
-  transform: translateY(80px);
-
-  @media (max-width: 1024px) {
-    transform: translateY(0); /* 平板版取消錯位 */
-  }
-
-  @media (max-width: 768px) {
-    transform: translateY(0);
-  }
-}
-
-.side-image {
-  transform: translateY(220px);
-
-  @media (max-width: 1024px) {
-    transform: translateY(0); /* 平板版取消錯位 */
-  }
-
-  @media (max-width: 768px) {
-    transform: translateY(0);
-  }
-}
-
-.top-right-image {
-  transform: translateY(0px);
-
-  @media (max-width: 768px) {
-    transform: translateY(0);
-  }
-}
-
 /*------材質辭典-------*/
 .glossary-section {
-  min-height: 100vh;
+  min-height: 72vh;
   padding-bottom: 60px;
+
+  @media(max-width:1024px) {
+    min-height: 50vh;
+  }
 
   @media (max-width: 768px) {
     min-height: auto;
@@ -650,27 +464,53 @@ $breakpoints: (
   }
 }
 
-.glossary_carousel {
-  margin-left: 100px;
-  margin-top: 80px;
+/* 左圖右文（桌機）；平板直排置中；手機文字靠左 */
+.glossary-content {
+  /* 桌機：兩欄 */
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: clamp(16px, 4vw, 48px);
+  align-items: start;
+  margin: clamp(16px, 3vw, 40px) clamp(16px, 6vw, 100px) 0;
 
-  @media (max-width: 1280px) {
-    margin-left: 50px;
-    margin-top: 60px;
-  }
-
+  /* 平板：直排＋置中 */
   @media (max-width: 1024px) {
-    margin-left: 20px;
-    margin-top: 40px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: left;
+    margin: clamp(12px, 2vw, 24px) clamp(12px, 4vw, 24px) 0;
   }
 
+  /* 手機：仍為直排，但文字靠左 */
   @media (max-width: 768px) {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    text-align: left;
+    /* 覆蓋平板的置中，讓文字回到靠左 */
+  }
+}
+
+.glossary_carousel {
+  margin: 0;
+  min-width: 0;
+  /* 防止撐爆欄位 */
+  width: 100%;
+  /* 交給欄寬控制 */
+  place-self: start;
+
+  /* 桌機：靠左 */
+  @media (max-width: 1024px) {
+    place-self: center;
+  }
+
+  /* 平板置中 */
+
+  /* 圖片/媒體保險 */
+  img,
+  canvas,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
   }
 }
 
@@ -735,107 +575,67 @@ $breakpoints: (
 }
 
 .glossary-divider {
-  font-size: 80px;
+  font-size: clamp(40px, 6vw, 80px);
   font-weight: 100;
   margin: 0 10px;
   transform: rotate(15deg);
   display: inline-block;
-
-  @media (max-width: 1024px) {
-    font-size: 60px;
-    margin: 0 5px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 40px;
-    margin: 0 3px;
-  }
 }
 
 .glossary-en {
-  padding-bottom: 30px;
-
-  @media (max-width: 768px) {
-    padding-bottom: 15px;
-  }
+  padding-bottom: clamp(12px, 2vw, 30px);
 }
 
 .glossary-ch {
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-left: 5px;
-  padding-top: 50px;
-
-  @media (max-width: 1024px) {
-    font-size: 1.3rem;
-    margin-left: 0;
-    padding-top: 25px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.1rem;
-    padding-top: 15px;
-  }
+  padding-top: clamp(12px, 3vw, 50px);
 }
 
 .glossary_description {
-  display: block;
-  max-width: 800px;
-  margin-left: auto;
-  line-height: 1.8;
-  margin-top: -360px;
-  padding-right: 40px;
-
-  /* 新增 1280px 斷點修正 */
-  @media (max-width: 1280px) and (min-width: 1025px) {
-    margin-top: -280px; /* 減少負 margin */
-    max-width: 700px;
-    padding-right: 30px;
-  }
+  max-width: 56ch;
+  /* 桌機：好讀寬度 */
+  line-height: 1.6;
+  position: relative;
+  z-index: 0;
+  margin-top: 100px;
 
   @media (max-width: 1024px) {
-    max-width: 90%;
-    margin: 40px auto 0;
-    padding: 0 20px;
-    text-align: center;
+    max-width: 600px;
+    /* 平板：置中呈現 */
+    margin-top: 20px;
   }
 
   @media (max-width: 768px) {
     max-width: 95%;
-    margin: 30px auto 0;
-    padding: 0 15px;
-    font-size: 0.9rem;
+    /* 手機：靠左 + 寬些 */
+    margin: 16px auto 0;
     line-height: 1.6;
-    text-align: left;
   }
 }
 
+/* 按鈕間距 */
 .glossary-btn {
-  margin-top: 30px;
+  margin-top: 24px;
   display: inline-block;
 
   @media (max-width: 768px) {
-    margin-top: 20px;
+    margin-top: 18px;
   }
 }
 
+
 /*------關於我們-------*/
 .about-section {
-  background-image: linear-gradient(
-    to right,
-    #323c45 0%,
-    #323c45 60%,
-    transparent 50%
-  );
-  min-height: 100vh;
+  background-image: linear-gradient(to right,
+      #323c45 0%,
+      #323c45 60%,
+      transparent 50%);
+  min-height: 90vh;
 
   @media (max-width: 1024px) {
-    background-image: linear-gradient(
-      to bottom,
-      #323c45 0%,
-      #323c45 70%,
-      transparent 70%
-    );
+    background-image: linear-gradient(to bottom,
+        #323c45 0%,
+        #323c45 70%,
+        transparent 70%);
   }
 
   @media (max-width: 768px) {
@@ -1020,6 +820,7 @@ $breakpoints: (
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }

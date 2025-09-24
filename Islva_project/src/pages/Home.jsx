@@ -37,7 +37,7 @@ const Home = () => {
           gsap.set(bgRef.current, {
             opacity: 0,
             scale: isMobile ? 0.98 : 0.94,
-            rotate: isMobile ? 0 : -6,
+
             y: isMobile ? 8 : 24,
             transformOrigin: "50% 50%",
             willChange: "transform, opacity, filter",
@@ -45,6 +45,10 @@ const Home = () => {
 
           gsap.set(ringRef.current, {
             opacity: 0,
+            x: 0,  // 新增
+            y: 0,  // 新增
+            xPercent: -50,  // 新增，等同於 translate(-50%, -50%)
+            yPercent: -50,  // 新增
             y: isMobile ? 14 : 38,
             scale: 1,
             transformOrigin: "50% 50%",
@@ -68,7 +72,7 @@ const Home = () => {
               {
                 opacity: 1,
                 scale: 1,
-                rotate: 0,
+
                 duration: 0.8,
                 ease: "power2.out",
                 overwrite: "auto",
@@ -101,10 +105,10 @@ const Home = () => {
             })
             .fromTo(
               bgRef.current,
-              { y: isMobile ? 8 : 26, rotate: isMobile ? 0 : -1 },
+              { y: isMobile ? 8 : 26, },
               {
                 y: isMobile ? -10 : -18,
-                rotate: isMobile ? 0 : 0.5,
+
                 ease: "none",
               },
               0
@@ -248,6 +252,7 @@ const Home = () => {
             <span className="glossary-ch">材質辭典</span>
           </div>
         </div>
+         <div className="glossary-content">
         <div className="glossary_carousel">
           <SimpleCarousel />
         </div>
@@ -266,6 +271,7 @@ const Home = () => {
           <Link to="/glossary" className="glossary-btn">
             view more→
           </Link>
+        </div>
         </div>
       </div>
 

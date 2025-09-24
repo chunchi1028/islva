@@ -7,21 +7,27 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 
   @media (max-width: 1280px) {
-    max-width: 600px;
+    max-width: 550px; // 從 600px 改為 550px
   }
 
   @media (max-width: 1024px) {
-    max-width: 500px;
+    max-width: 400px; // 從 500px 改為 400px
+    margin: 0 auto;
   }
 
   @media (max-width: 768px) {
-    max-width: 90%;
+    max-width: 80%; // 從 90% 改為 80%
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
 
   @media (max-width: 480px) {
-    max-width: 95%;
+    max-width: 85%; // 從 95% 改為 85%
+  }
+
+  // 新增更小螢幕的斷點
+  @media (max-width: 375px) {
+    max-width: 90%;
   }
 
   img {
@@ -30,8 +36,6 @@
     object-fit: cover;
     display: block;
     transition: transform 0.5s ease-in-out, opacity 0.3s ease;
-
-    // 添加淡入效果
     animation: fadeIn 0.5s ease-in-out;
 
     @media (max-width: 768px) {
@@ -39,12 +43,10 @@
     }
   }
 
-  // 添加 hover 效果
   &:hover img {
     transform: scale(1.02);
   }
 
-  // 可選：添加載入效果
   &::before {
     content: "";
     position: absolute;
@@ -72,7 +74,6 @@
   }
 }
 
-// 淡入動畫
 @keyframes fadeIn {
   from {
     opacity: 0;
