@@ -1,27 +1,50 @@
 [
   {
     "id": 1,
-    "mainImage": "#",
-    "sideImage": "#",
+    "mainImage": "./images/products/form/animal/c1.png",
+    "sideImage": "./images/products/form/animal/1.png",
+    "title": "忠影犬首",
+    "description": "在古老的傳說與生活裡，犬始終是守護的象徵。牠不以言語守候，只以靜默的姿態，將忠誠化為影子，無聲卻恆久。「忠影犬首」，承載著忠誠與守護的精神。雕琢細緻的毛髮紋理，堅毅而溫和的神情，讓這一方金屬，不僅是一件擺件，更是一位安靜的守望者。",
+    "category": "動物系列"
+  },
+  {
+    "id": 5,
+    "mainImage": "./images/products/form/animal/c2.png",
+    "sideImage": "./images/products/form/animal/2.png",
+    "title": "靈谷栗首",
+    "description": "在深邃的山谷間，陽光灑落，風聲低語，一隻靈巧的身影，悄然躍動。牠是林中的精靈，以敏捷與靈慧，將自然的靈氣凝聚於一方天地。「靈谷栗首」，以花栗鼠為原型，細緻雕刻出毛髮的紋理與圓潤的神態，將牠的靈動與純真凝結於金屬之中。既俏皮又典雅，在寧靜中蘊藏著自然的生機。",
+    "category": "動物系列"
+  },
+  {
+    "id": 4,
+    "mainImage": "./images/products/form/animal/c3.png",
+    "sideImage": "./images/products/form/animal/3.png",
+    "title": "曜耳犬首",
+    "description": "在夜色深沉之時，總有一雙耳，敏銳地傾聽著世界的脈動。牠不言語，卻用全然的專注與忠誠，將守護化為無聲的誓約。「曜耳犬首」，以法鬥犬獨特的直立耳形為靈感。雕刻工藝細緻展現了剛毅的輪廓與深邃的神情，在金屬的光澤中閃耀，宛若夜空中不滅的光點，恆久而堅定。",
+    "category": "動物系列"
+  },
+  {
+    "id": 3,
+    "mainImage": "./images/products/form/animal/c4.png",
+    "sideImage": "./images/products/form/animal/4.png",
     "title": "流光蝶舞",
     "description": "在光影的流轉間，蝴蝶振翅如詩，如夢般停留。那一刻的輕盈，被時間悄悄捕捉，化作指尖的永恆。「流光蝶舞」，以精緻工藝勾勒翅羽曲線，光影隨手勢而舞動，折射出變幻的優雅。",
     "category": "動物系列"
   },
   {
-    "id": 2,
-    "mainImage": "#",
-    "sideImage": "#",
-    "title": "晨曦鹿影",
-    "description": "當第一道晨光灑落，林間的霧氣尚未散盡，一抹靈動的身影靜靜浮現。那是鹿的影子，映照在晨曦之中，帶著自然的靈性與守護。「晨曦鹿影」，以鹿角的曲線為靈感，雕琢出堅毅與優雅並存的姿態。如同自然賦予的冠冕，將生命的韌性與純淨的靈魂凝鍊為一枚戒環。",
+    "id": 6,
+    "mainImage": "./images/products/form/animal/c5.png",
+    "sideImage": "./images/products/form/animal/5.png",
+    "title": "凌空羽影",
+    "description": "當風聲拂過大地，一隻羽翼振展的鳥，劃破寂靜的天空。牠不受束縛，將自由與希望，寄託於每一次翱翔之中。「凌空羽影」，以飛鳥的展翼為靈感，雕刻出羽毛的流暢弧線與振翅的瞬間。金屬的光澤映襯著輕盈的姿態，仿佛將時間定格，將天空的廣闊與自由的靈性凝聚於一瞬。",
     "category": "動物系列"
   },
   {
-    "id": 3,
-    "mainImage": "#",
-    "sideImage": "#",
+    "id": 2,
+    "mainImage": "./images/products/form/animal/c6.png",
+    "sideImage": "./images/products/form/animal/6.png",
     "title": "皓月鹿首",
     "description": "當夜幕徐徐墜落，皓潔的月光灑向大地，靈鹿的身影在銀白之中靜靜矗立。它不奔逐，不喧嘩，只是以一種古老而高貴的姿態，守望天地。「皓月鹿首」，取意於月光下的鹿首之影。工藝師以細膩雕琢勾勒鹿首的輪廓，將堅毅與優雅凝鍊於每一道線條之間。宛如一尊月下之王，靜謐而不失威嚴，沉穩卻蘊含靈性。",
     "category": "動物系列"
   }
- 
 ]

@@ -1,12 +1,24 @@
+// 🔥 添加全局性能優化
 .scroll-gallery {
   width: 100%;
   height: 100vh;
   overflow: hidden;
   background-color: #f5f5f5;
 
+  // 🔥 硬體加速
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+
+  // 🔥 優化重繪
+  contain: layout style;
+
   .gallery-container {
     display: flex;
     height: 100%;
+
+    // 🔥 GPU 加速
+    transform: translateZ(0);
+    contain: layout;
   }
 
   // 左側文字區域
@@ -37,6 +49,11 @@
         color: #333;
         margin-bottom: 25px;
         line-height: 1.2;
+
+        // 🔥 文字渲染優化
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       .description {
@@ -44,6 +61,11 @@
         color: #666;
         line-height: 1.6;
         margin-bottom: 40px;
+
+        // 🔥 文字渲染優化
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       .more-btn {
@@ -55,16 +77,19 @@
         font-size: 16px;
         font-weight: 500;
         cursor: pointer;
-        transition: all 0.3s ease;
         box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
 
+        // 🔥 只對必要屬性做動畫
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        will-change: transform;
+
         &:hover {
-          transform: translateY(-2px);
+          transform: translateY(-2px) translateZ(0);
           box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
         }
 
         &:active {
-          transform: translateY(0);
+          transform: translateY(0) translateZ(0);
         }
       }
     }
@@ -72,7 +97,7 @@
 
   // 中間主圖區域
   .main-image-section {
-    width: 40%;
+    width: 42%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -87,49 +112,53 @@
       overflow: hidden;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 
+      // 🔥 優化容器
+      contain: layout style paint;
+
       .main-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
+
+        // 🔥 圖片渲染優化
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: optimize-contrast;
+
+        // 🔥 簡化動畫
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
 
         &:hover {
-          transform: scale(1.05);
+          transform: scale(1.05) translateZ(0);
         }
       }
     }
   }
 
-  // 右側滾動圖片區域
+  // 🔥 右側滾動圖片區域 - 重點優化
   .scroll-section {
-    width: 25%;
+    width: 23%;
     height: 100%;
     overflow-y: scroll;
-    scrollbar-width: none; // Firefox
-    -ms-overflow-style: none; // IE
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     padding: 20px 10px;
-    outline: none; // 移除焦點邊框
-    position: relative;
+    outline: none;
 
-    // 隱藏 webkit 滾動條
+    // 🔥 滾動性能優化
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: scroll-position;
+
+    // 🔥 優化滾動行為
+    scroll-behavior: auto; // 讓 JS 控制滾動
+    overscroll-behavior: contain; // 防止滾動鏈
+
     &::-webkit-scrollbar {
       display: none;
     }
 
-    // 添加滾動區域的視覺提示
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.02);
-
-      .scroll-hint {
-        opacity: 0.8;
-      }
-    }
-
-    &:focus {
-      background-color: rgba(52, 152, 219, 0.05);
-    }
-
-    // 滾動提示
+    // 🔥 滾動提示優化
     .scroll-hint {
       position: absolute;
       top: 10px;
@@ -142,17 +171,25 @@
       font-size: 11px;
       z-index: 10;
       opacity: 0.6;
-      transition: opacity 0.3s ease;
       pointer-events: none;
+
+      // 🔥 簡化動畫
+      transition: opacity 0.2s ease;
+      will-change: opacity;
     }
 
     .scroll-item {
-      // 改為固定高度，而不是 100vh
-      height: 200px;
+      height: 300px; // 調整為 200px
       margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      // 🔥 GPU 加速
+      transform: translateZ(0);
+
+      // 🔥 限制重繪範圍
+      contain: layout style;
 
       &:last-child {
         margin-bottom: 0;
@@ -163,13 +200,23 @@
         height: 100%;
         border-radius: 10px;
         overflow: hidden;
-        transition: all 0.3s ease;
         cursor: pointer;
         position: relative;
 
+        // 🔥 限制重繪範圍
+        contain: layout style paint;
+
+        // 🔥 優化過渡效果 - 只對必要屬性動畫
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        // 🔥 告知瀏覽器會改變的屬性
+        will-change: transform, opacity;
+
         &.active {
-          transform: scale(1.05);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+          transform: scale(1.05) translateZ(0);
+          box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
           opacity: 1;
           border: 3px solid #3498db;
 
@@ -178,24 +225,36 @@
             color: white;
             font-weight: 600;
           }
+
+          // 🔥 active 狀態時移除 will-change
+          .side-image {
+            will-change: auto;
+          }
         }
 
         &.inactive {
           opacity: 0.7;
-          transform: scale(1);
+          transform: scale(1) translateZ(0);
 
           &:hover {
             opacity: 0.9;
-            transform: scale(1.02);
+            transform: scale(1.02) translateZ(0);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
           }
         }
 
         .side-image {
           width: 100%;
-          height: 80%;
+          height: 100%;
           object-fit: cover;
-          transition: transform 0.3s ease;
+
+          // 🔥 圖片優化
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: optimize-contrast;
+
+          // 🔥 只對 transform 做動畫
+          transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          will-change: transform;
         }
 
         .item-title {
@@ -209,18 +268,27 @@
           font-size: 12px;
           font-weight: 500;
           text-align: center;
-          transition: all 0.3s ease;
+
+          // 🔥 文字渲染優化
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+
+          // 🔥 簡化過渡效果
+          transition: background 0.2s ease, color 0.2s ease,
+            font-weight 0.2s ease;
         }
 
+        // 🔥 hover 時的圖片縮放
         &:hover .side-image {
-          transform: scale(1.1);
+          transform: scale(1.1) translateZ(0);
         }
       }
     }
   }
 }
 
-// 響應式設計
+// 🔥 針對不同設備的優化
 @media (max-width: 1024px) {
   .scroll-gallery {
     .text-section {
@@ -245,6 +313,10 @@
 
     .scroll-section {
       width: 25%;
+
+      .scroll-item {
+        height: 160px; // 在中等螢幕上稍微縮小
+      }
     }
   }
 }
@@ -277,10 +349,6 @@
       width: 100%;
       height: 40%;
       padding: 20px;
-
-      .main-image-container {
-        height: 100%;
-      }
     }
 
     .scroll-section {
@@ -296,13 +364,16 @@
         height: 100%;
         width: 150px;
         flex-shrink: 0;
-        padding: 5px;
-
-        .scroll-item-content {
-          height: 100%;
-          width: 100%;
-        }
+        margin-right: 10px;
+        margin-bottom: 0;
       }
     }
+  }
+}
+
+// 🔥 針對滾動的特殊優化
+@supports (scroll-behavior: smooth) {
+  .scroll-section {
+    scroll-behavior: auto; // 讓 JS 完全控制
   }
 }
