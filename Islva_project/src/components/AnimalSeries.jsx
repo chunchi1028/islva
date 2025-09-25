@@ -22,7 +22,7 @@ const AnimalSeries = () => {
     },
   ];
 
-  const mainImage = "./images/series/animals/butterfly.jpg";
+  const mainImage = "./images/products/form/animal/an-intro.jpg";
 
   return (
     <div className="butterfly-jewelry">

@@ -4,8 +4,8 @@ export default function Lumen({
   desc = "光落於色，色映於心。 「Lumen」是色澤的詩篇，也是工藝的舞蹈， 將瞬間的光影凝結，化為恆久的佩飾。",
   ctaText = "Learn more",
   onCtaClick = () => {},
-  imgLeft = "./images/series01.jpg",
-  imgRight = "./images/series01.jpg",
+  imgLeft = "./images/products/lumen/intro1.jpg",
+  imgRight = "./images/products/lumen/intro2.jpg",
   reverse = false, // 需要圖文對調時可用
 }) {
   return (

@@ -7,22 +7,22 @@ const ClassicalSeries = () => {
   const productImages = [
     {
       id: 1,
-      src: "./images/series/animals/butterfly01.jpg",
-      alt: "蝴蝶耳環正面",
+      src: "./images/products/form/classical/c01.png",
+      alt: "",
     },
     {
       id: 2,
-      src: "./images/series/animals/butterfly02.jpg",
-      alt: "蝴蝶耳環側面",
+      src: "./images/products/form/classical/c02.png",
+      alt: "",
     },
     {
       id: 3,
-      src: "./images/series/animals/butterfly01.jpg",
-      alt: "蝴蝶耳環佩戴效果",
+      src: "./images/products/form/classical/c01.png",
+      alt: "",
     },
   ];
 
-  const mainImage = "./images/series/animals/butterfly.jpg";
+  const mainImage = "./images/products/form/classical/cl-intro.jpg";
 
   return (
     <div className="butterfly-jewelry">
@@ -43,10 +43,8 @@ const ClassicalSeries = () => {
 
         <div className="product-description">
           <p>
-            ISLVA
-            的動物系列，以純銀雕動物等象徵之形，承載守護與自由的寓意。每一件作品，都是一種「靈獸」的低語
-            <br />
-            ——既有大自然的野性之美，也蘊含佩戴者內心的柔軟與力量。
+            凝聚 ISLVA 工藝的精髓與永不退流行的設計語言。
+            每一件作品都是時間淬鍊的象徵，簡約而深刻，適合任何時刻與風格。
           </p>
         </div>
         <Link to="/scrollGallery">

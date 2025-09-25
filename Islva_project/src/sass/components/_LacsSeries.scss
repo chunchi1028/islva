@@ -1,13 +1,14 @@
 // ================================
-// 主要樣式 (Main Styles) - 修改佈局順序
+// 主要樣式 (Main Styles) - 修正佈局
 // ================================
 
 .butterfly-jewelry1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: "details image"; // 左邊文字，右邊圖片
+  grid-template-areas: "details image"; // 指定左邊文字，右邊圖片
   min-height: 100vh;
   font-family: "Arial", "Helvetica", sans-serif;
+  // 移除 margin-left 和 margin-right，因為這是整個容器
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -23,37 +24,40 @@
 }
 
 // ================================
-// 主圖區域 (Main Image Section) - 現在在右邊
+// 右側主圖區域 (Main Image Section) - 移到右邊
 // ================================
 .main-image-section1 {
-  grid-area: image; // 指定到圖片區域
+  grid-area: image; // 指定為圖片區域
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; // 圖片內容向右對齊
 
   .main-image-container1 {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    display: block; // 移除任何間距
+    width: 80%; // 圖片占右半邊的80%
+    height: 100vh; // 高度80%
+    // 移除 object-fit，這個屬性應該在 img 標籤上
   }
 
   .main-image {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
+    width: 95%;
+    height: 95%;
+    object-fit: cover; // 這裡才是正確的位置
+ object-position: center 30%;
+    margin-left: auto; // 讓圖片貼到容器右邊
   }
 
-  // 蝴蝶裝飾元素 - 調整位置到左側
-  .butterfly-overlay {
+  // 蝴蝶裝飾元素
+  .butterfly-overlay1 {
     position: absolute;
     top: 20%;
-    left: 15%; // 改為左側
+    left: 10%; // 改為左側，相對於圖片區域
     z-index: 2;
 
-    .butterfly-decoration {
+    .butterfly-decoration1 {
       width: 60px;
       height: 60px;
-
       border-radius: 50%;
       position: relative;
       animation: float 3s ease-in-out infinite;
@@ -64,7 +68,6 @@
         position: absolute;
         width: 30px;
         height: 20px;
-        // background: rgba(255, 255, 255, 0.3);
         border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
       }
 
@@ -84,15 +87,15 @@
 }
 
 // ================================
-// 產品詳情區域 (Product Details) - 現在在左邊
+// 左側產品詳情區域 (Product Details) - 移到左邊
 // ================================
 .product-details1 {
-  grid-area: details; // 指定到詳情區域
-  padding: 60px 50px;
+  grid-area: details; // 指定為詳情區域
+  padding: 50px 70px 50px 50px; // 增加右邊padding，讓內容更靠近圖片
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+margin-left: 100px;
   @media (max-width: 768px) {
     padding: 40px 24px;
   }
@@ -107,8 +110,7 @@
   margin-bottom: 40px;
 
   .product-title1 {
-    display: flex;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 300;
     color: #2c3e50;
     margin: 0 0 12px 0;
@@ -118,15 +120,21 @@
     @media (max-width: 768px) {
       font-size: 2rem;
     }
+  }
 
-    // span {
-    //   display: block;
-    //   font-size: 1rem;
-    //   color: #7f8c8d;
-    //   font-weight: 400;
-    //   letter-spacing: 1px;
-    //   margin-top: 8px;
-    // }
+  .product-subtitle1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #7f8c8d;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    .separator {
+      color: #95a5a6;
+      font-weight: bold;
+    }
   }
 }
 
@@ -149,30 +157,30 @@
 // Next按鈕
 .next-btn1 {
   border: 1px solid #ecf0f1;
-  background: white;
+  background: #fff;
   padding: 12px 24px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   width: fit-content;
   margin-bottom: 50px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #2c3e50;
   border-radius: 4px;
-  transition: all 0.3s ease;
   text-decoration: none;
-
-  .btn-arrow1 {
-    transition: transform 0.3s ease;
-  }
+  transition: all 0.3s ease;
 
   &:hover {
     background: #e8f4f8;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-arrow1 {
+    transition: transform 0.3s ease;
   }
 
   &:hover .btn-arrow1 {
@@ -195,22 +203,20 @@
   flex-wrap: nowrap; // 強制單行排列
   align-items: center;
 
-  .thumbnail {
-    width: 220px; // 增加寬度
-    height: 220px; // 增加高度，比較適合橫向排列
+  .thumbnail1 {
+    width: 220px;
+    height: 220px;
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
     position: relative;
     border: 2px solid transparent;
-    transition: all 0.3s ease;
     flex-shrink: 0; // 防止縮圖被壓縮
+    transition: all 0.3s ease;
 
-    img {
-      width: 100%; // 改為填滿整個縮圖容器
-      height: 100%; // 改為填滿整個縮圖容器
-      object-fit: cover;
-      display: block;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     &.active {
@@ -219,14 +225,11 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
 
-    &:hover:not(.active) {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    &:focus {
-      outline: 2px solid #2c3e50;
-      outline-offset: 2px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
   }
 }

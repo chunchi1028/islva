@@ -4,8 +4,8 @@ export default function Core({
   desc = "每一顆寶石，皆是一段核心的記憶。 「Core」承載著本質與深意， 在細緻的鑲嵌中，留存珍貴的時光與信念。",
   ctaText = "Learn more",
   onCtaClick = () => {},
-  imgLeft = "./images/series01.jpg",
-  imgRight = "./images/series01.jpg",
+  imgLeft = "./images/products/core/intro01.jpg",
+  imgRight = "./images/products/core/intro02.jpg",
   reverse = false, // 需要圖文對調時可用
 }) {
   return (

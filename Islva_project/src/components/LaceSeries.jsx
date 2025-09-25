@@ -7,22 +7,22 @@ const LaceSeries = () => {
   const productImages = [
     {
       id: 1,
-      src: "./images/series/animals/butterfly01.jpg",
+      src: "./images/products/form/lace/l01.png",
       alt: "蝴蝶耳環正面",
     },
     {
       id: 2,
-      src: "./images/series/animals/butterfly02.jpg",
+      src: "./images/products/form/lace/l02.png",
       alt: "蝴蝶耳環側面",
     },
     {
       id: 3,
-      src: "./images/series/animals/butterfly01.jpg",
+      src: "./images/products/form/lace/l01.png",
       alt: "蝴蝶耳環佩戴效果",
     },
   ];
 
-  const mainImage = "./images/series/animals/butterfly.jpg";
+  const mainImage = "./images/products/form/lace/lace-intro.jpg";
 
   return (
     <div className="butterfly-jewelry1">

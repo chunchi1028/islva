@@ -211,9 +211,9 @@ const Home = () => {
               <br />
               一段關於光、色彩與情感的旅程。
             </p>
-            <Link to="/collections" className="cta-btn">
-              探索系列
-            </Link>
+            {/* <Link to="/collections" className="cta-btn">
+              view more →
+            </Link> */}
           </div>
           <div className="series-deco-text">
             Each collection is a journey <br />
@@ -230,12 +230,12 @@ const Home = () => {
             </div>
             <div className="image-item side-image">
               <Link to="lumen">
-                <img src="./images/series01.jpg" alt="Jewelry" />
+                <img src="./images/series03.jpg" alt="Jewelry" />
               </Link>
             </div>
             <div className="image-item top-right-image">
               <Link to="core">
-                <img src="./images/series01.jpg" alt="Jewelry" />
+                <img src="./images/series02.jpg" alt="Jewelry" />
               </Link>
             </div>
           </div>
